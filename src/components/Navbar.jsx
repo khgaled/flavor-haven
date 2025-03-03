@@ -1,38 +1,69 @@
-import { AppBar, Toolbar, 
-  Typography, Box, 
-  Menu, IconButton, 
-  Search, InputBase, Notifications, 
-  Avatar } from "@mui/material";
+import { AppBar, Toolbar, Box, IconButton, TextField, Avatar, Button, InputAdornment } from "@mui/material";
+import { MenuBook as MenuBookIcon, Search as SearchIcon } from "@mui/icons-material";
 
 export const Navbar = () => {
+  return (
+    <AppBar 
+      position="sticky"
+      sx={{
+        backgroundColor: "#7787b5", 
+        borderRadius: 6, 
+        margin: 1, 
+        width: "calc(100% - 16px)", 
+        boxShadow: 1, 
+      }}
+    >
+      <Toolbar sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", position: "relative" }}>
+        <Box sx={{ display: "flex", alignItems: "center" }}>
+          <IconButton>
+            <MenuBookIcon sx={{ color: "white" }} />
+          </IconButton>
+        </Box>
 
-    return (
-        <AppBar position="sticky" className="bg-white shadow-md">
-        <Toolbar className="flex justify-between">
-          
-          <Box className="flex items-center gap-2">
-            <IconButton className="text-gray-700">
-              <Menu />
-            </IconButton>
-            <Typography variant="h6" className="text-gray-900 font-semibold">
-              MyApp
-            </Typography>
-          </Box>
-  
-          
-          <Box className="flex items-center bg-gray-100 px-3 py-1 rounded-full w-80">
-            <Search className="text-gray-500" />
-            <InputBase placeholder="Search…" className="ml-2 flex-1 text-gray-700" />
-          </Box>
-  
-          
-          <Box className="flex items-center gap-4">
-            <IconButton className="text-gray-700">
-              <Notifications />
-            </IconButton>
-            <Avatar className="cursor-pointer" src="/profile.jpg" />
-          </Box>
-        </Toolbar>
-      </AppBar>
-    );
-}
+        <Box 
+          sx={{ 
+            display: "flex", 
+            alignItems: "center", 
+            gap: 3, 
+            position: "absolute", 
+            left: "50%", 
+            transform: "translateX(-50%)" 
+          }}
+        >
+          <Button variant="outlined" sx={{ borderColor: "white", color: "white", borderRadius: 3, px: 3 }}>
+            Main
+          </Button>
+          <Button variant="outlined" sx={{ borderColor: "white", color: "white", borderRadius: 3, px: 3 }}>
+            Restaurants
+          </Button>
+          <Button variant="contained" sx={{ backgroundColor: "white", color: "#7787b5", borderRadius: 3, px: 3 }}>
+            Recipes
+          </Button>
+
+          <TextField 
+            variant="outlined"
+            placeholder="Search..."
+            size="small"
+            sx={{
+              borderRadius: 3,
+              backgroundColor: "white",
+              width: 250,
+              "& .MuiOutlinedInput-root": { borderRadius: 3 },
+            }}
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <SearchIcon sx={{ color: "gray" }} />
+                </InputAdornment>
+              ),
+            }}
+          />
+        </Box>
+
+        <Box sx={{ display: "flex", alignItems: "center" }}>
+          <Avatar src="/profile.jpg" sx={{ cursor: "pointer", width: 40, height: 40 }} />
+        </Box>
+      </Toolbar>
+    </AppBar>
+  );
+};

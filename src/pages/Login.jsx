@@ -1,12 +1,22 @@
+import PropTypes from "prop-types";
 import { useState } from "react";
 import { TextField, Button, Container, Typography, Box, Grid } from "@mui/material";
-//import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import temp_photo from "../assets/temp_photo.png";
 
-const Login = () => {
+export const Login = ({ setIsLoggedIn }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  //const navigate = useNavigate();
+  const navigate = useNavigate();
+
+  const handleLogin = () => {
+    if (email === "Admin" && password === "Password") {
+      setIsLoggedIn(true); 
+      navigate("/recipes_explore"); 
+    } else {
+      alert("Invalid credentials. Try admin/password.");
+    }
+  };
 
   return (
     <Container 
@@ -97,7 +107,7 @@ const Login = () => {
                 onChange={(e) => setPassword(e.target.value)}
               />
 
-              <Button variant="contained" fullWidth>
+              <Button variant="contained" fullWidth onClick={handleLogin}>
                 Login
               </Button>
             </Box>
@@ -109,4 +119,7 @@ const Login = () => {
   );
 };
 
-export default Login;
+Login.propTypes = {
+  setIsLoggedIn: PropTypes.func.isRequired, 
+};
+
