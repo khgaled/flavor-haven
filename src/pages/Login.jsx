@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { TextField, Button, Container, Typography, Box, Grid } from "@mui/material";
-import { useNavigate } from "react-router-dom";
+//import { useNavigate } from "react-router-dom";
 import temp_photo from "../assets/temp_photo.png";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const navigate = useNavigate();
+  //const navigate = useNavigate();
 
   return (
     <Container 
