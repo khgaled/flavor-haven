@@ -1,7 +1,18 @@
+import { useNavigate, useLocation } from "react-router-dom";
 import { AppBar, Toolbar, Box, IconButton, TextField, Avatar, Button, InputAdornment } from "@mui/material";
 import { MenuBook as MenuBookIcon, Search as SearchIcon } from "@mui/icons-material";
+import PropTypes from "prop-types";
 
-export const Navbar = () => {
+export const Navbar = ({ setIsLoggedIn }) => {
+  const navigate = useNavigate();
+  const location = useLocation(); // To get the current path
+
+  const handleLogout = () => {
+    localStorage.removeItem("isLoggedIn"); 
+    setIsLoggedIn(false); 
+    navigate("/login"); 
+  };
+
   return (
     <AppBar 
       position="sticky"
@@ -30,13 +41,78 @@ export const Navbar = () => {
             transform: "translateX(-50%)" 
           }}
         >
-          <Button variant="outlined" sx={{ borderColor: "white", color: "white", borderRadius: 3, px: 3 }}>
+          {/* Temporary Logout Button */}
+          <Button onClick={handleLogout} variant="outlined" 
+            sx={{ borderColor: "white", color: "white", borderRadius: 3, px: 3 }}>
+            Temp_Logout
+          </Button>
+
+          <Button
+            variant="outlined"
+            sx={{
+              borderColor: "white",
+              color: "white",
+              backgroundColor: location.pathname === "/main_explore" ? "#60709c" : "transparent", // Filled when on the main page
+              borderRadius: 3,
+              px: 3,
+              '&:hover': {
+                backgroundColor: 'white',
+                color: 'black',
+                transition: 'background-color 0.3s ease',
+              },
+              '&:active': {
+                backgroundColor: 'gray',
+                color: 'white',
+              },
+            }}
+            onClick={() => navigate("/main_explore")}
+          >
             Main
           </Button>
-          <Button variant="outlined" sx={{ borderColor: "white", color: "white", borderRadius: 3, px: 3 }}>
+
+          <Button
+            variant="outlined"
+            sx={{
+              borderColor: "white",
+              color: "white",
+              backgroundColor: location.pathname === "/restaurants_explore" ? "#60709c" : "transparent", 
+              borderRadius: 3,
+              px: 3,
+              '&:hover': {
+                backgroundColor: 'white',
+                color: 'black',
+                transition: 'background-color 0.3s ease',
+              },
+              '&:active': {
+                backgroundColor: 'gray',
+                color: 'white',
+              },
+            }}
+            onClick={() => navigate("/restaurants_explore")}
+          >
             Restaurants
           </Button>
-          <Button variant="contained" sx={{ backgroundColor: "white", color: "#7787b5", borderRadius: 3, px: 3 }}>
+
+          <Button
+            variant="outlined"
+            sx={{
+              borderColor: "white",
+              color: "white",
+              backgroundColor: location.pathname === "/recipes_explore" ? "#60709c" : "transparent", // Filled when on the recipes page
+              borderRadius: 3,
+              px: 3,
+              '&:hover': {
+                backgroundColor: 'white',
+                color: 'black',
+                transition: 'background-color 0.3s ease',
+              },
+              '&:active': {
+                backgroundColor: 'gray',
+                color: 'white',
+              },
+            }}
+            onClick={() => navigate("/recipes_explore")}
+          >
             Recipes
           </Button>
 
@@ -66,4 +142,8 @@ export const Navbar = () => {
       </Toolbar>
     </AppBar>
   );
+};
+
+Navbar.propTypes = {
+  setIsLoggedIn: PropTypes.func.isRequired,
 };
