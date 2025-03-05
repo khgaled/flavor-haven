@@ -39,10 +39,8 @@ function App() {
             <Route path="/recipes_explore" element={<Recipes_Explore />} />
             <Route path="/restaurants_explore" element={<Restaurants_Explore />} /> 
             <Route path="/main_explore" element={<Main_Explore />} /> 
-<<<<<<< HEAD
             <Route path="/user_blog" element={<User_Blog />} />
             <Route path="/new_post" element={<New_Post />} />
-=======
             <Route path="/recipe_post" element={<RecipePost />} /> 
             <Route path="/recipe_post1" element={<RecipePost1 />} /> 
             <Route path="/recipe_post2" element={<RecipePost2 />} /> 
@@ -55,7 +53,6 @@ function App() {
             <Route path="/restaurant_post3" element={<RestaurantPost3 />} /> 
             <Route path="/restaurant_post4" element={<RestaurantPost4 />} /> 
             <Route path="/restaurant_post5" element={<RestaurantPost5 />} />   
->>>>>>> origin/main
             <Route path="*" element={<Navigate to="/main_explore" />} /> 
           </>
         ) : (

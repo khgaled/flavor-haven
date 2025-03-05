@@ -136,6 +136,7 @@ export const Navbar = ({ setIsLoggedIn }) => {
 
         <Box sx={{ display: "flex", alignItems: "center" }}>
           <Avatar src="/profile.jpg" sx={{ cursor: "pointer", width: 40, height: 40 }} />
+          
         </Box>
       </Toolbar>
     </AppBar>
