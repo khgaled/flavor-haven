@@ -1,11 +1,11 @@
 import { useNavigate, useLocation } from "react-router-dom";
-import { AppBar, Toolbar, Box, IconButton, TextField, Avatar, Button, InputAdornment } from "@mui/material";
-import { MenuBook as MenuBookIcon, Search as SearchIcon } from "@mui/icons-material";
+import { AppBar, Toolbar, Box, TextField, Avatar, Button, InputAdornment } from "@mui/material";
+import {  Search as SearchIcon, Cookie as CookieIcon } from "@mui/icons-material";
 import PropTypes from "prop-types";
 
 export const Navbar = ({ setIsLoggedIn }) => {
   const navigate = useNavigate();
-  const location = useLocation(); // To get the current path
+  const location = useLocation(); 
 
   const handleLogout = () => {
     localStorage.removeItem("isLoggedIn"); 
@@ -17,7 +17,7 @@ export const Navbar = ({ setIsLoggedIn }) => {
     <AppBar 
       position="sticky"
       sx={{
-        backgroundColor: "#7787b5", 
+        backgroundColor: "#82A5D9", 
         borderRadius: 6, 
         margin: 1, 
         width: "calc(100% - 16px)", 
@@ -26,9 +26,7 @@ export const Navbar = ({ setIsLoggedIn }) => {
     >
       <Toolbar sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", position: "relative" }}>
         <Box sx={{ display: "flex", alignItems: "center" }}>
-          <IconButton>
-            <MenuBookIcon sx={{ color: "white" }} />
-          </IconButton>
+          <CookieIcon />
         </Box>
 
         <Box 
@@ -56,8 +54,8 @@ export const Navbar = ({ setIsLoggedIn }) => {
               borderRadius: 3,
               px: 3,
               '&:hover': {
-                backgroundColor: 'white',
-                color: 'black',
+                backgroundColor: '#60709c',
+                color: 'white',
                 transition: 'background-color 0.3s ease',
               },
               '&:active': {
@@ -79,8 +77,8 @@ export const Navbar = ({ setIsLoggedIn }) => {
               borderRadius: 3,
               px: 3,
               '&:hover': {
-                backgroundColor: 'white',
-                color: 'black',
+                backgroundColor: '#60709c',
+                color: 'white',
                 transition: 'background-color 0.3s ease',
               },
               '&:active': {
@@ -102,8 +100,8 @@ export const Navbar = ({ setIsLoggedIn }) => {
               borderRadius: 3,
               px: 3,
               '&:hover': {
-                backgroundColor: 'white',
-                color: 'black',
+                backgroundColor: '#60709c',
+                color: 'white',
                 transition: 'background-color 0.3s ease',
               },
               '&:active': {
