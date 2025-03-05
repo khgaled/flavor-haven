@@ -91,7 +91,7 @@ export const Profile = () => {
 
               {/* Image on the Right */}
               <Box component="img" src="src\assets\food.jpg" 
-                sx={{ height: "80%", width: "auto", borderRadius: "20px" }} />
+                sx={{ height: "80%", width: "23%", borderRadius: "20px" }} />
             </Box>
 
             <Box 
@@ -116,7 +116,7 @@ export const Profile = () => {
                 </Box>
               {/* Image on the Right */}
               <Box component="img" src="src\assets\shrimpast.jpg" 
-                sx={{ height: "80%", width: "auto", borderRadius: "20px" }} />
+                sx={{ height: "80%", width: "23%", borderRadius: "20px" }} />
           </Box>
 
           <Box 
@@ -141,8 +141,8 @@ export const Profile = () => {
                 </Box>
 
             {/* Image on the Right */}
-            <Box component="img" src="src\assets\food.jpg" 
-              sx={{ height: "80%", width: "auto", borderRadius: "20px" }} />
+            <Box component="img" src="src\assets\ramen.jpg" 
+              sx={{ height: "80%", width: "23%", borderRadius: "20px" }} />
           </Box>
 
           <Box 
@@ -167,8 +167,8 @@ export const Profile = () => {
                 </Box>
 
               {/* Image on the Right */}
-              <Box component="img" src="src\assets\food.jpg" 
-                sx={{ height: "80%", width: "auto", borderRadius: "20px" }} />
+              <Box component="img" src="src\assets\lunch.jpg" 
+                sx={{ height: "80%", width: "23%", borderRadius: "20px" }} />
           </Box>
 
         </Box>
