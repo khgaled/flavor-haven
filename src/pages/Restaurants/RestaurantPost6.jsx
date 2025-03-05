@@ -1,4 +1,3 @@
-import React from 'react';
 import {
     Container,
     Typography,
@@ -11,6 +10,8 @@ import {
     Share as ShareIcon 
 } from '@mui/icons-material';
 import bobaImage from "../../assets/boba1.jpg"; // You might want to replace this with an actual boba shop image
+import { useShare } from "../../common/shareUtil"
+
 
 const RestaurantContainer = styled(Container)({
     display: 'flex',
@@ -64,6 +65,15 @@ const SectionTitle = styled(Typography)({
 });
 
 export const RestaurantPost6 = () => {
+    const { sharePost, ShareSnackbar } = useShare(); 
+        
+        // Dummy post data for sharing
+        const postData = {
+            postId: 7,  
+            isRestaurant: true,  
+        };
+
+
     return (
         <RestaurantContainer>
             <RestaurantWrapper>
@@ -85,7 +95,12 @@ export const RestaurantPost6 = () => {
                         </IconButton>
                         <Typography variant="body2">100K</Typography>
                     </Box>
-                    <IconButton size="small">
+                    <IconButton size="small"
+                        onClick={(e) => {
+                            e.stopPropagation(); 
+                            sharePost(postData.postId, postData.isRestaurant);
+                        }}
+                    >
                         <ShareIcon />
                     </IconButton>
                 </ActionIcons>
@@ -123,6 +138,7 @@ export const RestaurantPost6 = () => {
                     </Typography>
                 </RestaurantInfo>
             </RestaurantWrapper>
+            <ShareSnackbar/>
         </RestaurantContainer>
     );
 };
