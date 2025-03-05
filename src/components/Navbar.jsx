@@ -137,7 +137,22 @@ export const Navbar = ({ setIsLoggedIn }) => {
         </Box>
 
         <Box sx={{ display: "flex", alignItems: "center" }}>
-          <Avatar src="/profile.jpg" sx={{ cursor: "pointer", width: 40, height: 40 }} />
+          <Button
+            sx={{
+              borderColor: "white",
+              color: "white",
+              backgroundColor: location.pathname === "/profile" ? "#60709c" : "transparent", 
+            }}
+            onClick={() => navigate("/profile")}
+          >
+            <Avatar 
+              src="/profile.jpg" 
+              sx={{ 
+                cursor: "pointer", 
+                width: 40, 
+                height: 40,       
+                }} />
+          </Button>
         </Box>
       </Toolbar>
     </AppBar>
