@@ -4,21 +4,22 @@ import { Box, Avatar, Typography } from "@mui/material";
 export const Profile = () => {
 
   return (
-    <Box sx={{ display: "flex", height: "80vh", p: 2 }}>
-      {/* Profile card */}
+    <Box sx={{ display: "flex", height: "80vh", px: 6, py: 2 }}>
+      {/* profile card */}
       <Box 
         sx={{ 
           width: "25%", 
           bgcolor: "#7787b5",
           p: 2, 
-          border: "20px double black",
+          border: "12px double black",
           borderRadius: 15, 
           position: "fixed", 
-          height: "50%",
+          height: "46%",
           display: "flex",
           flexDirection: "column",
           alignItems: "center", 
-          gap: 2
+          gap: 3,
+          boxShadow: 5
           }}>
 
         {/* profile picture */}
@@ -31,22 +32,37 @@ export const Profile = () => {
             border: "3px solid black"  
             }} />
 
+
+        <Box>
           {/* username */}
-        <Typography variant="h3" color="white">
-          Username
-        </Typography>
+          <Typography color="#2d333d">
+            @toasty_boy
+          </Typography>
+
+          {/* Display name */}
+          <Typography variant="h4" color="black">
+            Toast Malone
+          </Typography>
+        </Box>
+        
             
           {/* bio */}
         <Box
           sx={{
-            borderColor: "white",
+            display: "flex",
+            width: "85%",
+            bgcolor: "#a4adc9",
+            textAlign: "left",
+            border: "2px solid black",
+            borderRadius: "15px",
+            padding: "16px",
+            boxShadow: 1
           }}
         >
-          <Typography variant="h5" color="white">
-            Hello I am chef
+          <Typography color="black">
+            Creating new recipes everyday!
           </Typography>
         </Box>
-
       </Box>
     
       {/* Recipe Blogs */}
@@ -59,10 +75,19 @@ export const Profile = () => {
               display: "flex", 
               alignItems: "center", 
               justifyContent: "space-between", 
-              px: 2,
-              margin: 2 
+              px: 3,
+              margin: 2,
+              boxShadow: 3 
             }}>
-              <Typography variant="h5">My best recipes</Typography>
+
+              <Box sx={{textAlign:"left"}}>
+                <Typography variant="h4" component="h2">
+                  My best recipes
+                  <Typography>
+                    My most delicious, extravagant and popular recipes!
+                    </Typography>
+                  </Typography>
+                </Box>
 
               {/* Image on the Right */}
               <Box component="img" src="src\assets\food.jpg" 
@@ -70,17 +95,50 @@ export const Profile = () => {
             </Box>
 
             <Box 
-          sx={{ 
-            height: 150, 
-            border: "2px solid black",
-            borderRadius: "20px",
-            display: "flex", 
-            alignItems: "center", 
-            justifyContent: "space-between", 
-            px: 2,
-            margin: 2  
-          }}>
-            <Typography variant="h5">Family Favorites</Typography>
+              sx={{ 
+                height: 150, 
+                border: "2px solid black",
+                borderRadius: "20px",
+                display: "flex", 
+                alignItems: "center", 
+                justifyContent: "space-between", 
+                px: 2,
+                margin: 2,  
+                boxShadow: 3 
+              }}>
+              <Box sx={{textAlign:"left"}}>
+                <Typography variant="h4" component="h2">
+                  Family favorites
+                  <Typography>
+                    Beloved dishes, enjoyed by kids and parents alike
+                    </Typography>
+                  </Typography>
+                </Box>
+              {/* Image on the Right */}
+              <Box component="img" src="src\assets\shrimpast.jpg" 
+                sx={{ height: "80%", width: "auto", borderRadius: "20px" }} />
+          </Box>
+
+          <Box 
+            sx={{ 
+              height: 150, 
+              border: "2px solid black",
+              borderRadius: "20px",
+              display: "flex", 
+              alignItems: "center", 
+              justifyContent: "space-between", 
+              px: 2,
+              margin: 2,
+              boxShadow: 3   
+            }}>
+              <Box sx={{textAlign:"left"}}>
+                <Typography variant="h4" component="h2">
+                  Quick and easy meals
+                  <Typography>
+                    Dishes that are both fast and filling
+                    </Typography>
+                  </Typography>
+                </Box>
 
             {/* Image on the Right */}
             <Box component="img" src="src\assets\food.jpg" 
@@ -88,24 +146,32 @@ export const Profile = () => {
           </Box>
 
           <Box 
-          sx={{ 
-            height: 150, 
-            border: "2px solid black",
-            borderRadius: "20px",
-            display: "flex", 
-            alignItems: "center", 
-            justifyContent: "space-between", 
-            px: 2,
-            margin: 2  
-          }}>
-            <Typography variant="h5">Quick and easy meals</Typography>
+              sx={{ 
+                height: 150, 
+                border: "2px solid black",
+                borderRadius: "20px",
+                display: "flex", 
+                alignItems: "center", 
+                justifyContent: "space-between", 
+                px: 2,
+                margin: 2,
+                boxShadow: 3   
+              }}>
+              <Box sx={{textAlign:"left"}}>
+                <Typography variant="h4" component="h2">
+                  Kids menu
+                  <Typography>
+                    For the kids' lunchboxes
+                    </Typography>
+                  </Typography>
+                </Box>
 
-            {/* Image on the Right */}
-            <Box component="img" src="src\assets\food.jpg" 
-              sx={{ height: "80%", width: "auto", borderRadius: "20px" }} />
+              {/* Image on the Right */}
+              <Box component="img" src="src\assets\food.jpg" 
+                sx={{ height: "80%", width: "auto", borderRadius: "20px" }} />
           </Box>
-        </Box>
 
+        </Box>
 
     </Box>
   );
