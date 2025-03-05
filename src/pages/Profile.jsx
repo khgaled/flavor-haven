@@ -1,8 +1,9 @@
 import React from "react";
 import { Box, Avatar, Typography, Button } from "@mui/material";
 import { useNavigate} from "react-router-dom";
+import PropTypes from "prop-types";
 
-export const Profile = () => {
+export const Profile = ({ setIsLoggedIn }) => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -265,4 +266,6 @@ export const Profile = () => {
   );
 };
 
-
+Profile.propTypes = {
+  setIsLoggedIn: PropTypes.func.isRequired,
+};
