@@ -95,7 +95,7 @@ export const Main_Explore = () => {
       {
         image: jap,
         title: "Sakura Sushi",
-        onClick: () => navigate('/restaurant_post3')
+        onClick: () => navigate('/restaurant_post2')
       },
       {
         image: bul,
