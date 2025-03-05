@@ -13,6 +13,7 @@ import {
   Share as ShareIcon
 } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
+import { useShare } from "../../common/shareUtil"
 import garden from "../../assets/sichuan-garden.jpg"
 import jewel from "../../assets/Jewel.jpg"
 import jap from "../../assets/Japan.jpg"
@@ -58,6 +59,7 @@ const ActionIcons = styled(Box)({
 });
 
 export const Restaurants_Explore = () => {
+  const { sharePost, ShareSnackbar } = useShare(); 
   const navigate = useNavigate();
 
   const postRows = [
@@ -140,6 +142,7 @@ export const Restaurants_Explore = () => {
                 size="small" 
                 onClick={(e) => {
                   e.stopPropagation();
+                  sharePost(post.id, post.isRestaurant);
                 }}
               >
                 <ShareIcon />
@@ -154,6 +157,7 @@ export const Restaurants_Explore = () => {
   return (
     <MainContainer>
       {postRows.map(renderPostRow)}
+      <ShareSnackbar />
     </MainContainer>
   );
 };

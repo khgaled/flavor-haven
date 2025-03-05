@@ -4,14 +4,9 @@ import {
   Container,
   Typography,
   Box,
-  Grid,
-  MenuItem,
-  Select,
-  InputLabel,
-  FormControl,
 } from "@mui/material";
 import { useState } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 
 export const New_Post = () => {
@@ -49,7 +44,6 @@ export const New_Post = () => {
             position: "absolute",
             minHeight: "70vh",
             borderRadius: 8,
-            position: "relative",
           }}
         >
           <Button

@@ -6,17 +6,17 @@ import { useNavigate } from "react-router-dom";
 import temp_photo from "../assets/temp_photo.png";
 
 export const Login = ({ setIsLoggedIn }) => {
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
   const handleLogin = () => {
-    if (email === "Admin" && password === "Password") {
+    if (username === "toastM12" && password === "Toastlols") {
       localStorage.setItem("isLoggedIn", "true");
       setIsLoggedIn(true);
       navigate("/recipes_explore");
     } else {
-      alert("Invalid credentials. Try Admin/Password.");
+      alert("Invalid credentials. Try toastM12/Toastlols.");
     }
   };
 
@@ -110,8 +110,8 @@ export const Login = ({ setIsLoggedIn }) => {
                 fullWidth
                 label="Username"
                 variant="outlined"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
                 sx={{
                   "& .MuiOutlinedInput-root": {
                     borderRadius: "20px",
