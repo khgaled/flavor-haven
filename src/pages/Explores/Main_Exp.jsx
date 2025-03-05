@@ -41,6 +41,11 @@ const FeaturedSection = styled(Box)(({ theme }) => ({
   height: 250,
   position: "relative",
   overflow: "hidden",
+  // Add the same hover effect as PostCard
+  transition: "transform 0.3s ease",
+  "&:hover": {
+    transform: "scale(1.05)",
+  },
 }));
 
 const CarouselWrapper = styled(Box)({
@@ -182,7 +187,17 @@ export const Main_Explore = () => {
     ],
   ];
 
+  // Updated to handle clicks on the featured section while preserving carousel navigation
+  const handleFeaturedClick = (navigateTo, event) => {
+    // Check if the click was on the carousel navigation buttons
+    if (!event.target.closest('.MuiIconButton-root')) {
+      navigate(navigateTo);
+    }
+  };
+
   const renderFeaturedRecipeRestaurant = () => {
+    const currentFeatured = featuredRestaurants[currentFeaturedIndex];
+    
     return (
       <FeaturedSection>
         <CarouselWrapper 
@@ -191,24 +206,13 @@ export const Main_Explore = () => {
           }}
         >
           {featuredRestaurants.map((featured, index) => (
-            <CarouselSlide key={index}>
-              <CarouselButton 
-                onClick={handlePrevFeatured} 
-                sx={{ left: 10 }}
-              >
-                <LeftIcon />
-              </CarouselButton>
-              <CarouselButton 
-                onClick={handleNextFeatured} 
-                sx={{ right: 10 }}
-              >
-                <RightIcon />
-              </CarouselButton>
-
+            <CarouselSlide 
+              key={index}
+              onClick={(e) => handleFeaturedClick(featured.navigateTo, e)}
+            >
               <FeaturedImage 
                 src={featured.image} 
-                alt={featured.title} 
-                onClick={() => navigate(featured.navigateTo)}
+                alt={featured.title}
               />
               
               <Typography
@@ -230,6 +234,22 @@ export const Main_Explore = () => {
             </CarouselSlide>
           ))}
         </CarouselWrapper>
+        
+        {/* Moved buttons outside of slides but kept inside the FeaturedSection */}
+        <CarouselButton 
+          onClick={handlePrevFeatured} 
+          sx={{ left: 10 }}
+          className="MuiIconButton-root"
+        >
+          <LeftIcon />
+        </CarouselButton>
+        <CarouselButton 
+          onClick={handleNextFeatured} 
+          sx={{ right: 10 }}
+          className="MuiIconButton-root"
+        >
+          <RightIcon />
+        </CarouselButton>
       </FeaturedSection>
     );
   };
