@@ -146,11 +146,12 @@ export const Navbar = ({ setIsLoggedIn }) => {
             onClick={() => navigate("/profile")}
           >
             <Avatar 
-              src="/profile.jpg" 
+              src="src\assets\chef.jpg" 
               sx={{ 
                 cursor: "pointer", 
-                width: 40, 
-                height: 40,       
+                width: 50, 
+                height: 50,
+                border: "2px solid black"       
                 }} />
           </Button>
         </Box>
