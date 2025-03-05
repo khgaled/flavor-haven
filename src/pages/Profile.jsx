@@ -110,7 +110,9 @@ export const Profile = () => {
                 margin: 2,  
                 boxShadow: 3 
               }}>
-              <Box sx={{textAlign:"left"}}>
+              <Box 
+              onClick={() => navigate("/user_blog2")}
+              sx={{textAlign:"left"}}>
                 <Typography variant="h4" component="h2">
                   Family favorites
                   <Typography>
@@ -135,7 +137,9 @@ export const Profile = () => {
               margin: 2,
               boxShadow: 3   
             }}>
-              <Box sx={{textAlign:"left"}}>
+              <Box 
+              onClick={() => navigate("/user_blog3")}
+              sx={{textAlign:"left"}}>
                 <Typography variant="h4" component="h2">
                   Quick and easy meals
                   <Typography>
@@ -161,7 +165,9 @@ export const Profile = () => {
                 margin: 2,
                 boxShadow: 3   
               }}>
-              <Box sx={{textAlign:"left"}}>
+              <Box 
+              onClick={() => navigate("/user_blog4")}
+              sx={{textAlign:"left"}}>
                 <Typography variant="h4" component="h2">
                   Kids menu
                   <Typography>

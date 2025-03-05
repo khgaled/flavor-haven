@@ -8,7 +8,7 @@ import {
 } from "@mui/material";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
-import chicky_ticky from "../assets/chicken-tikka-masala.jpg";
+import chicky_ticky from "../assets/chicken.png";
 import cupcake from "../assets/gingcup.jpg";
 
 export const User_Blog = () => {
@@ -77,6 +77,7 @@ export const User_Blog = () => {
           </Button>
 
           <Button
+            onClick={() => navigate("/profile")}
             variant="contained"
             sx={{ mt: 2, color: "", ml: 5, backgroundColor: "black" }}
           >

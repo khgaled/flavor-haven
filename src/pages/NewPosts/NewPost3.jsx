@@ -13,23 +13,21 @@ import {
 import { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 
-
-export const New_Post = () => {
+export const New_Post3 = () => {
   const navigate = useNavigate();
   const [title, setTitle] = useState("");
   const [steps, setSteps] = useState("");
 
   const handleSubmit = () => {
     const newPost = { title, steps };
-    navigate("/user_blog4", { state: { newPost } });
+    navigate("/user_blog3", { state: { newPost } });
   };
-
 
   return (
     <div>
       <Container>
         <Button
-          onClick={() => navigate("/user_blog")}
+          onClick={() => navigate("/user_blog2")}
           variant="contained"
           sx={{
             color: "",
@@ -104,7 +102,7 @@ export const New_Post = () => {
                 variant="outlined"
                 fullWidth
                 sx={{ backgroundColor: "white", color: "black" }}
-                value = {title}
+                value={title}
                 onChange={(e) => setTitle(e.target.value)}
               />
             </Box>
@@ -132,8 +130,8 @@ export const New_Post = () => {
                   color: "black",
                   //minHeight: "30vh",
                 }}
-                value= {steps}
-                onChange = {(e) => setSteps(e.target.value)}
+                value={steps}
+                onChange={(e) => setSteps(e.target.value)}
               />
             </Box>
           </Box>
@@ -155,4 +153,4 @@ export const New_Post = () => {
   );
 };
 
-export default New_Post;
+export default New_Post3;
