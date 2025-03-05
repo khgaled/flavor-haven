@@ -1,0 +1,26 @@
+// import React from 'react';
+// import '../styles/Recipe.css';
+
+// function RecipePost() {
+//   return (
+//     <div className="recipe-container">
+//       <div className="recipe-card">
+//         <h1 className="recipe-title">SHRIMP PASTA</h1>
+//         <div className="recipe-icon">
+//           <svg width="60" height="60" viewBox="0 0 100 100">
+//             <path d="M50 20 C60 10, 80 10, 90 20 C95 25, 95 35, 85 40 C75 45, 70 35, 65 40 C60 45, 40 50, 30 40 C20 30, 40 10, 50 20" fill="none" stroke="#333" strokeWidth="2"/>
+//             <circle cx="75" cy="25" r="2" fill="#333"/>
+//           </svg>
+//         </div>
+//         <div className="recipe-section">
+//           <h2 className="section-title">INGREDIENTS</h2>
+//           <ul className="ingredients-list">
+//             {/* Ingredients will be added here */}
+//           </ul>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// }
+
+// export default RecipePost;

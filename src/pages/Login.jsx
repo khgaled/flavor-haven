@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import { useState } from "react";
-import { TextField, Button, Container, Typography, Box, Grid } from "@mui/material";
+import { TextField, Button, Container, Typography, Box, Stack, Grid } from "@mui/material";
+import { Cookie as CookieIcon } from '@mui/icons-material';
 import { useNavigate } from "react-router-dom";
 import temp_photo from "../assets/temp_photo.png";
 
@@ -83,9 +84,18 @@ export const Login = ({ setIsLoggedIn }) => {
             width="100%"
             maxWidth={400}
           >
-            <Typography variant="h5" gutterBottom>
-              Login
+
+          <Stack direction="row" alignItems="center">
+            <Typography 
+              variant="h5" 
+              gutterBottom 
+              sx={{ p: 2, fontWeight: 'bold', color: "#752a28" }}>
+              WELCOME TO THE HAVEN
             </Typography>
+            <CookieIcon fontSize="large" sx={{ color: "#9F413E" }}/>
+          </Stack>
+
+
 
             {/* Form */}
             <Box
@@ -133,11 +143,32 @@ export const Login = ({ setIsLoggedIn }) => {
                   fontSize: "16px",
                   fontWeight: "bold",
                   textTransform: "none",
-                  backgroundColor: "#9F413E"
+                  color: "white",
+                  backgroundColor: "#93a9c9"
                 }}
               >
                 Login
               </Button>
+
+              <Stack direction="row" alignItems="center" spacing={22} sx={{ width: "100%" }}>
+                <Typography variant="body2">
+                  <Button
+                    variant="text"
+                    sx={{ textTransform: "none", fontWeight: "bold", color: "#9F413E" }}
+                    onClick={() => alert("Sign-up feature coming soon!")}
+                  >
+                    Sign Up
+                  </Button>
+                </Typography>
+                
+                <Button
+                  variant="text"
+                  sx={{ textTransform: "none", color: "#9F413E", fontWeight: "bold" }}
+                  onClick={() => alert("Forgot password feature coming soon!")}
+                >
+                  Forgot Password?
+                </Button>
+              </Stack>
             </Box>
           </Box>
         </Grid>
