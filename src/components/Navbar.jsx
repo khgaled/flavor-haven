@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 
 export const Navbar = ({ setIsLoggedIn }) => {
   const navigate = useNavigate();
-  const location = useLocation(); // To get the current path
+  const location = useLocation(); 
 
   const handleLogout = () => {
     localStorage.removeItem("isLoggedIn"); 
@@ -17,7 +17,7 @@ export const Navbar = ({ setIsLoggedIn }) => {
     <AppBar 
       position="sticky"
       sx={{
-        backgroundColor: "#7787b5", 
+        backgroundColor: "#82A5D9", 
         borderRadius: 6, 
         margin: 1, 
         width: "calc(100% - 16px)", 
