@@ -26,6 +26,7 @@ import { RestaurantPost2 } from "./pages/Restaurants/RestaurantPost2";
 import { RestaurantPost3 } from "./pages/Restaurants/RestaurantPost3";
 import { RestaurantPost4 } from "./pages/Restaurants/RestaurantPost4";
 import { RestaurantPost5 } from "./pages/Restaurants/RestaurantPost5";
+import { RestaurantPost6 } from "./pages/Restaurants/RestaurantPost6";
 import "./App.css";
 
 function App() {
@@ -66,7 +67,8 @@ function App() {
             <Route path="/restaurant_post2" element={<RestaurantPost2 />} /> 
             <Route path="/restaurant_post3" element={<RestaurantPost3 />} /> 
             <Route path="/restaurant_post4" element={<RestaurantPost4 />} /> 
-            <Route path="/restaurant_post5" element={<RestaurantPost5 />} />   
+            <Route path="/restaurant_post5" element={<RestaurantPost5 />} /> 
+            <Route path="/restaurant_post6" element={<RestaurantPost6 />} />  
             <Route path="*" element={<Navigate to="/main_explore" />} /> 
           </>
         ) : (
