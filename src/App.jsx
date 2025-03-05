@@ -6,6 +6,7 @@ import { Restaurants_Explore } from "./pages/Explores/Restaurants_Exp";
 import { Main_Explore } from "./pages/Explores/Main_Exp"; 
 import { User_Blog } from "./pages/Blog";
 import {New_Post} from "./pages/NewPost"
+import { Profile } from "./pages/Profile"; 
 import { Navbar } from "./components/Navbar";
 import { RecipePost } from "./pages/Recipes/RecipePost";
 import { RecipePost1 } from "./pages/Recipes/RecipePost1";
@@ -41,6 +42,7 @@ function App() {
             <Route path="/main_explore" element={<Main_Explore />} /> 
             <Route path="/user_blog" element={<User_Blog />} />
             <Route path="/new_post" element={<New_Post />} />
+            <Route path="/profile" element={<Profile />} /> 
             <Route path="/recipe_post" element={<RecipePost />} /> 
             <Route path="/recipe_post1" element={<RecipePost1 />} /> 
             <Route path="/recipe_post2" element={<RecipePost2 />} /> 
