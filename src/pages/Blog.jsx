@@ -77,6 +77,7 @@ export const User_Blog = () => {
           </Button>
 
           <Button
+            onClick={() => navigate("/profile")}
             variant="contained"
             sx={{ mt: 2, color: "", ml: 5, backgroundColor: "black" }}
           >
