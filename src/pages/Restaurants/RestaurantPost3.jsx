@@ -10,6 +10,7 @@ import {
     Share as ShareIcon 
 } from '@mui/icons-material';
 import it from "../../assets/italy.jpg";
+import { useShare } from "../../common/shareUtil"
 
 const RestaurantContainer = styled(Container)({
     display: 'flex',
@@ -63,6 +64,14 @@ const SectionTitle = styled(Typography)({
 });
 
 export const RestaurantPost3 = () => {
+    const { sharePost, ShareSnackbar } = useShare(); 
+    
+    // Dummy post data for sharing
+    const postData = {
+        postId: 4,  
+        isRestaurant: true,  
+    };
+
     return (
         <RestaurantContainer>
             <RestaurantWrapper>
@@ -84,7 +93,12 @@ export const RestaurantPost3 = () => {
                         </IconButton>
                         <Typography variant="body2">100K</Typography>
                     </Box>
-                    <IconButton size="small">
+                    <IconButton size="small"
+                        onClick={(e) => {
+                            e.stopPropagation(); 
+                            sharePost(postData.postId, postData.isRestaurant);
+                        }}
+                    >
                         <ShareIcon />
                     </IconButton>
                 </ActionIcons>
@@ -122,6 +136,7 @@ export const RestaurantPost3 = () => {
                     </Typography>
                 </RestaurantInfo>
             </RestaurantWrapper>
+            <ShareSnackbar/>
         </RestaurantContainer>
     );
 };
