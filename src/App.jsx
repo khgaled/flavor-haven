@@ -4,6 +4,7 @@ import { Login } from "./pages/Login";
 import { Recipes_Explore } from "./pages/Explores/Recipes_Exp";
 import { Restaurants_Explore } from "./pages/Explores/Restaurants_Exp"; 
 import { Main_Explore } from "./pages/Explores/Main_Exp"; 
+import { User_Blog } from "./pages/Blog";
 import { Navbar } from "./components/Navbar";
 import "./App.css";
 
@@ -25,6 +26,7 @@ function App() {
             <Route path="/recipes_explore" element={<Recipes_Explore />} />
             <Route path="/restaurants_explore" element={<Restaurants_Explore />} /> 
             <Route path="/main_explore" element={<Main_Explore />} /> 
+            <Route path="/user_blog" element={<User_Blog />} />
             <Route path="*" element={<Navigate to="/main_explore" />} /> 
           </>
         ) : (
