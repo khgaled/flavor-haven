@@ -19,6 +19,7 @@ import jap from "../../assets/Japan.jpg"
 import italy from "../../assets/italy.jpg"
 import mex from "../../assets/Mex.jpg";
 import kor from "../../assets/Kor.jpg";
+
 const MainContainer = styled(Container)(({ theme }) => ({
   padding: theme.spacing(2),
   backgroundColor: '#f0f2f5',
