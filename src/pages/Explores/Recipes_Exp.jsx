@@ -13,6 +13,7 @@ import {
   Share as ShareIcon
 } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
+import { useShare } from "../../common/shareUtil"
 import shrimpPasta from "../../assets/__opt__aboutcom__coeus__resources__content_migration__serious_eats__seriouseats.com__2021__02__20210204-shrimp-scampi-pasta-sauce-daniel-gritzer-16-f01e8b8cc5dc4591b968bb1acc1b6f.jpg";
 import chicken from "../../assets/chicken.png";
 import bul from "../../assets/Beef-Bulgogi.jpg";
@@ -58,6 +59,7 @@ const ActionIcons = styled(Box)({
 });
 
 export const Recipes_Explore = () => {
+  const { sharePost, ShareSnackbar } = useShare(); 
   const navigate = useNavigate();
 
   const postRows = [
@@ -140,6 +142,7 @@ export const Recipes_Explore = () => {
                 size="small" 
                 onClick={(e) => {
                   e.stopPropagation();
+                  sharePost(post.id, post.isRestaurant);
                 }}
               >
                 <ShareIcon />
@@ -154,6 +157,7 @@ export const Recipes_Explore = () => {
   return (
     <MainContainer>
       {postRows.map(renderPostRow)}
+      <ShareSnackbar />
     </MainContainer>
   );
 };
