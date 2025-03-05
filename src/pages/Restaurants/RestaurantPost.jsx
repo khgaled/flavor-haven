@@ -10,6 +10,7 @@ import {
     Share as ShareIcon 
 } from '@mui/icons-material';
 import restaurantImage from "../../assets/sichuan-garden.jpg";
+import { useShare } from "../../common/shareUtil"
 
 const RestaurantContainer = styled(Container)({
     display: 'flex',
@@ -63,10 +64,17 @@ const SectionTitle = styled(Typography)({
 });
 
 export const RestaurantPost = () => {
+    const { sharePost, ShareSnackbar } = useShare(); 
+    
+    // Dummy post data for sharing
+    const postData = {
+        postId: 1,  
+        isRestaurant: true,  
+    };
+
     return (
         <RestaurantContainer>
             <RestaurantWrapper>
-                {/* Header */}
                 <RestaurantHeader>
                     <Typography variant="h4" component="h1">
                         SICHUAN GARDEN
@@ -99,7 +107,12 @@ export const RestaurantPost = () => {
                         </IconButton>
                         <Typography variant="body2">100K</Typography>
                     </Box>
-                    <IconButton size="small">
+                    <IconButton size="small"
+                        onClick={(e) => {
+                            e.stopPropagation(); 
+                            sharePost(postData.postId, postData.isRestaurant);
+                        }}
+                    >
                         <ShareIcon />
                     </IconButton>
                 </ActionIcons>
@@ -140,6 +153,8 @@ export const RestaurantPost = () => {
                     </Typography>
                 </RestaurantInfo>
             </RestaurantWrapper>
+            
+            <ShareSnackbar />
         </RestaurantContainer>
     );
 };

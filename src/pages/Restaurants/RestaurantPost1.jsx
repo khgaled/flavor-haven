@@ -10,6 +10,8 @@ import {
    Share as ShareIcon 
 } from '@mui/icons-material';
 import Jewel from "../../assets/Jewel.jpg"; // You'll need to add this image
+import { useShare } from "../../common/shareUtil"
+
 
 const RestaurantContainer = styled(Container)({
    display: 'flex',
@@ -63,6 +65,14 @@ const SectionTitle = styled(Typography)({
 });
 
 export const RestaurantPost1 = () => {
+    const { sharePost, ShareSnackbar } = useShare(); 
+    
+    // Dummy post data for sharing
+    const postData = {
+        postId: 2,  
+        isRestaurant: true,  
+    };
+
    return (
        <RestaurantContainer>
            <RestaurantWrapper>
@@ -87,9 +97,14 @@ export const RestaurantPost1 = () => {
                        </IconButton>
                        <Typography variant="body2">100K</Typography>
                    </Box>
-                   <IconButton size="small">
-                       <ShareIcon />
-                   </IconButton>
+                   <IconButton size="small"
+                        onClick={(e) => {
+                            e.stopPropagation(); 
+                            sharePost(postData.postId, postData.isRestaurant);
+                        }}
+                    >
+                        <ShareIcon />
+                    </IconButton>
                </ActionIcons>
 
                {/* Restaurant Description */}
@@ -128,6 +143,7 @@ export const RestaurantPost1 = () => {
                    </Typography>
                </RestaurantInfo>
            </RestaurantWrapper>
+           <ShareSnackbar/>
        </RestaurantContainer>
    );
 };
