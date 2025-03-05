@@ -1,4 +1,4 @@
-//import { useState } from "react";
+import React from 'react';
 import {
   Container,
   Typography,
@@ -14,6 +14,12 @@ import {
 } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
 import shrimpPasta from "../../assets/__opt__aboutcom__coeus__resources__content_migration__serious_eats__seriouseats.com__2021__02__20210204-shrimp-scampi-pasta-sauce-daniel-gritzer-16-f01e8b8cc5dc4591b968bb1acc1b6f.jpg";
+import garden from "../../assets/sichuan-garden.jpg"
+import jap from "../../assets/Japan.jpg"
+import bul from "../../assets/Beef-Bulgogi.jpg";
+import mex from "../../assets/Mex.jpg";
+import chicken from "../../assets/chicken.png";
+import adobo from "../../assets/Adobo-Chicken.jpg";
 
 const MainContainer = styled(Container)(({ theme }) => ({
   padding: theme.spacing(2),
@@ -24,27 +30,25 @@ const MainContainer = styled(Container)(({ theme }) => ({
 const FeaturedSection = styled(Box)(({ theme }) => ({
   backgroundColor: 'white',
   borderRadius: theme.spacing(2),
-  padding: theme.spacing(4),
+  padding: 0,
   marginBottom: theme.spacing(3),
   textAlign: 'center',
   boxShadow: '0 4px 6px rgba(0,0,0,0.1)',
   width: '100%',
   height: 250,
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'center',
-  alignItems: 'center',
+  position: 'relative',
   cursor: 'pointer',
   transition: 'transform 0.3s ease',
   '&:hover': {
     transform: 'scale(1.02)', // Slight scale up on hover
   }
-}))
+}));
 
-const FeaturedIcon = styled(Box)({
-  fontSize: 64, // Increased icon size
-  marginBottom: 20,
-  color: '#7787b5',
+const FeaturedImage = styled('img')({
+  width: '100%',
+  height: '100%',
+  objectFit: 'cover',
+  borderRadius: 16,
 });
 
 const PostCard = styled(Box)(({ theme }) => ({
@@ -84,49 +88,61 @@ export const Main_Explore = () => {
   const postRows = [
     [
       {
-        image: "https://via.placeholder.com/300",
-        title: "Restaurant 1",
-        onClick: () => navigate('/restaurants_posts1')
-      },
-      {
         image: shrimpPasta,
         title: "Shrimp Pasta",
         onClick: () => navigate('/recipe_post')
       },
       {
-        image: "https://via.placeholder.com/300",
-        title: "Restaurant 2",
-        onClick: () => navigate('/restaurants_posts1')
+        image: jap,
+        title: "Sakura Sushi",
+        onClick: () => navigate('/restaurant_post3')
+      },
+      {
+        image: bul,
+        title: "Beef Bulgogi",
+        onClick: () => navigate('/recipe_post2')
       }
     ],
     [
       {
-        image: "https://via.placeholder.com/300",
-        title: "Restaurant 3",
-        onClick: () => navigate('/restaurants_posts1')
+        image: mex,
+        title: "San Miguel",
+        onClick: () => navigate('/restaurant_post4')
       },
       {
-        image: "https://via.placeholder.com/300",
-        title: "Restaurant 4",
-        onClick: () => navigate('/restaurants_posts1')
+        image: chicken,
+        title: "Chicken Tikka Masala",
+        onClick: () => navigate('/recipe_post1')
       },
       {
-        image: "https://via.placeholder.com/300",
-        title: "Restaurant 5",
-        onClick: () => navigate('/restaurants_posts1')
+        image: adobo,
+        title: "Adobo Chicken",
+        onClick: () => navigate('/recipe_post4')
       }
     ]
   ];
 
   const renderFeaturedRecipeRestaurant = () => (
-    <FeaturedSection>
-      <FeaturedIcon>
-        <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-        </svg>
-      </FeaturedIcon>
-      <Typography variant="h5" sx={{ fontWeight: 'bold', color: '#7787b5' }}>
-        FEATURED RECIPE/RESTAURANT
+    <FeaturedSection onClick={() => navigate('/restaurant_post')}>
+      <FeaturedImage 
+        src={garden} 
+        alt="Featured Restaurant" 
+      />
+      <Typography 
+        variant="h5" 
+        sx={{ 
+          position: 'absolute', 
+          bottom: 20,
+          left: 0,
+          right: 0,
+          textAlign: 'center',
+          backgroundColor: 'rgba(119, 135, 181, 0.8)', // matches navbar color
+          color: 'white',
+          padding: '10px',
+          fontWeight: 'bold'
+        }}
+      >
+        FEATURED RESTAURANT
       </Typography>
     </FeaturedSection>
   );
@@ -145,7 +161,6 @@ export const Main_Explore = () => {
               src={post.image} 
               alt={post.title} 
               sx={{ 
-                // Ensure all images have the same height and object-fit
                 height: 200, 
                 width: '100%', 
                 objectFit: 'cover' 

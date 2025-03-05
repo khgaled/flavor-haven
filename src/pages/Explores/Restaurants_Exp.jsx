@@ -13,8 +13,12 @@ import {
   Share as ShareIcon
 } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
-import shrimpPasta from "../../assets/__opt__aboutcom__coeus__resources__content_migration__serious_eats__seriouseats.com__2021__02__20210204-shrimp-scampi-pasta-sauce-daniel-gritzer-16-f01e8b8cc5dc4591b968bb1acc1b6f.jpg";
-
+import garden from "../../assets/sichuan-garden.jpg"
+import jewel from "../../assets/Jewel.jpg"
+import jap from "../../assets/Japan.jpg"
+import italy from "../../assets/italy.jpg"
+import mex from "../../assets/Mex.jpg";
+import kor from "../../assets/Kor.jpg";
 const MainContainer = styled(Container)(({ theme }) => ({
   padding: theme.spacing(2),
   backgroundColor: '#f0f2f5',
@@ -58,36 +62,36 @@ export const Restaurants_Explore = () => {
   const postRows = [
     [
       {
-        image: "https://via.placeholder.com/300",
-        title: "Restaurant 1",
-        onClick: () => navigate('/recipe_post')
+        image: jap,
+        title: "Sakura Sushi",
+        onClick: () => navigate('/restaurant_post2')
       },
       {
-        image: shrimpPasta,
-        title: "Shrimp Pasta",
-        onClick: () => navigate('/recipe_post')
+        image: garden,
+        title: "Sichuan Garden",
+        onClick: () => navigate('/restaurant_post')
       },
       {
-        image: "https://via.placeholder.com/300",
-        title: "Restaurant 2",
-        onClick: () => navigate('/recipe_post')
+        image: jewel,
+        title: "Jewel of India",
+        onClick: () => navigate('/restaurant_post1')
       }
     ],
     [
       {
-        image: "https://via.placeholder.com/300",
-        title: "Restaurant 3",
-        onClick: () => navigate('/recipe_post')
+        image: italy,
+        title: "Little Italy",
+        onClick: () => navigate('/restaurant_post3')
       },
       {
-        image: "https://via.placeholder.com/300",
-        title: "Restaurant 4",
-        onClick: () => navigate('/recipe_post')
+        image: mex,
+        title: "San Miguel",
+        onClick: () => navigate('/restaurant_post4')
       },
       {
-        image: "https://via.placeholder.com/300",
-        title: "Restaurant 5",
-        onClick: () => navigate('/recipe_post')
+        image: kor,
+        title: "Seoul Kitchen",
+        onClick: () => navigate('/restaurant_post5')
       }
     ]
   ];

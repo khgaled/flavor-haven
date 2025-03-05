@@ -5,12 +5,18 @@ import { Recipes_Explore } from "./pages/Explores/Recipes_Exp";
 import { Restaurants_Explore } from "./pages/Explores/Restaurants_Exp"; 
 import { Main_Explore } from "./pages/Explores/Main_Exp"; 
 import { Navbar } from "./components/Navbar";
-import { RecipePost } from "./pages/RecipePost";
-import { RecipePost1 } from "./pages/RecipePost1";
-import { RecipePost2 } from "./pages/RecipePost2";
-import { RecipePost3 } from "./pages/RecipePost3";
-import { RecipePost4 } from "./pages/RecipePost4";
-import { RecipePost5 } from "./pages/RecipePost5";
+import { RecipePost } from "./pages/Recipes/RecipePost";
+import { RecipePost1 } from "./pages/Recipes/RecipePost1";
+import { RecipePost2 } from "./pages/Recipes/RecipePost2";
+import { RecipePost3 } from "./pages/Recipes/RecipePost3";
+import { RecipePost4 } from "./pages/Recipes/RecipePost4";
+import { RecipePost5 } from "./pages/Recipes/RecipePost5";
+import { RestaurantPost } from "./pages/Restaurants/RestaurantPost";
+import { RestaurantPost1 } from "./pages/Restaurants/RestaurantPost1";
+import { RestaurantPost2 } from "./pages/Restaurants/RestaurantPost2";
+import { RestaurantPost3 } from "./pages/Restaurants/RestaurantPost3";
+import { RestaurantPost4 } from "./pages/Restaurants/RestaurantPost4";
+import { RestaurantPost5 } from "./pages/Restaurants/RestaurantPost5";
 import "./App.css";
 
 function App() {
@@ -37,6 +43,12 @@ function App() {
             <Route path="/recipe_post3" element={<RecipePost3 />} /> 
             <Route path="/recipe_post4" element={<RecipePost4 />} /> 
             <Route path="/recipe_post5" element={<RecipePost5 />} /> 
+            <Route path="/restaurant_post" element={<RestaurantPost />} /> 
+            <Route path="/restaurant_post1" element={<RestaurantPost1 />} /> 
+            <Route path="/restaurant_post2" element={<RestaurantPost2 />} /> 
+            <Route path="/restaurant_post3" element={<RestaurantPost3 />} /> 
+            <Route path="/restaurant_post4" element={<RestaurantPost4 />} /> 
+            <Route path="/restaurant_post5" element={<RestaurantPost5 />} />   
             <Route path="*" element={<Navigate to="/main_explore" />} /> 
           </>
         ) : (
