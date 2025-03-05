@@ -7,9 +7,30 @@ import {
   Grid,
 } from "@mui/material";
 import { useNavigate, useLocation } from "react-router-dom";
+import { useState, useEffect } from "react";
 import chicky_ticky from "../assets/chicken-tikka-masala.jpg";
+import cupcake from "../assets/gingcup.jpg";
 
 export const User_Blog = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const [posts, setPosts] = useState([]);
+
+  useEffect(() => {
+    if (location.state?.newPost) {
+      setPosts((prevPosts) => {
+        const isDuplicate = prevPosts.some(post => post.title === location.state.newPost.title);
+        if (!isDuplicate) {
+          return [...prevPosts, location.state.newPost];
+        }
+        return prevPosts;
+      });
+  
+     // navigate("/user_blog", { replace: true, state: {} });
+    }
+  }, [location.state]);
+
   return (
     <Container>
       <Box sx={{ display: "flex", mt: 4, width: "100%" }}>
@@ -17,20 +38,21 @@ export const User_Blog = () => {
           sx={{
             textAlign: "left",
             mt: 4,
-            backgroundColor: "lightgray",
+            backgroundColor: "#7787b5",
             width: "100%",
             ml: 5,
             minHeight: "70vh",
+            borderRadius: 8,
           }}
         >
           <Typography variant="h3" sx={{ fontWeight: "bold", ml: 3, mt: 10 }}>
-            WELCOME TO
+            My
           </Typography>
           <Typography variant="h3" sx={{ fontWeight: "bold", ml: 3, mt: 2 }}>
-            CARMY’S
+            best
           </Typography>
           <Typography variant="h3" sx={{ fontWeight: "bold", ml: 3, mt: 2 }}>
-            MENU!
+            recipes
           </Typography>
 
           <Box
@@ -45,7 +67,7 @@ export const User_Blog = () => {
               height: "20%",
             }}
           >
-            {"Welcome to my blog!! It contains all my personal recipes :D"}
+            {"My most delicious, extravagant and popular recipes!"}
           </Box>
           <Button
             variant="contained"
@@ -67,7 +89,8 @@ export const User_Blog = () => {
             width: "100%",
             mt: 4,
             ml: 1,
-            backgroundColor: "lightgray",
+            backgroundColor: "#7787b5",
+            borderRadius: 8,
           }}
         >
           <Box
@@ -82,36 +105,81 @@ export const User_Blog = () => {
               justifyContent: "center",
               display: "flex",
               minHeight: "15vh",
-              position: "relative"
+              position: "relative",
             }}
           >
-             
             <img
               src={chicky_ticky}
               style={{
                 width: "50%",
-                mt:10,
+                mt: 10,
                 objectFit: "contain",
               }}
             />
-            
+
             <Typography
               sx={{
-                position: "absolute",  
-                bottom: 0,             
-                left: 0,    
-                           
-                color: "black",      
-                fontWeight: "bold",   
-                padding: "10px"  
+                position: "absolute",
+                bottom: 0,
+                left: 0,
+
+                color: "black",
+                fontWeight: "bold",
+                padding: "10px",
               }}
             >
-              Chicken Tikka Masala 
+              Chicken Tikka Masala
             </Typography>
-            
-
-        
           </Box>
+
+          {posts.map((post, index) => (
+            <Box
+              sx={{
+                backgroundColor: "white",
+                padding: 4,
+                marginTop: 4,
+                borderRadius: 2,
+                boxShadow: 2,
+                width: "80%",
+                ml: 2.5,
+                justifyContent: "center",
+                display: "flex",
+                minHeight: "15vh",
+                position: "relative",
+              }}
+            >
+              <img
+                src={cupcake}
+                style={{
+                  width: "50%",
+                  mt: 10,
+                  objectFit: "contain",
+                }}
+              />
+
+              <Typography
+                sx={{
+                  position: "absolute",
+                  bottom: 0,
+                  left: 0,
+
+                  color: "black",
+                  fontWeight: "bold",
+                  padding: "10px",
+                }}
+              >
+                {post.title}
+              </Typography>
+            </Box>
+          ))}
+
+          <Button
+            onClick={() => navigate("/new_post")}
+            variant="contained"
+            sx={{ mt: 45, mr: 3, color: "", ml: 5, backgroundColor: "black" }}
+          >
+            New Post
+          </Button>
         </Box>
       </Box>
     </Container>
