@@ -7,12 +7,6 @@ export const Navbar = ({ setIsLoggedIn }) => {
   const navigate = useNavigate();
   const location = useLocation(); 
 
-  const handleLogout = () => {
-    localStorage.removeItem("isLoggedIn"); 
-    setIsLoggedIn(false); 
-    navigate("/login"); 
-  };
-
   return (
     <AppBar 
       position="sticky"
@@ -39,11 +33,7 @@ export const Navbar = ({ setIsLoggedIn }) => {
             transform: "translateX(-50%)" 
           }}
         >
-          {/* Temporary Logout Button */}
-          <Button onClick={handleLogout} variant="outlined" 
-            sx={{ borderColor: "white", color: "white", borderRadius: 3, px: 3 }}>
-            Temp_Logout
-          </Button>
+          
 
           <Button
             variant="outlined"
