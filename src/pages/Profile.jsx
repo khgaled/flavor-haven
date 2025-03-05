@@ -96,7 +96,7 @@ export const Profile = () => {
           </Button>
         </Box>
       </Box>
-      
+
       {/* Recipe Blogs */}
         <Box 
         sx={{ flex: 1, ml: "40%", overflowY: "auto", maxHeight: "100vh", p: 1 }}>
@@ -104,6 +104,7 @@ export const Profile = () => {
             sx={{ 
               height: 25, 
               width: 100,
+              cursor: "pointer",
               border: "1px solid black",
               borderRadius: "50px",
               p: 1,
@@ -123,6 +124,7 @@ export const Profile = () => {
           <Box 
             sx={{ 
               height: 150, 
+              cursor: "pointer",
               border: "2px solid black",
               borderRadius: "20px",
               display: "flex", 
@@ -159,6 +161,7 @@ export const Profile = () => {
             <Box 
               sx={{ 
                 height: 150, 
+                cursor: "pointer",
                 border: "2px solid black",
                 borderRadius: "20px",
                 display: "flex", 
@@ -191,6 +194,7 @@ export const Profile = () => {
           <Box 
             sx={{ 
               height: 150, 
+              cursor: "pointer",
               border: "2px solid black",
               borderRadius: "20px",
               display: "flex", 
@@ -224,6 +228,7 @@ export const Profile = () => {
           <Box 
               sx={{ 
                 height: 150, 
+                cursor: "pointer",
                 border: "2px solid black",
                 borderRadius: "20px",
                 display: "flex", 
