@@ -21,7 +21,7 @@ export const New_Post = () => {
 
   const handleSubmit = () => {
     const newPost = { title, steps };
-    navigate("/user_blog4", { state: { newPost } });
+    navigate("/user_blog", { state: { newPost } });
   };
 
 

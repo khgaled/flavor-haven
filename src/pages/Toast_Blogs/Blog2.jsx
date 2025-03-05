@@ -4,6 +4,7 @@ import {
     Container,
     Typography,
     Box,
+    ButtonBase,
     Grid,
   } from "@mui/material";
   import { useNavigate, useLocation } from "react-router-dom";
@@ -84,6 +85,8 @@ import {
               BACK
             </Button>
           </Box>
+
+          
           <Box
             sx={{
               textAlign: "right",
@@ -94,6 +97,7 @@ import {
               borderRadius: 8,
             }}
           >
+           
             <Box
               sx={{
                 backgroundColor: "white",
@@ -132,6 +136,7 @@ import {
                 Chicken Tikka Masala
               </Typography>
             </Box>
+       
   
             {posts.map((post, index) => (
               <Box

@@ -26,6 +26,8 @@ import { RestaurantPost2 } from "./pages/Restaurants/RestaurantPost2";
 import { RestaurantPost3 } from "./pages/Restaurants/RestaurantPost3";
 import { RestaurantPost4 } from "./pages/Restaurants/RestaurantPost4";
 import { RestaurantPost5 } from "./pages/Restaurants/RestaurantPost5";
+import {Chicken} from "./pages/Toast_Blogs/Chicken_recipe";
+import {Shrimp} from "./pages/Toast_Blogs/Shrimp_recipe";
 import "./App.css";
 
 function App() {
@@ -54,6 +56,8 @@ function App() {
             <Route path="/new_post2" element={<New_Post2 />} />
             <Route path="/new_post3" element={<New_Post3 />} />
             <Route path="/new_post4" element={<New_Post4 />} />
+            <Route path="/chicken" element={<Chicken />} />
+            <Route path="/shrimp" element={<Shrimp />} />
             <Route path="/profile" element={<Profile />} /> 
             <Route path="/recipe_post" element={<RecipePost />} /> 
             <Route path="/recipe_post1" element={<RecipePost1 />} /> 

@@ -4,12 +4,14 @@ import {
   Container,
   Typography,
   Box,
+  ButtonBase,
   Grid,
 } from "@mui/material";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import chicky_ticky from "../assets/chicken.png";
 import cupcake from "../assets/gingcup.jpg";
+import shrimp from "../assets/__opt__aboutcom__coeus__resources__content_migration__serious_eats__seriouseats.com__2021__02__20210204-shrimp-scampi-pasta-sauce-daniel-gritzer-16-f01e8b8cc5dc4591b968bb1acc1b6f.jpg";
 
 export const User_Blog = () => {
   const navigate = useNavigate();
@@ -20,14 +22,14 @@ export const User_Blog = () => {
   useEffect(() => {
     if (location.state?.newPost) {
       setPosts((prevPosts) => {
-        const isDuplicate = prevPosts.some(post => post.title === location.state.newPost.title);
+        const isDuplicate = prevPosts.some(
+          (post) => post.title === location.state.newPost.title
+        );
         if (!isDuplicate) {
           return [...prevPosts, location.state.newPost];
         }
         return prevPosts;
       });
-  
-     // navigate("/user_blog", { replace: true, state: {} });
     }
   }, [location.state]);
 
@@ -94,46 +96,7 @@ export const User_Blog = () => {
             borderRadius: 8,
           }}
         >
-          <Box
-            sx={{
-              backgroundColor: "white",
-              padding: 4,
-              marginTop: 4,
-              borderRadius: 2,
-              boxShadow: 2,
-              width: "80%",
-              ml: 2.5,
-              justifyContent: "center",
-              display: "flex",
-              minHeight: "15vh",
-              position: "relative",
-            }}
-          >
-            <img
-              src={chicky_ticky}
-              style={{
-                width: "50%",
-                mt: 10,
-                objectFit: "contain",
-              }}
-            />
-
-            <Typography
-              sx={{
-                position: "absolute",
-                bottom: 0,
-                left: 0,
-
-                color: "black",
-                fontWeight: "bold",
-                padding: "10px",
-              }}
-            >
-              Chicken Tikka Masala
-            </Typography>
-          </Box>
-
-          {posts.map((post, index) => (
+          <ButtonBase onClick={() => navigate("/chicken")}>
             <Box
               sx={{
                 backgroundColor: "white",
@@ -150,7 +113,7 @@ export const User_Blog = () => {
               }}
             >
               <img
-                src={cupcake}
+                src={chicky_ticky}
                 style={{
                   width: "50%",
                   mt: 10,
@@ -169,9 +132,51 @@ export const User_Blog = () => {
                   padding: "10px",
                 }}
               >
-                {post.title}
+                Chicken Tikka Masala
               </Typography>
             </Box>
+          </ButtonBase>
+          {posts.map((post, index) => (
+            <ButtonBase onClick={() => navigate("/shrimp")}>
+              <Box
+                sx={{
+                  backgroundColor: "white",
+                  padding: 4,
+                  marginTop: 4,
+                  borderRadius: 2,
+                  boxShadow: 2,
+                  width: "80%",
+                  ml: 2.5,
+                  justifyContent: "center",
+                  display: "flex",
+                  minHeight: "15vh",
+                  position: "relative",
+                }}
+              >
+                <img
+                  src={shrimp}
+                  style={{
+                    width: "50%",
+                    mt: 10,
+                    objectFit: "contain",
+                  }}
+                />
+
+                <Typography
+                  sx={{
+                    position: "absolute",
+                    bottom: 0,
+                    left: 0,
+
+                    color: "black",
+                    fontWeight: "bold",
+                    padding: "10px",
+                  }}
+                >
+                  {post.title}
+                </Typography>
+              </Box>
+            </ButtonBase>
           ))}
 
           <Button
