@@ -1,4 +1,3 @@
-import React from "react";
 import { Box, Avatar, Typography, Button } from "@mui/material";
 import { useNavigate} from "react-router-dom";
 import PropTypes from "prop-types";
@@ -13,12 +12,14 @@ export const Profile = ({ setIsLoggedIn }) => {
   };
 
   return (
-    <Box sx={{ display: "flex", height: "100vh", px: 6, py: 2 }}>
+    <Box sx={{ display: "flex", height: "100vh", p: 0, py: 2 }}>
       <Box sx={{ display: "flex", flexDirection: "column", maxHeight: "100vh", p: 1, alignContent: "center" }}>
         {/* profile card */}
         <Box 
           sx={{ 
-            width: "45vh", 
+            width: { xs: "80%", sm: "60%", md: "40%", lg: "30%", xl: "25%" }, 
+            maxWidth: "400px", // Prevents it from getting too large on big screens
+            minWidth: "250px", // Ensures it doesn’t shrink too much on small screens
             bgcolor: "#82A5D9",
             p: 2, 
             margin: 2,
@@ -31,7 +32,7 @@ export const Profile = ({ setIsLoggedIn }) => {
             alignItems: "center", 
             gap: 3,
             boxShadow: 5
-            }}>
+          }}>
 
           {/* profile picture */}
           <Avatar 
@@ -249,8 +250,8 @@ export const Profile = ({ setIsLoggedIn }) => {
               sx={{textAlign:"left"}}>
                 <Typography variant="h4" component="h2">
                   Kids menu
-                  <Typography>
-                    For the kids' lunchboxes
+                    <Typography>
+                    For the kids&apos; lunchboxes
                     </Typography>
                   </Typography>
                 </Box>

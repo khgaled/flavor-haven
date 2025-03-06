@@ -4,7 +4,7 @@ import { Search as SearchIcon, Cookie as CookieIcon } from "@mui/icons-material"
 import PropTypes from "prop-types";
 import { useState } from "react";
 
-export const Navbar = ({ setIsLoggedIn }) => {
+export const Navbar = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [searchValue, setSearchValue] = useState("");
