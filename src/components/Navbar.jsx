@@ -4,16 +4,10 @@ import { Search as SearchIcon, Cookie as CookieIcon } from "@mui/icons-material"
 import PropTypes from "prop-types";
 import { useState } from "react";
 
-export const Navbar = ({ setIsLoggedIn }) => {
+export const Navbar = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [searchValue, setSearchValue] = useState("");
-
-  const handleLogout = () => {
-    localStorage.removeItem("isLoggedIn"); 
-    setIsLoggedIn(false); 
-    navigate("/login"); 
-  };
 
   const handleSearch = (e) => {
     // If user presses Enter
@@ -63,11 +57,7 @@ export const Navbar = ({ setIsLoggedIn }) => {
             transform: "translateX(-50%)" 
           }}
         >
-          {/* Temporary Logout Button */}
-          <Button onClick={handleLogout} variant="outlined" 
-            sx={{ borderColor: "white", color: "white", borderRadius: 3, px: 3 }}>
-            Temp_Logout
-          </Button>
+          
 
           <Button
             variant="outlined"

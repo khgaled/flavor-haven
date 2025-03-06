@@ -11,7 +11,7 @@ export const Login = ({ setIsLoggedIn }) => {
   const navigate = useNavigate();
 
   const handleLogin = () => {
-    if (username === "toastM12" && password === "Toastlols") {
+    if (username === "toasty_boy" && password === "Toastlols") {
       localStorage.setItem("isLoggedIn", "true");
       setIsLoggedIn(true);
       navigate("/recipes_explore");

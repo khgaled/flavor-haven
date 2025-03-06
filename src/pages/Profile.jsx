@@ -1,17 +1,28 @@
-import React from "react";
-import { Box, Avatar, Typography } from "@mui/material";
+import { Box, Avatar, Typography, Button } from "@mui/material";
 import { useNavigate} from "react-router-dom";
-export const Profile = () => {
+import PropTypes from "prop-types";
+
+export const Profile = ({ setIsLoggedIn }) => {
   const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem("isLoggedIn"); 
+    setIsLoggedIn(false); 
+    navigate("/login"); 
+  };
+
   return (
-    <Box sx={{ display: "flex", height: "80vh", px: 6, py: 2 }}>
-      <Box>
+    <Box sx={{ display: "flex", height: "100vh", p: 0, py: 2 }}>
+      <Box sx={{ display: "flex", flexDirection: "column", maxHeight: "100vh", p: 1, alignContent: "center" }}>
         {/* profile card */}
         <Box 
           sx={{ 
-            width: "25%", 
+            width: { xs: "80%", sm: "60%", md: "40%", lg: "30%", xl: "25%" }, 
+            maxWidth: "400px", // Prevents it from getting too large on big screens
+            minWidth: "250px", // Ensures it doesn’t shrink too much on small screens
             bgcolor: "#82A5D9",
             p: 2, 
+            margin: 2,
             border: "12px double black",
             borderRadius: 15, 
             position: "fixed", 
@@ -21,7 +32,7 @@ export const Profile = () => {
             alignItems: "center", 
             gap: 3,
             boxShadow: 5
-            }}>
+          }}>
 
           {/* profile picture */}
           <Avatar 
@@ -65,10 +76,29 @@ export const Profile = () => {
             </Typography>
           </Box>
         </Box>
-        {/* <Box>
-          
-        </Box> */}
+        {/* Logout Button */}
+        <Box 
+          sx={{ 
+            mt: "33%",
+            display: "flex", 
+            alignItems: "center",              
+            position: "fixed", 
+            '&:hover': {
+              backgroundColor: '#dc7d7d',
+              color: 'white',
+              transition: 'background-color 0.3s ease',
+            }, 
+            left: "20%", 
+            borderRadius: 15,
+          }}
+        >
+          <Button onClick={handleLogout} variant="outlined" 
+            sx={{ borderColor: "#dc7d7d", color: "#dc7d7d", borderRadius: 15, px: 3 }}>
+            Logout
+          </Button>
+        </Box>
       </Box>
+
       {/* Recipe Blogs */}
         <Box 
         sx={{ flex: 1, ml: "40%", overflowY: "auto", maxHeight: "100vh", p: 1 }}>
@@ -76,14 +106,17 @@ export const Profile = () => {
             sx={{ 
               height: 25, 
               width: 100,
+              cursor: "pointer",
               border: "1px solid black",
               borderRadius: "50px",
-              // display: "flex", 
-              // alignItems: "center", 
-              // justifyContent: "space-between", 
               p: 1,
               margin: 2,
-              boxShadow: 1 
+              boxShadow: 1,
+              '&:hover': {
+                backgroundColor: '#82A5D9',
+                color: 'white',
+                transition: 'background-color 0.3s ease',
+              }, 
             }}
           >
             <Typography>
@@ -93,6 +126,7 @@ export const Profile = () => {
           <Box 
             sx={{ 
               height: 150, 
+              cursor: "pointer",
               border: "2px solid black",
               borderRadius: "20px",
               display: "flex", 
@@ -100,12 +134,19 @@ export const Profile = () => {
               justifyContent: "space-between", 
               px: 3,
               margin: 2,
-              boxShadow: 3 
+              boxShadow: 3,
+              '&:hover': {
+                backgroundColor: '#82A5D9',
+                color: 'white',
+                transition: 'background-color 0.3s ease',
+              }, 
             }}>
 
               <Box 
               onClick={() => navigate("/user_blog")}
-              sx={{textAlign:"left"}}>
+              sx={{
+                textAlign:"left",
+                }}>
                 <Typography variant="h4" component="h2">
                   My best recipes
                   <Typography>
@@ -122,6 +163,7 @@ export const Profile = () => {
             <Box 
               sx={{ 
                 height: 150, 
+                cursor: "pointer",
                 border: "2px solid black",
                 borderRadius: "20px",
                 display: "flex", 
@@ -129,7 +171,12 @@ export const Profile = () => {
                 justifyContent: "space-between", 
                 px: 2,
                 margin: 2,  
-                boxShadow: 3 
+                boxShadow: 3,
+                '&:hover': {
+                  backgroundColor: '#82A5D9',
+                  color: 'white',
+                  transition: 'background-color 0.3s ease',
+                },  
               }}>
               <Box 
               onClick={() => navigate("/user_blog2")}
@@ -149,6 +196,7 @@ export const Profile = () => {
           <Box 
             sx={{ 
               height: 150, 
+              cursor: "pointer",
               border: "2px solid black",
               borderRadius: "20px",
               display: "flex", 
@@ -156,7 +204,12 @@ export const Profile = () => {
               justifyContent: "space-between", 
               px: 2,
               margin: 2,
-              boxShadow: 3   
+              boxShadow: 3,
+              '&:hover': {
+                backgroundColor: '#82A5D9',
+                color: 'white',
+                transition: 'background-color 0.3s ease',
+              },    
             }}>
               <Box 
               onClick={() => navigate("/user_blog3")}
@@ -177,6 +230,7 @@ export const Profile = () => {
           <Box 
               sx={{ 
                 height: 150, 
+                cursor: "pointer",
                 border: "2px solid black",
                 borderRadius: "20px",
                 display: "flex", 
@@ -184,15 +238,20 @@ export const Profile = () => {
                 justifyContent: "space-between", 
                 px: 2,
                 margin: 2,
-                boxShadow: 3   
+                boxShadow: 3,
+                '&:hover': {
+                  backgroundColor: '#82A5D9',
+                  color: 'white',
+                  transition: 'background-color 0.3s ease',
+                },    
               }}>
               <Box 
               onClick={() => navigate("/user_blog4")}
               sx={{textAlign:"left"}}>
                 <Typography variant="h4" component="h2">
                   Kids menu
-                  <Typography>
-                    For the kids' lunchboxes
+                    <Typography>
+                    For the kids&apos; lunchboxes
                     </Typography>
                   </Typography>
                 </Box>
@@ -208,4 +267,6 @@ export const Profile = () => {
   );
 };
 
-
+Profile.propTypes = {
+  setIsLoggedIn: PropTypes.func.isRequired,
+};

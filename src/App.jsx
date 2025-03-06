@@ -60,6 +60,7 @@ function App() {
             <Route path="/chicken" element={<Chicken />} />
             <Route path="/shrimp" element={<Shrimp />} />
             <Route path="/profile" element={<Profile />} /> 
+            <Route path="/profile" element={<Profile setIsLoggedIn={setIsLoggedIn} />} />
             <Route path="/recipe_post" element={<RecipePost />} /> 
             <Route path="/recipe_post1" element={<RecipePost1 />} /> 
             <Route path="/recipe_post2" element={<RecipePost2 />} /> 
