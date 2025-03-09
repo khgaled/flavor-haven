@@ -9,7 +9,7 @@ import {
     Favorite as LikeIcon, 
     Share as ShareIcon 
 } from '@mui/icons-material';
-import bobaImage from "../../assets/boba1.jpg"; // You might want to replace this with an actual boba shop image
+import bobaImage from "../../assets/boba1.jpg"; 
 import { useShare } from "../../common/shareUtil"
 
 

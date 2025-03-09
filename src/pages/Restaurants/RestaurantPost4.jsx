@@ -1,3 +1,4 @@
+import React from 'react';
 import {
     Container,
     Typography,
@@ -10,57 +11,100 @@ import {
     Share as ShareIcon 
 } from '@mui/icons-material';
 import mex from "../../assets/Mex.jpg";
-import { useShare } from "../../common/shareUtil"
+import { useShare } from "../../common/shareUtil";
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
-const RestaurantContainer = styled(Container)({
+// Left panel styles
+const LeftPanel = styled(Box)({
+    width: '33.33%',
+    backgroundColor: "#82A5D9", 
+    padding: '32px 32px 80px 32px', 
     display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    minHeight: '100vh',
-    backgroundColor: '#f0f2f5',
-    padding: '20px',
-});
-
-const RestaurantWrapper = styled(Box)({
-    width: '100%',
-    maxWidth: 1200,
-    backgroundColor: 'white',
-    borderRadius: '16px',
-    overflow: 'hidden',
-    boxShadow: '0 4px 6px rgba(0,0,0,0.1)',
-});
-
-const RestaurantHeader = styled(Box)({
-    backgroundColor: '#7787b5',
+    flexDirection: 'column',
+    height: '100vh',
     color: 'white',
-    padding: '20px',
-    textAlign: 'center',
+    position: 'relative', 
+    overflowY: 'auto', // Make left panel scrollable
+});
+
+const RestaurantTitle = styled(Typography)({
+    fontWeight: 'bold',
+    fontSize: '2.5rem',
+    marginTop: '32px',
+    marginBottom: '32px',
+    textShadow: '1px 1px 2px rgba(0,0,0,0.2)',
+});
+
+const InfoCard = styled(Box)({
+    backgroundColor: 'white',
+    borderRadius: '8px',
+    padding: '16px',
+    marginBottom: '24px',
+    boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+    color: '#333',
+});
+
+const BackButton = styled(IconButton)({
+    backgroundColor: 'white',
+    width: '48px',
+    height: '48px',
+    position: 'fixed',
+    bottom: '24px',
+    left: '32px',
+    boxShadow: '0 4px 8px rgba(0,0,0,0.2)',
+    zIndex: 999, // Much higher z-index to ensure it's above everything
+    '&:hover': {
+        backgroundColor: '#f5f5f5',
+        transform: 'scale(1.05)',
+    },
+    transition: 'transform 0.2s ease',
+});
+
+// Right panel styles
+const RightPanel = styled(Box)({
+    width: '66.67%',
+    height: '100vh',
+    backgroundColor: '#f9f9f9',
+    overflow: 'hidden', // Prevent scrolling on right panel
+    padding: '32px',
+    display: 'flex',
+    alignItems: 'flex-start',
+    justifyContent: 'center',
+});
+
+const ContentCard = styled(Box)({
+    backgroundColor: 'white',
+    borderRadius: '12px',
+    width: '100%',
+    maxWidth: '700px',
+    margin: '0 auto',
+    overflow: 'hidden',
+    boxShadow: '0 2px 8px rgba(0,0,0,0.08)',
 });
 
 const RestaurantImage = styled('img')({
     width: '100%',
-    height: 500,
+    height: 'auto',
     objectFit: 'cover',
 });
 
-const RestaurantInfo = styled(Box)(({ theme }) => ({
-    padding: theme.spacing(3),
-    textAlign: 'left',
-}));
-
-const ActionIcons = styled(Box)({
+const ActionBar = styled(Box)({
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
-    padding: '10px',
-    backgroundColor: '#f0f2f5',
+    padding: '12px 16px',
+    borderBottom: '1px solid #f0f2f5',
 });
 
 const SectionTitle = styled(Typography)({
     fontWeight: 'bold',
-    marginBottom: '20px',
+    marginBottom: '16px',
     textTransform: 'uppercase',
     color: '#7787b5',
+});
+
+const MenuSection = styled(Box)({
+    padding: '16px',
 });
 
 export const RestaurantPost4 = () => {
@@ -73,70 +117,159 @@ export const RestaurantPost4 = () => {
     };
 
     return (
-        <RestaurantContainer>
-            <RestaurantWrapper>
-                <RestaurantHeader>
-                    <Typography variant="h4" component="h1">
-                        SAN MIGUEL
-                    </Typography>
-                </RestaurantHeader>
+        <Box display="flex" width="100%">
+            {/* Left Side Panel - Now with scrolling */}
+            <LeftPanel>
+                <RestaurantTitle variant="h3" component="h1">
+                    SAN MIGUEL
+                </RestaurantTitle>
+                
+                <Box sx={{ 
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: 3
+                }}>
+                    <InfoCard>
+                        <Typography variant="body1">
+                            San Miguel celebrates the vibrant and bold flavors of Mexican cuisine. Our restaurant offers an authentic dining experience with traditional recipes and a modern twist.
+                        </Typography>
+                    </InfoCard>
 
-                <RestaurantImage 
-                    src={mex}
-                    alt="San Miguel"
-                />
+                    <InfoCard>
+                        <Typography variant="body1">
+                            <strong>Cuisine:</strong> Mexican<br />
+                            <strong>Specialties:</strong> Tacos, Enchiladas, Mole<br />
+                            <strong>Location:</strong> Cultural Quarter<br />
+                            <strong>Hours:</strong> 11 AM - 10 PM
+                        </Typography>
+                    </InfoCard>
 
-                <ActionIcons>
-                    <Box display="flex" alignItems="center">
-                        <IconButton size="small">
-                            <LikeIcon />
-                        </IconButton>
-                        <Typography variant="body2">100K</Typography>
-                    </Box>
-                    <IconButton size="small"
-                        onClick={(e) => {
-                            e.stopPropagation(); 
-                            sharePost(postData.postId, postData.isRestaurant);
-                        }}
-                    >
-                        <ShareIcon />
-                    </IconButton>
-                </ActionIcons>
+                    <InfoCard>
+                        <SectionTitle variant="h6" sx={{ color: '#7787b5' }}>
+                            Menu Highlights
+                        </SectionTitle>
+                        <Box component="ul" sx={{ pl: 2, mt: 1, mb: 0 }}>
+                            <Typography component="li" sx={{ mb: 1 }}>Street Tacos Trio</Typography>
+                            <Typography component="li" sx={{ mb: 1 }}>Chicken Mole Poblano</Typography>
+                            <Typography component="li" sx={{ mb: 1 }}>Seafood Ceviche</Typography>
+                            <Typography component="li">Churros with Chocolate</Typography>
+                        </Box>
+                    </InfoCard>
 
-                <RestaurantInfo>
-                    <SectionTitle variant="h5">
-                        About Restaurant
-                    </SectionTitle>
-                    <Typography variant="body1">
-                        San Miguel celebrates the vibrant and bold flavors of Mexican cuisine. Our restaurant offers an authentic dining experience with traditional recipes and a modern twist.
-                    </Typography>
-                </RestaurantInfo>
+                    <InfoCard>
+                        <SectionTitle variant="h6" sx={{ color: '#7787b5', textAlign: 'center' }}>
+                            FUN HASHTAGS
+                        </SectionTitle>
+                        <Box sx={{ 
+                            display: 'flex', 
+                            flexWrap: 'wrap', 
+                            gap: 1.5, 
+                            justifyContent: 'center', 
+                            px: 1,
+                            pb: 1.5
+                        }}>
+                            <Box component="span" sx={{ 
+                                bgcolor: '#f0f2f5', 
+                                px: 2, 
+                                py: 0.7, 
+                                borderRadius: 20, 
+                                color: '#7787b5', 
+                                fontSize: '0.9rem',
+                                mb: 1 
+                            }}>#MexicanFlavors</Box>
+                            <Box component="span" sx={{ 
+                                bgcolor: '#f0f2f5', 
+                                px: 2, 
+                                py: 0.7, 
+                                borderRadius: 20, 
+                                color: '#7787b5', 
+                                fontSize: '0.9rem',
+                                mb: 1 
+                            }}>#TacoTuesday</Box>
+                            <Box component="span" sx={{ 
+                                bgcolor: '#f0f2f5', 
+                                px: 2, 
+                                py: 0.7, 
+                                borderRadius: 20, 
+                                color: '#7787b5', 
+                                fontSize: '0.9rem',
+                                mb: 1 
+                            }}>#Foodie</Box>
+                            <Box component="span" sx={{ 
+                                bgcolor: '#f0f2f5', 
+                                px: 2, 
+                                py: 0.7, 
+                                borderRadius: 20, 
+                                color: '#7787b5', 
+                                fontSize: '0.9rem',
+                                mb: 1 
+                            }}>#Authentic</Box>
+                            <Box component="span" sx={{ 
+                                bgcolor: '#f0f2f5', 
+                                px: 2, 
+                                py: 0.7, 
+                                borderRadius: 20, 
+                                color: '#7787b5', 
+                                fontSize: '0.9rem',
+                                mb: 1 
+                            }}>#MoleMagic</Box>
+                            <Box component="span" sx={{ 
+                                bgcolor: '#f0f2f5', 
+                                px: 2, 
+                                py: 0.7, 
+                                borderRadius: 20, 
+                                color: '#7787b5', 
+                                fontSize: '0.9rem',
+                                mb: 1 
+                            }}>#SanMiguel</Box>
+                        </Box>
+                    </InfoCard>
+                    
+                </Box>
+                
+                <Box sx={{ height: 80 }} /> {/* Spacer for back button */}
+                
+                <BackButton 
+                    aria-label="back"
+                    onClick={() => window.history.back()}
+                >
+                    <ArrowBackIcon fontSize="medium" />
+                </BackButton>
+            </LeftPanel>
 
-                <RestaurantInfo>
-                    <SectionTitle variant="h5">
-                        Restaurant Details
-                    </SectionTitle>
-                    <Typography variant="body1">
-                        <strong>Cuisine:</strong> Mexican<br />
-                        <strong>Specialties:</strong> Tacos, Enchiladas, Mole<br />
-                        <strong>Location:</strong> Cultural Quarter<br />
-                        <strong>Hours:</strong> 11 AM - 10 PM
-                    </Typography>
-                </RestaurantInfo>
+           
+            <RightPanel>
+                <ContentCard>
+                    <RestaurantImage 
+                        src={mex}
+                        alt="San Miguel Restaurant"
+                    />
 
-                <RestaurantInfo>
-                    <SectionTitle variant="h5">
-                        Menu Highlights
-                    </SectionTitle>
-                    <Typography component="ul" sx={{ pl: 2 }}>
-                        <li>Street Tacos Trio</li>
-                        <li>Chicken Mole Poblano</li>
-                        <li>Seafood Ceviche</li>
-                        <li>Churros with Chocolate</li>
-                    </Typography>
-                </RestaurantInfo>
-            </RestaurantWrapper>
+                    <ActionBar>
+                        <Typography variant="subtitle2" fontWeight="medium">
+                            MEXICAN CUISINE
+                        </Typography>
+                        
+                        <Box display="flex" alignItems="center">
+                            <Box display="flex" alignItems="center" mr={2}>
+                                <Typography variant="body2" mr={0.5}>100K</Typography>
+                                <LikeIcon fontSize="small" />
+                            </Box>
+                            <Typography variant="body2" mr={0.5}>100K</Typography>
+                            <IconButton 
+                                size="small"
+                                onClick={(e) => {
+                                    e.stopPropagation(); 
+                                    sharePost(postData.postId, postData.isRestaurant);
+                                }}
+                            >
+                                <ShareIcon fontSize="small" />
+                            </IconButton>
+                        </Box>
+                    </ActionBar>
+                </ContentCard>
+            </RightPanel>
             <ShareSnackbar/>
-        </RestaurantContainer>
+        </Box>
     );
 };
