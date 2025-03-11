@@ -5,11 +5,13 @@ import {
   Typography,
   Box,
   ButtonBase,
+  IconButton
 } from "@mui/material";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
-import chicky_ticky from "../assets/chicken.png";
-import shrimp from "../assets/__opt__aboutcom__coeus__resources__content_migration__serious_eats__seriouseats.com__2021__02__20210204-shrimp-scampi-pasta-sauce-daniel-gritzer-16-f01e8b8cc5dc4591b968bb1acc1b6f.jpg";
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import { styled } from '@mui/material/styles';
+import chicky_ticky from "../../assets/chicken.png";
 
 export const User_Blog = () => {
   const navigate = useNavigate();
@@ -21,12 +23,12 @@ export const User_Blog = () => {
   
   const handleChange = (event) => {
     setText(event.target.value);
-    setIsEditing(true); // Show the save button when typing starts
+    setIsEditing(true); 
   };
 
   const handleSave = () => {
     setIsEditing(false);
-    console.log("Saved text:", text); // You can replace this with an API call to save
+    console.log("Saved text:", text); 
   };
 
   useEffect(() => {
@@ -44,10 +46,10 @@ export const User_Blog = () => {
     width: "100vh",
     bgcolor: "#82A5D9",
     p: 2,
-    m: 1,
+    mx: 1,
     border: "12px black",
     borderRadius: 5,
-    height: "90vh",
+    height: "80vh",
     display: "flex",
     flexDirection: "column",
     gap: 3,
@@ -92,8 +94,8 @@ export const User_Blog = () => {
   const button = {
     mt: 1, 
     ml: 3,
-    backgroundColor: "black", 
-    color: "white", 
+    backgroundColor: "white", 
+    color: "black", 
     width: "auto",
     borderRadius: 5,
     alignSelf: "flex-start",
@@ -103,19 +105,35 @@ export const User_Blog = () => {
     }
   };
 
+  const BackButton = styled(IconButton)({
+    backgroundColor: 'white',
+    width: '48px',
+    height: '48px',
+    position: 'fixed',
+    bottom: '24px',
+    left: '32px',
+    boxShadow: '0 4px 8px rgba(0,0,0,0.2)',
+    zIndex: 999, // Much higher z-index to ensure it's above everything
+    '&:hover': {
+        backgroundColor: '#f5f5f5',
+        transform: 'scale(1.05)',
+    },
+    transition: 'transform 0.2s ease',
+});
+
   return (
     <Container sx={{ display: "flex", minHeight: "100vh", marginLeft: 5, marginRight: 5, background: "#f0f2f5" }}>
       <Box sx={{ display: "flex", mt: 4, width: "100%" }}>
         {/* Left Section */}
         <Box sx={blogCards}>
-          <Typography variant="h2" 
+          <Typography variant="h1" color="white"
             sx={{ 
               fontWeight: "bold", 
               textAlign: "left", 
-              fontSize: "clamp(1rem, 15vw, 4rem)", 
+              fontSize: "clamp(1rem, 18vw, 5rem)", 
               lineHeight: 1.1,
               width: "min-content",
-              m: 3  
+              ml: 3,  
               }}>
             My best recipes
           </Typography>
@@ -165,9 +183,12 @@ export const User_Blog = () => {
             )}
           </Box>
 
-          <Button onClick={() => navigate("/profile")} variant="contained" sx={button}>
-            Back
-          </Button>
+          <BackButton 
+              aria-label="back"
+              onClick={() => window.history.back()}
+          >
+              <ArrowBackIcon fontSize="medium" />
+          </BackButton>
         </Box>
 
         {/* Right Section */}
@@ -178,7 +199,7 @@ export const User_Blog = () => {
             + New Post
           </Button>
           {/* Chicken Tikka Masala Post */}
-          <ButtonBase onClick={() => navigate("/chicken")}>  
+          <ButtonBase onClick={() => navigate("/recipe_post1")}>  
             <Box sx={recipe}>
               <img src={chicky_ticky} alt="Chicken Tikka Masala" style={recipeImage} />
               <Typography sx={recipeTitle}>
@@ -189,7 +210,7 @@ export const User_Blog = () => {
 
           {/* User-added Posts */}
           {posts.map((post, index) => (
-            <ButtonBase key={index} onClick={() => navigate("/shrimp")}>  
+            <ButtonBase key={index} onClick={() => navigate("/recipe_post")}>  
               <Box sx={recipe}>
                 <img src={shrimp} alt={post.title} style={recipeImage} />
                 <Typography sx={recipeTitle}>
