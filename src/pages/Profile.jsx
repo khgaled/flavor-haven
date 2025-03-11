@@ -40,10 +40,10 @@ export const Profile = ({ setIsLoggedIn }) => {
     px: 2,
     m: 2,
     boxShadow: 3,
+    transition: "transform 0.3s ease",
     "&:hover": {
       backgroundColor: "#82A5D9",
       color: "white",
-      transition: "transform 0.3s ease",
       transform: "scale(1.05)"
     },
   };
@@ -102,10 +102,10 @@ export const Profile = ({ setIsLoggedIn }) => {
         sx={{ height: 25, width: 100, cursor: "pointer", 
         border: "1px solid black", borderRadius: "50px", p: 1, m: 2, 
         boxShadow: 1,
+        transition: "transform 0.3s ease",
         "&:hover": {
           backgroundColor: "#82A5D9",
           color: "white",
-          transition: "transform 0.3s ease",
           transform: "scale(1.05)"
         } } }>
           <Typography>+ New Blog</Typography>
@@ -113,7 +113,7 @@ export const Profile = ({ setIsLoggedIn }) => {
         {blogPosts.map((blog, index) => (
           <Box key={index} sx={blogCardStyles} onClick={() => navigate(blog.path)}>
             <Box sx={{ textAlign: "left" }}>
-              <Typography variant="h4" component="h2">{blog.title}</Typography>
+              <Typography variant="h4" component="h2" sx={{fontWeight: "bold"}}>{blog.title}</Typography>
               <Typography>{blog.description}</Typography>
             </Box>
             <Box component="img" src={blog.image} sx={{ height: "80%", width: "23%", borderRadius: "20px" }} />

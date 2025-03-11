@@ -47,51 +47,59 @@ export const User_Blog = () => {
     m: 1,
     border: "12px black",
     borderRadius: 5,
-    height: "100vh",
+    height: "90vh",
     display: "flex",
     flexDirection: "column",
     gap: 3,
     boxShadow: 5,
-  };
-
-  const recipeBox = {
-    width: "100vh",
-    bgcolor: "#82A5D9",
-    p: 2,
-    m: 1,
-    border: "12px black",
-    borderRadius: 5,
-    height: "100vh",
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    gap: 3,
-    boxShadow: 5,
+    overflowY: "auto"
   };
 
   const recipe = {
     backgroundColor: "white",
-    p: 4,
-    mt: 4,
     borderRadius: 2,
-    boxShadow: 2,
-    width: "80%",
-    ml: 2.5,
+    padding: 2,
+    mx: 2,
     display: "flex",
-    justifyContent: "center",
+    flexDirection: "column",
     alignItems: "center",
-    position: "relative",
+    cursor: "pointer",
+    transition: "transform 0.3s ease",
+    "&:hover": {
+      transform: "scale(1.05)",
+    },
+    boxShadow: 5,
+    height: "32vh",
+    width: "100vh"
+  };
+
+  const recipeImage = {
+    width: '100%',
+    height: 200,
+    objectFit: 'cover',
+    borderRadius: 5,
+  };
+
+  const recipeTitle ={
+    position: "center",
+    m: 1,
+    color: "black",
+    fontWeight: "bold",
+    p: 1,
+    fontSize: 20
   };
 
   const button = {
-    m: 3, 
+    mt: 1, 
+    ml: 3,
     backgroundColor: "black", 
     color: "white", 
     width: "auto",
+    borderRadius: 5,
     alignSelf: "flex-start",
-    "&:hover": {
     transition: "transform 0.3s ease",
-    transform: "scale(1.05)"
+    "&:hover": {
+      transform: "scale(1.05)"
     }
   };
 
@@ -104,7 +112,7 @@ export const User_Blog = () => {
             sx={{ 
               fontWeight: "bold", 
               textAlign: "left", 
-              fontSize: "clamp(1rem, 20vw, 5rem)", 
+              fontSize: "clamp(1rem, 15vw, 4rem)", 
               lineHeight: 1.1,
               width: "min-content",
               m: 3  
@@ -114,7 +122,7 @@ export const User_Blog = () => {
 
           <Box
             sx={{
-              marginTop: 2,
+              marginTop: 1,
               marginLeft: 3,
               width: "75%",
               bgcolor: "#cdd4de",
@@ -163,21 +171,17 @@ export const User_Blog = () => {
         </Box>
 
         {/* Right Section */}
-        <Box sx={recipeBox}>
+        <Box sx={blogCards}>
+
+          {/* New post button */}
+          <Button onClick={() => navigate("/new_post")} variant="contained" sx={button}>
+            + New Post
+          </Button>
           {/* Chicken Tikka Masala Post */}
           <ButtonBase onClick={() => navigate("/chicken")}>  
             <Box sx={recipe}>
-              <img src={chicky_ticky} alt="Chicken Tikka Masala" style={{ width: "50%", objectFit: "contain" }} />
-              <Typography
-                sx={{
-                  position: "absolute",
-                  bottom: 0,
-                  left: 0,
-                  color: "black",
-                  fontWeight: "bold",
-                  p: 1,
-                }}
-              >
+              <img src={chicky_ticky} alt="Chicken Tikka Masala" style={recipeImage} />
+              <Typography sx={recipeTitle}>
                 Chicken Tikka Masala
               </Typography>
             </Box>
@@ -187,26 +191,14 @@ export const User_Blog = () => {
           {posts.map((post, index) => (
             <ButtonBase key={index} onClick={() => navigate("/shrimp")}>  
               <Box sx={recipe}>
-                <img src={shrimp} alt={post.title} style={{ width: "50%", objectFit: "contain" }} />
-                <Typography
-                  sx={{
-                    position: "absolute",
-                    bottom: 0,
-                    left: 0,
-                    color: "black",
-                    fontWeight: "bold",
-                    p: 1,
-                  }}
-                >
+                <img src={shrimp} alt={post.title} style={recipeImage} />
+                <Typography sx={recipeTitle}>
                   {post.title}
                 </Typography>
               </Box>
             </ButtonBase>
           ))}
 
-          <Button onClick={() => navigate("/new_post")} variant="contained" sx={button}>
-            New Post
-          </Button>
         </Box>
       </Box>
     </Container>
