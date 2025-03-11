@@ -13,11 +13,11 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { styled } from '@mui/material/styles';
 import chicky_ticky from "../../assets/chicken.png";
 
-export const User_Blog3 = () => {
+export const User_Blog = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [posts, setPosts] = useState([]);
-  const [text, setText] = useState("Dishes that are both fast and filling");
+  const [text, setText] = useState("My most delicious, extravagant and popular recipes!");
   const [isEditing, setIsEditing] = useState(false);
 
   
@@ -134,14 +134,13 @@ export const User_Blog3 = () => {
               lineHeight: 1.1,
               width: "min-content",
               ml: 3,  
-              mt: 7
+              mt: 10
               }}>
-            Quick and easy meals
+            My best recipes
           </Typography>
 
           <Box
             sx={{
-              marginTop: 1,
               marginLeft: 3,
               width: "75%",
               bgcolor: "#cdd4de",
@@ -151,7 +150,7 @@ export const User_Blog3 = () => {
               p: 3,
               boxShadow: 1,
               position: "relative", // Allows positioning of the Save button
-              minHeight: "20vh", // Increases text box height
+              minHeight: "20vh", 
             }}
           >
             <InputBase
@@ -227,4 +226,4 @@ export const User_Blog3 = () => {
   );
 };
 
-export default User_Blog3;
+export default User_Blog;

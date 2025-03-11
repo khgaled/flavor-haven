@@ -4,7 +4,7 @@ import { Login } from "./pages/Login";
 import { Recipes_Explore } from "./pages/Explores/Recipes_Exp";
 import { Restaurants_Explore } from "./pages/Explores/Restaurants_Exp"; 
 import { Main_Explore } from "./pages/Explores/Main_Exp"; 
-import { User_Blog } from "./pages/Blog";
+import { User_Blog } from "./pages/Toast_Blogs/Blog1";
 import {User_Blog2} from "./pages/Toast_Blogs/Blog2"
 import {User_Blog3} from "./pages/Toast_Blogs/Blog3"
 import {User_Blog4} from "./pages/Toast_Blogs/Blog4"
@@ -26,8 +26,6 @@ import { RestaurantPost2 } from "./pages/Restaurants/RestaurantPost2";
 import { RestaurantPost3 } from "./pages/Restaurants/RestaurantPost3";
 import { RestaurantPost4 } from "./pages/Restaurants/RestaurantPost4";
 import { RestaurantPost5 } from "./pages/Restaurants/RestaurantPost5";
-import {Chicken} from "./pages/Toast_Blogs/Chicken_recipe";
-import {Shrimp} from "./pages/Toast_Blogs/Shrimp_recipe";
 import { RestaurantPost6 } from "./pages/Restaurants/RestaurantPost6";
 import "./App.css";
 
@@ -57,8 +55,6 @@ function App() {
             <Route path="/new_post2" element={<New_Post2 />} />
             <Route path="/new_post3" element={<New_Post3 />} />
             <Route path="/new_post4" element={<New_Post4 />} />
-            <Route path="/chicken" element={<Chicken />} />
-            <Route path="/shrimp" element={<Shrimp />} />
             <Route path="/profile" element={<Profile />} /> 
             <Route path="/profile" element={<Profile setIsLoggedIn={setIsLoggedIn} />} />
             <Route path="/recipe_post" element={<RecipePost />} /> 
