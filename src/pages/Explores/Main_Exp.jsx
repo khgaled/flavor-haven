@@ -9,7 +9,9 @@ import {
 import { styled } from "@mui/material/styles";
 import {
   Favorite as LikeIcon,
+  FavoriteBorder as LikeOutlineIcon,
   Bookmark as SaveIcon,
+  BookmarkBorder as SaveOutlineIcon,
   Share as ShareIcon,
   ArrowBackIos as LeftIcon,
   ArrowForwardIos as RightIcon
@@ -25,6 +27,7 @@ import chicken from "../../assets/chicken.png";
 import adobo from "../../assets/Adobo-Chicken.jpg";
 import boba from "../../assets/boba1.jpg";
 import yakiUdon from "../../assets/Yaki-Udon.jpg";
+
 const MainContainer = styled(Container)(({ theme }) => ({
   padding: theme.spacing(2),
   backgroundColor: "#f0f2f5",
@@ -112,27 +115,104 @@ const ActionIcons = styled(Box)({
   marginTop: 16,
 });
 
+// Styled like button with color change when active
+const LikeButton = styled(IconButton)(({ theme, isactive }) => ({
+  color: isactive === 'true' ? '#f44336' : 'inherit',
+  transition: 'color 0.3s ease',
+  '&:hover': {
+    backgroundColor: 'rgba(0, 0, 0, 0.04)',
+  },
+}));
+
+// Styled save button with yellow color when active
+const SaveButton = styled(IconButton)(({ theme, isactive }) => ({
+  color: isactive === 'true' ? '#FFD700' : 'inherit', // Gold/yellow color
+  transition: 'color 0.3s ease',
+  '&:hover': {
+    backgroundColor: 'rgba(0, 0, 0, 0.04)',
+  },
+}));
+
 export const Main_Explore = () => {
   const { sharePost, ShareSnackbar } = useShare(); 
   const navigate = useNavigate();
   const [currentFeaturedIndex, setCurrentFeaturedIndex] = useState(0);
+  
+  // State to track liked and saved posts
+  const [likedPosts, setLikedPosts] = useState({});
+  const [savedPosts, setSavedPosts] = useState({});
 
   const featuredRestaurants = [
     {
+      id: 'featured1',
       image: garden,
       title: 'FEATURED RESTAURANT',
       navigateTo: '/restaurant_post'
     },
     {
+      id: 'featured2',
       image: boba,
       title: 'TRENDING RIGHT NOW!',
       navigateTo: '/restaurant_post6'
     },
     {
+      id: 'featured3',
       image: yakiUdon,
       title: 'AS SEEN ON TIKTOK!',
       navigateTo: '/recipe_post3'
     }
+  ];
+
+  // All posts with unique IDs
+  const allPosts = [
+    {
+      id: 'post1',
+      image: shrimpPasta,
+      title: "Shrimp Pasta",
+      path: "/recipe_post",
+      isRestaurant: false
+    },
+    {
+      id: 'post2',
+      image: jap,
+      title: "Sakura Sushi",
+      path: "/restaurant_post2",
+      isRestaurant: true
+    },
+    {
+      id: 'post3',
+      image: bul,
+      title: "Beef Bulgogi",
+      path: "/recipe_post2",
+      isRestaurant: false
+    },
+    {
+      id: 'post4',
+      image: mex,
+      title: "San Miguel",
+      path: "/restaurant_post4",
+      isRestaurant: true
+    },
+    {
+      id: 'post5',
+      image: chicken,
+      title: "Chicken Tikka Masala",
+      path: "/recipe_post1",
+      isRestaurant: false
+    },
+    {
+      id: 'post6',
+      image: adobo,
+      title: "Adobo Chicken",
+      path: "/recipe_post4",
+      isRestaurant: false
+    }
+  ];
+
+  // Group posts into rows
+  const postRows = [
+    allPosts.slice(0, 3),
+    allPosts.slice(3, 6)
   ];
 
   const handleNextFeatured = () => {
@@ -152,42 +232,23 @@ export const Main_Explore = () => {
     return () => clearInterval(interval);
   }, []);
 
-  const postRows = [
-    [
-      {
-        image: shrimpPasta,
-        title: "Shrimp Pasta",
-        onClick: () => navigate("/recipe_post"),
-      },
-      {
-        image: jap,
-        title: "Sakura Sushi",
-        onClick: () => navigate("/restaurant_post2"),
-      },
-      {
-        image: bul,
-        title: "Beef Bulgogi",
-        onClick: () => navigate("/recipe_post2"),
-      },
-    ],
-    [
-      {
-        image: mex,
-        title: "San Miguel",
-        onClick: () => navigate("/restaurant_post4"),
-      },
-      {
-        image: chicken,
-        title: "Chicken Tikka Masala",
-        onClick: () => navigate("/recipe_post1"),
-      },
-      {
-        image: adobo,
-        title: "Adobo Chicken",
-        onClick: () => navigate("/recipe_post4"),
-      },
-    ],
-  ];
+  // Handle like button click
+  const handleLikeClick = (id, e) => {
+    e.stopPropagation();
+    setLikedPosts(prev => ({
+      ...prev,
+      [id]: !prev[id]
+    }));
+  };
+  
+  // Handle save button click
+  const handleSaveClick = (id, e) => {
+    e.stopPropagation();
+    setSavedPosts(prev => ({
+      ...prev,
+      [id]: !prev[id]
+    }));
+  };
 
   // Updated to handle clicks on the featured section while preserving carousel navigation
   const handleFeaturedClick = (navigateTo, event) => {
@@ -198,8 +259,6 @@ export const Main_Explore = () => {
   };
 
   const renderFeaturedRecipeRestaurant = () => {
-    //const currentFeatured = featuredRestaurants[currentFeaturedIndex];
-    
     return (
       <FeaturedSection>
         <CarouselWrapper 
@@ -268,9 +327,9 @@ export const Main_Explore = () => {
         },
       }}
     >
-      {posts.map((post, index) => (
-        <Grid item xs={4} key={index}>
-          <PostCard onClick={post.onClick}>
+      {posts.map((post) => (
+        <Grid item xs={4} key={post.id}>
+          <PostCard onClick={() => navigate(post.path)}>
             <PostImage
               src={post.image}
               alt={post.title}
@@ -284,17 +343,31 @@ export const Main_Explore = () => {
               {post.title}
             </Typography>
             <ActionIcons>
-              <IconButton size="small">
-                <LikeIcon />
-              </IconButton>
-              <IconButton size="small">
-                <SaveIcon />
-              </IconButton>
-              <IconButton size="small"
+              <LikeButton 
+                size="small" 
+                isactive={likedPosts[post.id]?.toString() || 'false'}
+                onClick={(e) => handleLikeClick(post.id, e)}
+                aria-label={likedPosts[post.id] ? "Unlike" : "Like"}
+              >
+                {likedPosts[post.id] ? <LikeIcon /> : <LikeOutlineIcon />}
+              </LikeButton>
+              
+              <SaveButton 
+                size="small" 
+                isactive={savedPosts[post.id]?.toString() || 'false'}
+                onClick={(e) => handleSaveClick(post.id, e)}
+                aria-label={savedPosts[post.id] ? "Unsave" : "Save"}
+              >
+                {savedPosts[post.id] ? <SaveIcon /> : <SaveOutlineIcon />}
+              </SaveButton>
+              
+              <IconButton 
+                size="small" 
                 onClick={(e) => {
                   e.stopPropagation();
-                  sharePost(post.postId, post.isRestaurant);
-                }}>
+                  sharePost(post.id, post.isRestaurant);
+                }}
+              >
                 <ShareIcon />
               </IconButton>
             </ActionIcons>

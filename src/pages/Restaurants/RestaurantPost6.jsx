@@ -18,7 +18,7 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 // Left panel styles
 const LeftPanel = styled(Box)({
     width: '33.33%',
-    backgroundColor: "#82A5D9", // Changed to purple color for boba tea
+    backgroundColor: "#82A5D9", 
     padding: '32px 32px 80px 32px', 
     display: 'flex',
     flexDirection: 'column',
