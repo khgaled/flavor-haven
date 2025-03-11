@@ -1,196 +1,229 @@
 import {
-    TextField,
-    Button,
-    Container,
-    Typography,
-    Box,
-    ButtonBase,
-    Grid,
-  } from "@mui/material";
-  import { useNavigate, useLocation } from "react-router-dom";
-  import { useState, useEffect } from "react";
-  import chicky_ticky from "../../assets/chicken.png";
-  import cupcake from "../../assets/gingcup.jpg";
-  
-  export const User_Blog2 = () => {
-    const navigate = useNavigate();
-    const location = useLocation();
-  
-    const [posts, setPosts] = useState([]);
-  
-    useEffect(() => {
-      if (location.state?.newPost) {
-        setPosts((prevPosts) => {
-          const isDuplicate = prevPosts.some(post => post.title === location.state.newPost.title);
-          if (!isDuplicate) {
-            return [...prevPosts, location.state.newPost];
-          }
-          return prevPosts;
-        });
-    
-       // navigate("/user_blog", { replace: true, state: {} });
-      }
-    }, [location.state]);
-  
-    return (
-      <Container>
-        <Box sx={{ display: "flex", mt: 4, width: "100%" }}>
-          <Box
-            sx={{
-              textAlign: "left",
-              mt: 4,
-              backgroundColor: "#7787b5",
-              width: "100%",
-              ml: 5,
-              minHeight: "70vh",
-              borderRadius: 8,
-            }}
-          >
-            <Typography variant="h3" sx={{ fontWeight: "bold", ml: 3, mt: 10 }}>
-              Family
-            </Typography>
-            <Typography variant="h3" sx={{ fontWeight: "bold", ml: 3, mt: 2 }}>
-              Favorites
-            </Typography>
-            <Typography variant="h3" sx={{ fontWeight: "bold", ml: 3, mt: 2 }}>
-              recipes
-            </Typography>
-  
-            <Box
-              sx={{
-                backgroundColor: "white",
-                padding: 4,
-                marginTop: 4,
-                borderRadius: 2,
-                boxShadow: 2,
-                width: "55%",
-                ml: 3,
-                height: "20%",
-              }}
-            >
-              {"Beloved dishes, enjoyed by kids and parents alike"}
-            </Box>
-            <Button
-              variant="contained"
-              sx={{ mt: 2, color: "white", ml: 50, backgroundColor: "black" }}
-            >
-              DRAFTS
-            </Button>
-  
-            <Button
-            onClick={() => navigate("/profile")}
-              variant="contained"
-              sx={{ mt: 2, color: "", ml: 5, backgroundColor: "black" }}
-            >
-              BACK
-            </Button>
-          </Box>
+  InputBase,
+  Button,
+  Container,
+  Typography,
+  Box,
+  ButtonBase,
+  IconButton
+} from "@mui/material";
+import { useNavigate, useLocation } from "react-router-dom";
+import { useState, useEffect } from "react";
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import { styled } from '@mui/material/styles';
+import chicky_ticky from "../../assets/chicken.png";
 
-          
+export const User_Blog2 = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const [posts, setPosts] = useState([]);
+  const [text, setText] = useState("Beloved dishes, enjoyed by kids and parents alike");
+  const [isEditing, setIsEditing] = useState(false);
+
+  
+  const handleChange = (event) => {
+    setText(event.target.value);
+    setIsEditing(true); 
+  };
+
+  const handleSave = () => {
+    setIsEditing(false);
+    console.log("Saved text:", text); 
+  };
+
+  useEffect(() => {
+    if (location.state?.newPost) {
+      setPosts((prevPosts) => {
+        const isDuplicate = prevPosts.some(
+          (post) => post.title === location.state.newPost.title
+        );
+        return isDuplicate ? prevPosts : [...prevPosts, location.state.newPost];
+      });
+    }
+  }, [location.state]);
+
+  const blogCards = {
+    width: "100vh",
+    bgcolor: "#82A5D9",
+    p: 2,
+    mx: 1,
+    border: "12px black",
+    borderRadius: 5,
+    height: "80vh",
+    display: "flex",
+    flexDirection: "column",
+    gap: 3,
+    boxShadow: 5,
+    overflowY: "auto"
+  };
+
+  const recipe = {
+    backgroundColor: "white",
+    borderRadius: 2,
+    padding: 2,
+    mx: 2,
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    cursor: "pointer",
+    transition: "transform 0.3s ease",
+    "&:hover": {
+      transform: "scale(1.05)",
+    },
+    boxShadow: 5,
+    height: "32vh",
+    width: "100vh"
+  };
+
+  const recipeImage = {
+    width: '100%',
+    height: 200,
+    objectFit: 'cover',
+    borderRadius: 5,
+  };
+
+  const recipeTitle ={
+    position: "center",
+    m: 1,
+    color: "black",
+    fontWeight: "bold",
+    p: 1,
+    fontSize: 20
+  };
+
+  const button = {
+    mt: 1, 
+    ml: 3,
+    backgroundColor: "white", 
+    color: "black", 
+    width: "auto",
+    borderRadius: 5,
+    alignSelf: "flex-start",
+    transition: "transform 0.3s ease",
+    "&:hover": {
+      transform: "scale(1.05)"
+    }
+  };
+
+  const BackButton = styled(IconButton)({
+    backgroundColor: 'white',
+    width: '48px',
+    height: '48px',
+    position: 'fixed',
+    bottom: '24px',
+    left: '32px',
+    boxShadow: '0 4px 8px rgba(0,0,0,0.2)',
+    zIndex: 999, // Much higher z-index to ensure it's above everything
+    '&:hover': {
+        backgroundColor: '#f5f5f5',
+        transform: 'scale(1.05)',
+    },
+    transition: 'transform 0.2s ease',
+});
+
+  return (
+    <Container sx={{ display: "flex", minHeight: "100vh", marginLeft: 5, marginRight: 5, background: "#f0f2f5" }}>
+      <Box sx={{ display: "flex", mt: 4, width: "100%" }}>
+        {/* Left Section */}
+        <Box sx={blogCards}>
+          <Typography variant="h1" color="white"
+            sx={{ 
+              fontWeight: "bold", 
+              textAlign: "left", 
+              fontSize: "clamp(1rem, 18vw, 5rem)", 
+              lineHeight: 1.1,
+              width: "min-content",
+              ml: 3,  
+              }}>
+            Family favorites
+          </Typography>
+
           <Box
             sx={{
-              textAlign: "right",
-              width: "100%",
-              mt: 4,
-              ml: 1,
-              backgroundColor: "#7787b5",
-              borderRadius: 8,
+              marginTop: 1,
+              marginLeft: 3,
+              width: "75%",
+              bgcolor: "#cdd4de",
+              textAlign: "left",
+              border: "2px solid black",
+              borderRadius: 5,
+              p: 3,
+              boxShadow: 1,
+              position: "relative", // Allows positioning of the Save button
+              minHeight: "30vh", // Increases text box height
             }}
           >
-           
-            <Box
-              sx={{
-                backgroundColor: "white",
-                padding: 4,
-                marginTop: 4,
-                borderRadius: 2,
-                boxShadow: 2,
-                width: "80%",
-                ml: 2.5,
-                justifyContent: "center",
-                display: "flex",
-                minHeight: "15vh",
-                position: "relative",
-              }}
-            >
-              <img
-                src={chicky_ticky}
-                style={{
-                  width: "50%",
-                  mt: 10,
-                  objectFit: "contain",
-                }}
-              />
-  
-              <Typography
+            <InputBase
+              fullWidth
+              multiline
+              value={text}
+              onChange={handleChange}
+              sx={{ color: "black", fontSize: "1rem" }}
+            />
+            {isEditing && (
+              <Button
+                variant="contained"
                 sx={{
                   position: "absolute",
-                  bottom: 0,
-                  left: 0,
-  
-                  color: "black",
-                  fontWeight: "bold",
-                  padding: "10px",
+                  bottom: 10,
+                  right: 10,
+                  backgroundColor: "black",
+                  color: "white",
+                  "&:hover": {
+                    backgroundColor: "#82A5D9",
+                    color: "white",
+                    transition: "transform 0.3s ease",
+                    transform: "scale(1.05)"
+                  },
                 }}
+                onClick={handleSave}
               >
+                Save
+              </Button>
+            )}
+          </Box>
+
+          <BackButton 
+              aria-label="back"
+              onClick={() => window.history.back()}
+          >
+              <ArrowBackIcon fontSize="medium" />
+          </BackButton>
+        </Box>
+
+        {/* Right Section */}
+        <Box sx={blogCards}>
+
+          {/* New post button */}
+          <Button onClick={() => navigate("/new_post")} variant="contained" sx={button}>
+            + New Post
+          </Button>
+          {/* Chicken Tikka Masala Post */}
+          <ButtonBase onClick={() => navigate("/recipe_post1")}>  
+            <Box sx={recipe}>
+              <img src={chicky_ticky} alt="Chicken Tikka Masala" style={recipeImage} />
+              <Typography sx={recipeTitle}>
                 Chicken Tikka Masala
               </Typography>
             </Box>
-       
-  
-            {posts.map((post, index) => (
-              <Box
-                sx={{
-                  backgroundColor: "white",
-                  padding: 4,
-                  marginTop: 4,
-                  borderRadius: 2,
-                  boxShadow: 2,
-                  width: "80%",
-                  ml: 2.5,
-                  justifyContent: "center",
-                  display: "flex",
-                  minHeight: "15vh",
-                  position: "relative",
-                }}
-              >
-                <img
-                  src={cupcake}
-                  style={{
-                    width: "50%",
-                    mt: 10,
-                    objectFit: "contain",
-                  }}
-                />
-  
-                <Typography
-                  sx={{
-                    position: "absolute",
-                    bottom: 0,
-                    left: 0,
-  
-                    color: "black",
-                    fontWeight: "bold",
-                    padding: "10px",
-                  }}
-                >
+          </ButtonBase>
+
+          {/* User-added Posts */}
+          {posts.map((post, index) => (
+            <ButtonBase key={index} onClick={() => navigate("/recipe_post")}>  
+              <Box sx={recipe}>
+                <img src={shrimp} alt={post.title} style={recipeImage} />
+                <Typography sx={recipeTitle}>
                   {post.title}
                 </Typography>
               </Box>
-            ))}
-  
-            <Button
-              onClick={() => navigate("/new_post2")}
-              variant="contained"
-              sx={{ mt: 45, mr: 3, color: "", ml: 5, backgroundColor: "black" }}
-            >
-              New Post
-            </Button>
-          </Box>
+            </ButtonBase>
+          ))}
+
         </Box>
-      </Container>
-    );
-  };
-  
-  export default User_Blog2;
-  
+      </Box>
+    </Container>
+  );
+};
+
+export default User_Blog2;
