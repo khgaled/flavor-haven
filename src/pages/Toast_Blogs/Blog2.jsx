@@ -49,7 +49,7 @@ export const User_Blog2 = () => {
     mx: 1,
     border: "12px black",
     borderRadius: 5,
-    height: "80vh",
+    height: "90vh",
     display: "flex",
     flexDirection: "column",
     gap: 3,
@@ -134,6 +134,7 @@ export const User_Blog2 = () => {
               lineHeight: 1.1,
               width: "min-content",
               ml: 3,  
+              mt: 10
               }}>
             Family favorites
           </Typography>
@@ -150,7 +151,7 @@ export const User_Blog2 = () => {
               p: 3,
               boxShadow: 1,
               position: "relative", // Allows positioning of the Save button
-              minHeight: "30vh", // Increases text box height
+              minHeight: "20vh", // Increases text box height
             }}
           >
             <InputBase
@@ -158,7 +159,7 @@ export const User_Blog2 = () => {
               multiline
               value={text}
               onChange={handleChange}
-              sx={{ color: "black", fontSize: "1rem" }}
+              sx={{ color: "black", fontSize: 25}}
             />
             {isEditing && (
               <Button
