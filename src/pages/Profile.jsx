@@ -43,7 +43,8 @@ export const Profile = ({ setIsLoggedIn }) => {
     "&:hover": {
       backgroundColor: "#82A5D9",
       color: "white",
-      transition: "background-color 0.3s ease",
+      transition: "transform 0.3s ease",
+      transform: "scale(1.05)"
     },
   };
 
@@ -82,7 +83,7 @@ export const Profile = ({ setIsLoggedIn }) => {
           <Avatar src="src/assets/chef.jpg" sx={{ cursor: "pointer", width: 140, height: 140, border: "3px solid black" }} />
           <Box>
             <Typography color="#2d333d">@toasty_boy</Typography>
-            <Typography variant="h4" color="black">Toast Malone</Typography>
+            <Typography variant="h4" color="black" sx={{fontWeight: "bold"}}>Toast Malone</Typography>
           </Box>
           <Box sx={{ display: "flex", width: "85%", bgcolor: "#cdd4de", textAlign: "left", border: "2px solid black", borderRadius: 15, p: 2, boxShadow: 1 }}>
             <Typography color="black">Creating new recipes every day!</Typography>
@@ -90,14 +91,23 @@ export const Profile = ({ setIsLoggedIn }) => {
         </Box>
 
         {/* Logout Button */}
-        <Box sx={{ mt: "33%", display: "flex", alignItems: "center", position: "fixed", left: "20%", borderRadius: 15 }}>
+        <Box sx={{ mt: "33%", display: "flex", alignItems: "center", position: "fixed", left: "20%", borderRadius: 15, }}>
           <Button onClick={handleLogout} variant="outlined" sx={{ borderColor: "#dc7d7d", color: "#dc7d7d", borderRadius: 15, px: 3, "&:hover": { backgroundColor: "#dc7d7d", color: "white", transition: "background-color 0.3s ease" } }}>Logout</Button>
         </Box>
       </Box>
 
       {/* Recipe Blogs */}
       <Box sx={{ flex: 1, ml: "40%", overflowY: "auto", maxHeight: "100vh", p: 1 }}>
-        <Box sx={{ height: 25, width: 100, cursor: "pointer", border: "1px solid black", borderRadius: "50px", p: 1, m: 2, boxShadow: 1, "&:hover": { backgroundColor: "#82A5D9", color: "white", transition: "background-color 0.3s ease" } }}>
+        <Box 
+        sx={{ height: 25, width: 100, cursor: "pointer", 
+        border: "1px solid black", borderRadius: "50px", p: 1, m: 2, 
+        boxShadow: 1,
+        "&:hover": {
+          backgroundColor: "#82A5D9",
+          color: "white",
+          transition: "transform 0.3s ease",
+          transform: "scale(1.05)"
+        } } }>
           <Typography>+ New Blog</Typography>
         </Box>
         {blogPosts.map((blog, index) => (
