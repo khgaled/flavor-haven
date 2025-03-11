@@ -75,7 +75,7 @@ export const Profile = ({ setIsLoggedIn }) => {
   ];
 
   return (
-    <Box sx={{ display: "flex", height: "100vh", p: 0, py: 2 }}>
+    <Box sx={{ display: "flex", minHeight: "100vh", marginLeft: 5, marginRight: 5, background: "#f0f2f5" }}>
       <Box sx={{ display: "flex", flexDirection: "column", maxHeight: "100vh", p: 1, alignContent: "center" }}>
         {/* Profile Card */}
         <Box sx={profileCardStyles}>
