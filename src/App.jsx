@@ -8,6 +8,7 @@ import { User_Blog } from "./pages/Toast_Blogs/Blog1";
 import {User_Blog2} from "./pages/Toast_Blogs/Blog2"
 import {User_Blog3} from "./pages/Toast_Blogs/Blog3"
 import {User_Blog4} from "./pages/Toast_Blogs/Blog4"
+import {User_Blog5} from "./pages/Toast_Blogs/Blog5"
 import {New_Post} from "./pages/NewPosts/NewPost"
 import {New_Post2} from "./pages/NewPosts/NewPost2"
 import {New_Post3} from "./pages/NewPosts/NewPost3"
@@ -52,6 +53,7 @@ function App() {
             <Route path="/user_blog2" element={<User_Blog2 />} />
             <Route path="/user_blog3" element={<User_Blog3 />} />
             <Route path="/user_blog4" element={<User_Blog4 />} />
+            <Route path="/user_blog5" element={<User_Blog5 />} />
             <Route path="/new_post" element={<New_Post />} />
             <Route path="/new_post2" element={<New_Post2 />} />
             <Route path="/new_post3" element={<New_Post3 />} />

@@ -2,6 +2,7 @@ import { Box, Avatar, Typography, Button,  ButtonBase } from "@mui/material";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
+import cupcake from "../assets/gingcup.jpg";
 
 export const Profile = ({ setIsLoggedIn }) => {
   const navigate = useNavigate();
@@ -22,15 +23,16 @@ export const Profile = ({ setIsLoggedIn }) => {
   };
 
   useEffect(() => {
-    if (location.state?.newPost) {
+    if (location.state?.newBlog) {
       setPosts((prevPosts) => {
         const isDuplicate = prevPosts.some(
-          (post) => post.title === location.state.newPost.title
+          (post) => post.title === location.state.newBlog.title
         );
-        return isDuplicate ? prevPosts : [...prevPosts, location.state.newPost];
+        return isDuplicate ? prevPosts : [...prevPosts, location.state.newBlog];
       });
     }
   }, [location.state]);
+  
 
 
   const handleLogout = () => {
@@ -118,7 +120,6 @@ export const Profile = ({ setIsLoggedIn }) => {
           </Box>
         </Box>
 
-  
         <Box sx={{ mt: "33%", display: "flex", alignItems: "center", position: "fixed", left: "20%", borderRadius: 15, }}>
           <Button onClick={handleLogout} variant="outlined" sx={{ borderColor: "#dc7d7d", color: "#dc7d7d", borderRadius: 15, px: 3, "&:hover": { backgroundColor: "#dc7d7d", color: "white", transition: "background-color 0.3s ease" } }}>Logout</Button>
         </Box>
@@ -142,18 +143,26 @@ export const Profile = ({ setIsLoggedIn }) => {
         </Box>
         </ButtonBase>
 
+        {[...blogPosts, ...posts].map((blog, index) => (
+  <Box key={index} sx={blogCardStyles} onClick={() => navigate(blog.path || "/user_blog5")}>
+    <Box sx={{ textAlign: "left" }}>
+      <Typography variant="h4" component="h2" sx={{ fontWeight: "bold" }}>
+        {blog.title}
+      </Typography>
+      <Typography>{blog.description || blog.bio}</Typography>
+    </Box>
+    <Box component="img" src={blog.image || cupcake} sx={{ height: "80%", width: "23%", borderRadius: "20px" }} />
+  </Box>
+))}
 
-        {blogPosts.map((blog, index) => (
-          <Box key={index} sx={blogCardStyles} onClick={() => navigate(blog.path)}>
-            <Box sx={{ textAlign: "left" }}>
-              <Typography variant="h4" component="h2" sx={{fontWeight: "bold"}}>{blog.title}</Typography>
-              <Typography>{blog.description}</Typography>
-            </Box>
-            <Box component="img" src={blog.image} sx={{ height: "80%", width: "23%", borderRadius: "20px" }} />
-          </Box>
-        ))}
+
+
+ 
+        
       </Box>
     </Box>
+
+    
   );
 };
 
