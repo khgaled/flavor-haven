@@ -32,22 +32,19 @@ export const User_Blog = () => {
     console.log("Saved text:", text); 
   };
 
-  useEffect(() => {
-    console.log("Location state:", location.state); // Debugging log
-  
+  useEffect(() => {  
     if (location.state?.newPost) {
       setPosts((prevPosts) => {
         const isDuplicate = prevPosts.some(
           (post) => post.title === location.state.newPost.title
         );
         if (!isDuplicate) {
-          console.log("Adding new post:", location.state.newPost); // Debugging log
+          console.log("Adding new post:", location.state.newPost);
           return [...prevPosts, location.state.newPost];
         }
         return prevPosts;
       });
-  
-      // Reset location.state to prevent duplicate insertions on re-renders
+
       navigate(".", { replace: true, state: {} });
     }
   }, [location.state, navigate]);
@@ -223,7 +220,7 @@ export const User_Blog = () => {
           {posts.map((post, index) => (
             <ButtonBase key={index} onClick={() => navigate("/recipe_post")}>  
               <Box sx={recipe}>
-                <img src={shrimp} alt={post.title} style={recipeImage} />
+                <img src={post.image} alt={post.title} style={recipeImage} />
                 <Typography sx={recipeTitle}>
                   {post.title}
                 </Typography>

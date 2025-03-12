@@ -34,7 +34,6 @@ export const New_Post = () => {
   
   const handleSubmit = () => {
     const newPost = { title, steps, image: selectedFile }; // Send Base64 string
-    //navigate(window.history.back(), { state: { newPost } });
     navigate("/user_blog", { state: { newPost } });
   };
 
