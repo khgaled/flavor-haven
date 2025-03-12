@@ -2,10 +2,25 @@ import {
     Container,
     Typography,
     Box,
-    Grid
+    Grid,
+    IconButton
 } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import yakiUdon from "../../assets/Yaki-Udon.jpg";
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+
+const BackButton = styled(IconButton)({
+    position: 'absolute',
+    top: '40px',
+    left: '40px',
+    zIndex: 999,
+    backgroundColor: 'rgba(255, 255, 255, 0.8)',
+    '&:hover': {
+        backgroundColor: 'rgba(255, 255, 255, 1)',
+        transform: 'scale(1.05)',
+    },
+    transition: 'transform 0.2s ease',
+});
 
 const RecipeContainer = styled(Container)({
     display: 'flex',
@@ -14,6 +29,7 @@ const RecipeContainer = styled(Container)({
     minHeight: '100vh',
     backgroundColor: '#f0f2f5',
     padding: '20px',
+    position: 'relative'
 });
 
 const RecipeWrapper = styled(Box)({
@@ -53,6 +69,12 @@ const SectionTitle = styled(Typography)({
 export const RecipePost3 = () => {
     return (
         <RecipeContainer>
+            <BackButton 
+                aria-label="back"
+                onClick={() => window.history.back()}
+            >
+                <ArrowBackIcon fontSize="medium" />
+            </BackButton>
             <RecipeWrapper>
                 {/* Header */}
                 <RecipeHeader>

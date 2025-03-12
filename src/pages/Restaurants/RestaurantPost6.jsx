@@ -49,7 +49,7 @@ const BackButton = styled(IconButton)({
     backgroundColor: 'white',
     width: '48px',
     height: '48px',
-    position: 'fixed',
+    position: 'absolute',
     bottom: '24px',
     left: '32px',
     boxShadow: '0 4px 8px rgba(0,0,0,0.2)',
@@ -143,7 +143,7 @@ export const RestaurantPost6 = () => {
     return (
         <Box display="flex" width="100%" height="100vh">
             {/* Left Side Panel - Now with scrolling */}
-            <LeftPanel>
+            <LeftPanel sx={{borderRadius: 5}}>
                 <RestaurantTitle variant="h3" component="h1">
                     MilkT Society
                 </RestaurantTitle>

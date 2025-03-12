@@ -64,7 +64,8 @@ export const User_Blog = () => {
     flexDirection: "column",
     gap: 3,
     boxShadow: 5,
-    overflowY: "auto"
+    overflowY: "auto",
+    position: "relative"
   };
 
   const recipe = {
@@ -119,7 +120,7 @@ export const User_Blog = () => {
     backgroundColor: 'white',
     width: '48px',
     height: '48px',
-    position: 'fixed',
+    position: 'absolute',
     bottom: '24px',
     left: '32px',
     boxShadow: '0 4px 8px rgba(0,0,0,0.2)',

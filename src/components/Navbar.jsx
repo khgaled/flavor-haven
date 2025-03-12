@@ -1,5 +1,5 @@
 import { useNavigate, useLocation } from "react-router-dom";
-import { AppBar, Toolbar, Box, Avatar, Button } from "@mui/material";
+import { AppBar, Toolbar, Box, Avatar, Button, Typography } from "@mui/material";
 import { Cookie as CookieIcon } from "@mui/icons-material";
 import PropTypes from "prop-types";
 
@@ -19,9 +19,13 @@ export const Navbar = () => {
       }}
     >
       <Toolbar sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", position: "relative" }}>
-        <Box sx={{ display: "flex", alignItems: "center" }}>
-          <CookieIcon />
-        </Box>
+      <Box sx={{ display: "flex", alignItems: "center", gap: "8px" }}>
+      <CookieIcon />
+      <Typography sx={{ fontFamily: '"Arial", "Helvetica", sans-serif', fontWeight: "bold" }}>
+        FLAVOR HAVEN
+      </Typography>
+      </Box>
+
 
         <Box 
           sx={{ 
