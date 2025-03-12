@@ -34,7 +34,8 @@ export const New_Post = () => {
   
   const handleSubmit = () => {
     const newPost = { title, steps, image: selectedFile }; // Send Base64 string
-    navigate(window.history.back(), { state: { newPost } });
+    //navigate(window.history.back(), { state: { newPost } });
+    navigate("/user_blog", { state: { newPost } });
   };
 
   const BackButton = styled(IconButton)({
@@ -68,7 +69,7 @@ export const New_Post = () => {
           Create a New Post
         </Typography>
         
-        {/* Upload Photo Section */}
+        
         <Typography
           variant="h5"
           sx={{ fontWeight: "bold", color: "white", mb: 1, textAlign: "left" }}
@@ -76,7 +77,7 @@ export const New_Post = () => {
           Upload Photo
         </Typography>
 
-        {/* Hidden File Input */}
+      
         <input
           type="file"
           accept="image/*"
@@ -96,14 +97,14 @@ export const New_Post = () => {
           </Button>
         </label>
 
-        {/* Display Selected File Name */}
+       
         {selectedFile && (
           <Typography sx={{ color: "white", fontStyle: "italic", mb: 2 }}>
             Selected: {selectedFile.name}
           </Typography>
         )}
 
-        {/* Image Preview */}
+       
         {preview && (
           <Box
             sx={{
