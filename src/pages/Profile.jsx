@@ -18,8 +18,8 @@ export const Profile = ({ setIsLoggedIn }) => {
         <Box 
           sx={{ 
             width: { xs: "80%", sm: "60%", md: "40%", lg: "30%", xl: "25%" }, 
-            maxWidth: "400px", // Prevents it from getting too large on big screens
-            minWidth: "250px", // Ensures it doesn’t shrink too much on small screens
+            maxWidth: "400px", 
+            minWidth: "250px", 
             bgcolor: "#82A5D9",
             p: 2, 
             margin: 2,
