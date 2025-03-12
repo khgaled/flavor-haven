@@ -12,6 +12,7 @@ import { useState, useEffect } from "react";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { styled } from '@mui/material/styles';
 import chicky_ticky from "../../assets/chicken.png";
+import shrimp from "../../assets/__opt__aboutcom__coeus__resources__content_migration__serious_eats__seriouseats.com__2021__02__20210204-shrimp-scampi-pasta-sauce-daniel-gritzer-16-f01e8b8cc5dc4591b968bb1acc1b6f.jpg";
 
 export const User_Blog2 = () => {
   const navigate = useNavigate();

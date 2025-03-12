@@ -8,7 +8,6 @@ import {
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-
 export const New_Post = () => {
   const navigate = useNavigate();
   const [title, setTitle] = useState("");
@@ -132,7 +131,9 @@ export const New_Post = () => {
             </Box>
           </Box>
           <Button
+            
             onClick={handleSubmit}
+            //onClick={() => navigate("/user_blog")}
             variant="contained"
             sx={{
               backgroundColor: "white",
