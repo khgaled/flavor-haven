@@ -1,9 +1,37 @@
-import { Box, Avatar, Typography, Button } from "@mui/material";
-import { useNavigate } from "react-router-dom";
+import { Box, Avatar, Typography, Button,  ButtonBase } from "@mui/material";
+import { useNavigate, useLocation } from "react-router-dom";
+import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 
 export const Profile = ({ setIsLoggedIn }) => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const [posts, setPosts] = useState([]);
+  //const [text, setText] = useState("My most delicious, extravagant and popular recipes!");
+  //const [isEditing, setIsEditing] = useState(false);
+
+  
+  const handleChange = (event) => {
+    setText(event.target.value);
+    setIsEditing(true); 
+  };
+
+  const handleSave = () => {
+    setIsEditing(false);
+    console.log("Saved text:", text); 
+  };
+
+  useEffect(() => {
+    if (location.state?.newPost) {
+      setPosts((prevPosts) => {
+        const isDuplicate = prevPosts.some(
+          (post) => post.title === location.state.newPost.title
+        );
+        return isDuplicate ? prevPosts : [...prevPosts, location.state.newPost];
+      });
+    }
+  }, [location.state]);
+
 
   const handleLogout = () => {
     localStorage.removeItem("isLoggedIn");
@@ -78,7 +106,7 @@ export const Profile = ({ setIsLoggedIn }) => {
   return (
     <Box sx={{ display: "flex", minHeight: "100vh", marginLeft: 5, marginRight: 5, background: "#f0f2f5" }}>
       <Box sx={{ display: "flex", flexDirection: "column", maxHeight: "100vh", p: 1, alignContent: "center" }}>
-        {/* Profile Card */}
+     
         <Box sx={profileCardStyles}>
           <Avatar src="src/assets/chef.jpg" sx={{ cursor: "pointer", width: 140, height: 140, border: "3px solid black" }} />
           <Box>
@@ -90,14 +118,16 @@ export const Profile = ({ setIsLoggedIn }) => {
           </Box>
         </Box>
 
-        {/* Logout Button */}
+  
         <Box sx={{ mt: "33%", display: "flex", alignItems: "center", position: "fixed", left: "20%", borderRadius: 15, }}>
           <Button onClick={handleLogout} variant="outlined" sx={{ borderColor: "#dc7d7d", color: "#dc7d7d", borderRadius: 15, px: 3, "&:hover": { backgroundColor: "#dc7d7d", color: "white", transition: "background-color 0.3s ease" } }}>Logout</Button>
         </Box>
       </Box>
 
-      {/* Recipe Blogs */}
+        
       <Box sx={{ flex: 1, ml: "40%", overflowY: "auto", maxHeight: "100vh", p: 1 }}>
+       
+      <ButtonBase onClick={() => navigate("/new_blog")}>
         <Box 
         sx={{ height: 25, width: 100, cursor: "pointer", 
         border: "1px solid black", borderRadius: "50px", p: 1, m: 2, 
@@ -110,6 +140,9 @@ export const Profile = ({ setIsLoggedIn }) => {
         } } }>
           <Typography>+ New Blog</Typography>
         </Box>
+        </ButtonBase>
+
+
         {blogPosts.map((blog, index) => (
           <Box key={index} sx={blogCardStyles} onClick={() => navigate(blog.path)}>
             <Box sx={{ textAlign: "left" }}>

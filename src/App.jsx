@@ -8,7 +8,7 @@ import { User_Blog } from "./pages/Toast_Blogs/Blog1";
 import {User_Blog2} from "./pages/Toast_Blogs/Blog2"
 import {User_Blog3} from "./pages/Toast_Blogs/Blog3"
 import {User_Blog4} from "./pages/Toast_Blogs/Blog4"
-import {New_Post} from "./pages/NewPost"
+import {New_Post} from "./pages/NewPosts/NewPost"
 import {New_Post2} from "./pages/NewPosts/NewPost2"
 import {New_Post3} from "./pages/NewPosts/NewPost3"
 import {New_Post4} from "./pages/NewPosts/NewPost4"
@@ -27,6 +27,7 @@ import { RestaurantPost3 } from "./pages/Restaurants/RestaurantPost3";
 import { RestaurantPost4 } from "./pages/Restaurants/RestaurantPost4";
 import { RestaurantPost5 } from "./pages/Restaurants/RestaurantPost5";
 import { RestaurantPost6 } from "./pages/Restaurants/RestaurantPost6";
+import {New_Blog} from "./pages/NewBlog"
 import "./App.css";
 
 function App() {
@@ -70,6 +71,7 @@ function App() {
             <Route path="/restaurant_post4" element={<RestaurantPost4 />} /> 
             <Route path="/restaurant_post5" element={<RestaurantPost5 />} /> 
             <Route path="/restaurant_post6" element={<RestaurantPost6 />} />  
+            <Route path="/new_blog" element={<New_Blog />} />  
             <Route path="*" element={<Navigate to="/main_explore" />} /> 
           </>
         ) : (
