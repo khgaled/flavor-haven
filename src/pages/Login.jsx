@@ -16,7 +16,7 @@ export const Login = ({ setIsLoggedIn }) => {
       setIsLoggedIn(true);
       navigate("/recipes_explore");
     } else {
-      alert("Invalid credentials. Try toastM12/Toastlols.");
+      alert("Invalid credentials. Try toasty_boy/Toastlols.");
     }
   };
 
