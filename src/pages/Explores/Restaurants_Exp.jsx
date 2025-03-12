@@ -1,4 +1,4 @@
-//import { useState } from "react";
+import { useState } from "react";
 import {
   Container,
   Typography,
@@ -9,7 +9,9 @@ import {
 import { styled } from '@mui/material/styles';
 import {
   Favorite as LikeIcon,
+  FavoriteBorder as LikeOutlineIcon,
   Bookmark as SaveIcon,
+  BookmarkBorder as SaveOutlineIcon,
   Share as ShareIcon
 } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
@@ -58,46 +60,101 @@ const ActionIcons = styled(Box)({
   marginTop: 16,
 });
 
+// Styled like button with color change when active
+const LikeButton = styled(IconButton)(({ theme, isactive }) => ({
+  color: isactive === 'true' ? '#f44336' : 'inherit',
+  transition: 'color 0.3s ease',
+  '&:hover': {
+    backgroundColor: 'rgba(0, 0, 0, 0.04)',
+  },
+}));
+
+// Styled save button with yellow color when active
+const SaveButton = styled(IconButton)(({ theme, isactive }) => ({
+  color: isactive === 'true' ? '#FFD700' : 'inherit', // Gold/yellow color
+  transition: 'color 0.3s ease',
+  '&:hover': {
+    backgroundColor: 'rgba(0, 0, 0, 0.04)',
+  },
+}));
+
 export const Restaurants_Explore = () => {
   const { sharePost, ShareSnackbar } = useShare(); 
   const navigate = useNavigate();
+  
+  // State to track liked and saved posts
+  const [likedPosts, setLikedPosts] = useState({});
+  const [savedPosts, setSavedPosts] = useState({});
 
-  const postRows = [
-    [
-      {
-        image: jap,
-        title: "Sakura Sushi",
-        onClick: () => navigate('/restaurant_post2')
-      },
-      {
-        image: garden,
-        title: "Sichuan Garden",
-        onClick: () => navigate('/restaurant_post')
-      },
-      {
-        image: jewel,
-        title: "Jewel of India",
-        onClick: () => navigate('/restaurant_post1')
-      }
-    ],
-    [
-      {
-        image: italy,
-        title: "Little Italy",
-        onClick: () => navigate('/restaurant_post3')
-      },
-      {
-        image: mex,
-        title: "San Miguel",
-        onClick: () => navigate('/restaurant_post4')
-      },
-      {
-        image: kor,
-        title: "Seoul Kitchen",
-        onClick: () => navigate('/restaurant_post5')
-      }
-    ]
+  // Initial restaurant data
+  const restaurants = [
+    {
+      id: 1,
+      image: jap,
+      title: "Sakura Sushi",
+      path: '/restaurant_post2',
+      isRestaurant: true
+    },
+    {
+      id: 2,
+      image: garden,
+      title: "Sichuan Garden",
+      path: '/restaurant_post',
+      isRestaurant: true
+    },
+    {
+      id: 3,
+      image: jewel,
+      title: "Jewel of India",
+      path: '/restaurant_post1',
+      isRestaurant: true
+    },
+    {
+      id: 4,
+      image: italy,
+      title: "Little Italy",
+      path: '/restaurant_post3',
+      isRestaurant: true
+    },
+    {
+      id: 5,
+      image: mex,
+      title: "San Miguel",
+      path: '/restaurant_post4',
+      isRestaurant: true
+    },
+    {
+      id: 6,
+      image: kor,
+      title: "Seoul Kitchen",
+      path: '/restaurant_post5',
+      isRestaurant: true
+    }
   ];
+
+  // Group restaurants into rows of 3
+  const postRows = [
+    restaurants.slice(0, 3),
+    restaurants.slice(3, 6)
+  ];
+
+  // Handle like button click
+  const handleLikeClick = (id, e) => {
+    e.stopPropagation();
+    setLikedPosts(prev => ({
+      ...prev,
+      [id]: !prev[id]
+    }));
+  };
+  
+  // Handle save button click
+  const handleSaveClick = (id, e) => {
+    e.stopPropagation();
+    setSavedPosts(prev => ({
+      ...prev,
+      [id]: !prev[id]
+    }));
+  };
 
   const renderPostRow = (posts, rowIndex) => (
     <Grid container spacing={3} key={rowIndex} sx={{ 
@@ -106,9 +163,9 @@ export const Restaurants_Explore = () => {
         marginBottom: 3
       }
     }}>
-      {posts.map((post, index) => (
-        <Grid item xs={4} key={index}>
-          <PostCard onClick={post.onClick}>
+      {posts.map((post) => (
+        <Grid item xs={4} key={post.id}>
+          <PostCard onClick={() => navigate(post.path)}>
             <PostImage 
               src={post.image} 
               alt={post.title} 
@@ -122,22 +179,24 @@ export const Restaurants_Explore = () => {
               {post.title}
             </Typography>
             <ActionIcons>
-              <IconButton 
+              <LikeButton 
                 size="small" 
-                onClick={(e) => {
-                  e.stopPropagation();
-                }}
+                isactive={likedPosts[post.id]?.toString() || 'false'}
+                onClick={(e) => handleLikeClick(post.id, e)}
+                aria-label={likedPosts[post.id] ? "Unlike" : "Like"}
               >
-                <LikeIcon />
-              </IconButton>
-              <IconButton 
+                {likedPosts[post.id] ? <LikeIcon /> : <LikeOutlineIcon />}
+              </LikeButton>
+              
+              <SaveButton 
                 size="small" 
-                onClick={(e) => {
-                  e.stopPropagation();
-                }}
+                isactive={savedPosts[post.id]?.toString() || 'false'}
+                onClick={(e) => handleSaveClick(post.id, e)}
+                aria-label={savedPosts[post.id] ? "Unsave" : "Save"}
               >
-                <SaveIcon />
-              </IconButton>
+                {savedPosts[post.id] ? <SaveIcon /> : <SaveOutlineIcon />}
+              </SaveButton>
+              
               <IconButton 
                 size="small" 
                 onClick={(e) => {
@@ -161,6 +220,3 @@ export const Restaurants_Explore = () => {
     </MainContainer>
   );
 };
-
-
-
