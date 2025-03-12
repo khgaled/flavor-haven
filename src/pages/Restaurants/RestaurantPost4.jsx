@@ -1,6 +1,5 @@
-import React from 'react';
+import { useState } from 'react';
 import {
-    Container,
     Typography,
     Box,
     IconButton
@@ -8,6 +7,7 @@ import {
 import { styled } from '@mui/material/styles';
 import { 
     Favorite as LikeIcon, 
+    FavoriteBorder as LikeOutlineIcon,
     Share as ShareIcon 
 } from '@mui/icons-material';
 import mex from "../../assets/Mex.jpg";
@@ -45,16 +45,16 @@ const InfoCard = styled(Box)({
 });
 
 const BackButton = styled(IconButton)({
-    backgroundColor: 'white',
     width: '48px',
     height: '48px',
-    position: 'fixed',
-    bottom: '24px',
-    left: '32px',
+    position: 'absolute', // Change to absolute for top-left positioning
+    left: '16px', // Move to left
+    bottom: '16px',
     boxShadow: '0 4px 8px rgba(0,0,0,0.2)',
-    zIndex: 999, // Much higher z-index to ensure it's above everything
+    backgroundColor: 'rgba(255, 255, 255, 0.8)',
+    zIndex: 999, 
     '&:hover': {
-        backgroundColor: '#f5f5f5',
+        backgroundColor: 'rgba(255, 255, 255, 1)',
         transform: 'scale(1.05)',
     },
     transition: 'transform 0.2s ease',
@@ -86,6 +86,13 @@ const RestaurantImage = styled('img')({
     width: '100%',
     height: 'auto',
     objectFit: 'cover',
+    position: 'relative',
+});
+
+const CaptionBox = styled(Box)({
+    padding: '16px',
+    borderBottom: '1px solid #f0f2f5',
+    textAlign: 'left'
 });
 
 const ActionBar = styled(Box)({
@@ -103,12 +110,27 @@ const SectionTitle = styled(Typography)({
     color: '#7787b5',
 });
 
-const MenuSection = styled(Box)({
-    padding: '16px',
-});
+// Styled like button with color change when active
+const LikeButton = styled(IconButton)(({ theme, isliked }) => ({
+    color: isliked === 'true' ? '#f44336' : 'inherit',
+    transition: 'color 0.3s ease',
+    '&:hover': {
+        backgroundColor: 'rgba(0, 0, 0, 0.04)',
+    },
+}));
 
 export const RestaurantPost4 = () => {
     const { sharePost, ShareSnackbar } = useShare(); 
+    
+    // State to track if the post is liked
+    const [isLiked, setIsLiked] = useState(false);
+    const [likeCount, setLikeCount] = useState(100000);
+    
+    // Function to handle like button click
+    const handleLikeClick = () => {
+        setIsLiked(!isLiked);
+        setLikeCount(isLiked ? likeCount - 1 : likeCount + 1);
+    };
     
     // Dummy post data for sharing
     const postData = {
@@ -119,7 +141,7 @@ export const RestaurantPost4 = () => {
     return (
         <Box display="flex" width="100%">
             {/* Left Side Panel - Now with scrolling */}
-            <LeftPanel>
+            <LeftPanel sx={{borderRadius: 5}}>
                 <RestaurantTitle variant="h3" component="h1">
                     SAN MIGUEL
                 </RestaurantTitle>
@@ -145,20 +167,20 @@ export const RestaurantPost4 = () => {
                     </InfoCard>
 
                     <InfoCard>
-                        <SectionTitle variant="h6" sx={{ color: '#7787b5' }}>
+                        <SectionTitle variant="h6" sx={{ color: '#7787b5', textAlign: 'left' }}>
                             Menu Highlights
                         </SectionTitle>
                         <Box component="ul" sx={{ pl: 2, mt: 1, mb: 0 }}>
-                            <Typography component="li" sx={{ mb: 1 }}>Street Tacos Trio</Typography>
-                            <Typography component="li" sx={{ mb: 1 }}>Chicken Mole Poblano</Typography>
-                            <Typography component="li" sx={{ mb: 1 }}>Seafood Ceviche</Typography>
-                            <Typography component="li">Churros with Chocolate</Typography>
+                            <Typography component="li" sx={{ mb: 1, textAlign: 'left' }}>Street Tacos Trio</Typography>
+                            <Typography component="li" sx={{ mb: 1, textAlign: 'left' }}>Chicken Mole Poblano</Typography>
+                            <Typography component="li" sx={{ mb: 1, textAlign: 'left' }}>Seafood Ceviche</Typography>
+                            <Typography component="li" sx={{ textAlign: 'left' }}>Churros with Chocolate</Typography>
                         </Box>
                     </InfoCard>
 
                     <InfoCard>
                         <SectionTitle variant="h6" sx={{ color: '#7787b5', textAlign: 'center' }}>
-                            FUN HASHTAGS
+                            TAGS
                         </SectionTitle>
                         <Box sx={{ 
                             display: 'flex', 
@@ -252,8 +274,17 @@ export const RestaurantPost4 = () => {
                         
                         <Box display="flex" alignItems="center">
                             <Box display="flex" alignItems="center" mr={2}>
-                                <Typography variant="body2" mr={0.5}>100K</Typography>
-                                <LikeIcon fontSize="small" />
+                                <Typography variant="body2" mr={0.5}>
+                                    {likeCount.toLocaleString()}
+                                </Typography>
+                                <LikeButton 
+                                    size="small"
+                                    isliked={isLiked.toString()}
+                                    onClick={handleLikeClick}
+                                    aria-label={isLiked ? "Unlike" : "Like"}
+                                >
+                                    {isLiked ? <LikeIcon fontSize="small" /> : <LikeOutlineIcon fontSize="small" />}
+                                </LikeButton>
                             </Box>
                             <Typography variant="body2" mr={0.5}>100K</Typography>
                             <IconButton 
@@ -267,6 +298,15 @@ export const RestaurantPost4 = () => {
                             </IconButton>
                         </Box>
                     </ActionBar>
+                    
+                    <CaptionBox>
+                        <Typography variant="subtitle1" fontWeight="bold" gutterBottom sx={{ textAlign: 'left' }}>
+                            sanmiguelrestaurant
+                        </Typography>
+                        <Typography variant="body1" sx={{ textAlign: 'left' }}>
+                            <strong>🎉 GRAND OPENING! 🎉</strong> We're thrilled to announce the grand opening of San Miguel on March 15th! Join us for authentic Mexican cuisine, live music, and special opening week promotions. First 50 guests receive a complimentary signature cocktail! #GrandOpening #MexicanCuisine
+                        </Typography>
+                    </CaptionBox>
                 </ContentCard>
             </RightPanel>
             <ShareSnackbar/>

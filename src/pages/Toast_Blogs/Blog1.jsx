@@ -13,12 +13,11 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { styled } from '@mui/material/styles';
 import chicky_ticky from "../../assets/chicken.png";
 import shrimp from "../../assets/__opt__aboutcom__coeus__resources__content_migration__serious_eats__seriouseats.com__2021__02__20210204-shrimp-scampi-pasta-sauce-daniel-gritzer-16-f01e8b8cc5dc4591b968bb1acc1b6f.jpg";
-
-export const User_Blog2 = () => {
+export const User_Blog = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [posts, setPosts] = useState([]);
-  const [text, setText] = useState("Beloved dishes, enjoyed by kids and parents alike");
+  const [text, setText] = useState("My most delicious, extravagant and popular recipes!");
   const [isEditing, setIsEditing] = useState(false);
 
   
@@ -42,6 +41,8 @@ export const User_Blog2 = () => {
       });
     }
   }, [location.state]);
+
+
 
   const blogCards = {
     width: "100vh",
@@ -107,7 +108,6 @@ export const User_Blog2 = () => {
     }
   };
 
-
   const BackButton = styled(IconButton)({
     width: '48px',
     height: '48px',
@@ -127,7 +127,7 @@ export const User_Blog2 = () => {
   return (
     <Container sx={{ display: "flex", minHeight: "100vh", marginLeft: 5, marginRight: 5, background: "#f0f2f5" }}>
       <Box sx={{ display: "flex", mt: 4, width: "100%" }}>
-      
+   
         <Box sx={blogCards}>
           <Typography variant="h1" color="white"
             sx={{ 
@@ -139,12 +139,11 @@ export const User_Blog2 = () => {
               ml: 3,  
               mt: 10
               }}>
-            Family favorites
+            My best recipes
           </Typography>
 
           <Box
             sx={{
-              marginTop: 1,
               marginLeft: 3,
               width: "75%",
               bgcolor: "#cdd4de",
@@ -162,7 +161,7 @@ export const User_Blog2 = () => {
               multiline
               value={text}
               onChange={handleChange}
-              sx={{ color: "black", fontSize: 25}}
+              sx={{ color: "black", fontSize: 25 }}
             />
             {isEditing && (
               <Button
@@ -195,13 +194,14 @@ export const User_Blog2 = () => {
           </BackButton>
         </Box>
 
-    
+  
         <Box sx={blogCards}>
 
-          <Button onClick={() => navigate("/new_post2")} variant="contained" sx={button}>
+         
+          <Button onClick={() => navigate("/new_post")} variant="contained" sx={button}>
             + New Post
           </Button>
-    
+         
           <ButtonBase onClick={() => navigate("/recipe_post1")}>  
             <Box sx={recipe}>
               <img src={chicky_ticky} alt="Chicken Tikka Masala" style={recipeImage} />
@@ -211,8 +211,9 @@ export const User_Blog2 = () => {
             </Box>
           </ButtonBase>
 
+   
           {posts.map((post, index) => (
-            <ButtonBase key={index} onClick={() => navigate("/recipe_post2")}>  
+            <ButtonBase key={index} onClick={() => navigate("/recipe_post")}>  
               <Box sx={recipe}>
                 <img src={shrimp} alt={post.title} style={recipeImage} />
                 <Typography sx={recipeTitle}>
@@ -228,4 +229,4 @@ export const User_Blog2 = () => {
   );
 };
 
-export default User_Blog2;
+export default User_Blog;

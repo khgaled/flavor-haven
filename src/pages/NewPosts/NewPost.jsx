@@ -8,21 +8,21 @@ import {
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-export const New_Post3 = () => {
+export const New_Post = () => {
   const navigate = useNavigate();
   const [title, setTitle] = useState("");
   const [steps, setSteps] = useState("");
 
   const handleSubmit = () => {
     const newPost = { title, steps };
-    navigate("/user_blog3", { state: { newPost } });
+    navigate("/user_blog", { state: { newPost } });
   };
 
   return (
     <Container maxWidth="md" sx={{ minHeight: "50vh", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", py: 4 }}>
 
       <Button
-        onClick={() => navigate("/user_blog3")}
+        onClick={() => navigate("/user_blog")}
         variant="contained"
         sx={{ alignSelf: "flex-start", backgroundColor: "black", color: "white", mb: 2, ml: -3}}
       >
@@ -83,4 +83,4 @@ export const New_Post3 = () => {
   );
 };
 
-export default New_Post3;
+export default New_Post;

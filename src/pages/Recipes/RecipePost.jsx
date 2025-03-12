@@ -2,10 +2,12 @@ import {
     Container,
     Typography,
     Box,
-    Grid
+    Grid,
+    IconButton
 } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import shrimp from "../../assets/__opt__aboutcom__coeus__resources__content_migration__serious_eats__seriouseats.com__2021__02__20210204-shrimp-scampi-pasta-sauce-daniel-gritzer-16-f01e8b8cc5dc4591b968bb1acc1b6f.jpg";
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 const RecipeContainer = styled(Container)({
     display: 'flex',
@@ -14,6 +16,17 @@ const RecipeContainer = styled(Container)({
     minHeight: '100vh',
     backgroundColor: '#f0f2f5',
     padding: '20px',
+    position: 'relative'
+});
+
+const BackButton = styled(IconButton)({
+    position: 'absolute',
+    top: '40px',
+    left: '40px',
+    backgroundColor: 'rgba(255, 255, 255, 0.8)',
+    '&:hover': {
+        backgroundColor: 'rgba(255, 255, 255, 1)',
+    }
 });
 
 const RecipeWrapper = styled(Box)({
@@ -53,6 +66,12 @@ const SectionTitle = styled(Typography)({
 export const RecipePost = () => {
     return (
         <RecipeContainer>
+            <BackButton 
+                aria-label="back"
+                onClick={() => window.history.back()}
+            >
+                <ArrowBackIcon fontSize="medium" />
+            </BackButton>
             <RecipeWrapper>
                 {/* Header */}
                 <RecipeHeader>

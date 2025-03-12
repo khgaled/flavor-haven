@@ -4,11 +4,12 @@ import { Login } from "./pages/Login";
 import { Recipes_Explore } from "./pages/Explores/Recipes_Exp";
 import { Restaurants_Explore } from "./pages/Explores/Restaurants_Exp"; 
 import { Main_Explore } from "./pages/Explores/Main_Exp"; 
-import { User_Blog } from "./pages/Blog";
+import { User_Blog } from "./pages/Toast_Blogs/Blog1";
 import {User_Blog2} from "./pages/Toast_Blogs/Blog2"
 import {User_Blog3} from "./pages/Toast_Blogs/Blog3"
 import {User_Blog4} from "./pages/Toast_Blogs/Blog4"
-import {New_Post} from "./pages/NewPost"
+import {User_Blog5} from "./pages/Toast_Blogs/Blog5"
+import {New_Post} from "./pages/NewPosts/NewPost"
 import {New_Post2} from "./pages/NewPosts/NewPost2"
 import {New_Post3} from "./pages/NewPosts/NewPost3"
 import {New_Post4} from "./pages/NewPosts/NewPost4"
@@ -26,9 +27,8 @@ import { RestaurantPost2 } from "./pages/Restaurants/RestaurantPost2";
 import { RestaurantPost3 } from "./pages/Restaurants/RestaurantPost3";
 import { RestaurantPost4 } from "./pages/Restaurants/RestaurantPost4";
 import { RestaurantPost5 } from "./pages/Restaurants/RestaurantPost5";
-import {Chicken} from "./pages/Toast_Blogs/Chicken_recipe";
-import {Shrimp} from "./pages/Toast_Blogs/Shrimp_recipe";
 import { RestaurantPost6 } from "./pages/Restaurants/RestaurantPost6";
+import {New_Blog} from "./pages/NewBlog"
 import "./App.css";
 
 function App() {
@@ -53,12 +53,11 @@ function App() {
             <Route path="/user_blog2" element={<User_Blog2 />} />
             <Route path="/user_blog3" element={<User_Blog3 />} />
             <Route path="/user_blog4" element={<User_Blog4 />} />
+            <Route path="/user_blog5" element={<User_Blog5 />} />
             <Route path="/new_post" element={<New_Post />} />
             <Route path="/new_post2" element={<New_Post2 />} />
             <Route path="/new_post3" element={<New_Post3 />} />
             <Route path="/new_post4" element={<New_Post4 />} />
-            <Route path="/chicken" element={<Chicken />} />
-            <Route path="/shrimp" element={<Shrimp />} />
             <Route path="/profile" element={<Profile />} /> 
             <Route path="/profile" element={<Profile setIsLoggedIn={setIsLoggedIn} />} />
             <Route path="/recipe_post" element={<RecipePost />} /> 
@@ -74,6 +73,7 @@ function App() {
             <Route path="/restaurant_post4" element={<RestaurantPost4 />} /> 
             <Route path="/restaurant_post5" element={<RestaurantPost5 />} /> 
             <Route path="/restaurant_post6" element={<RestaurantPost6 />} />  
+            <Route path="/new_blog" element={<New_Blog />} />  
             <Route path="*" element={<Navigate to="/main_explore" />} /> 
           </>
         ) : (
