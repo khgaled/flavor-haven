@@ -119,7 +119,7 @@ export const Profile = ({ setIsLoggedIn }) => {
               border: "1px solid black",
               borderRadius: "50px",
               p: 1,
-              m: 2,
+              m: 1,
               boxShadow: 1,
               transition: "transform 0.3s ease",
               "&:hover": {

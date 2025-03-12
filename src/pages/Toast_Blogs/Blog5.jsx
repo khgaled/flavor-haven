@@ -187,7 +187,7 @@ import {
   
             <BackButton 
                 aria-label="back"
-                onClick={() => window.history.back()}
+                onClick={() => navigate("/profile")}
             >
                 <ArrowBackIcon fontSize="medium" />
             </BackButton>
@@ -196,22 +196,25 @@ import {
           <Box sx={blogCards}>
   
            
-            <Button onClick={() => navigate("/new_post3")} variant="contained" sx={button}>
+            <Button onClick={() => navigate("/new_post")} variant="contained" sx={button}>
               + New Post
             </Button>
-           
-            
-  
-            {posts.map((post, index) => (
-              <ButtonBase key={index} onClick={() => navigate("/recipe_post")}>  
-                <Box sx={recipe}>
-                  <img src={shrimp} alt={post.title} style={recipeImage} />
-                  <Typography sx={recipeTitle}>
-                    {post.title}
-                  </Typography>
-                </Box>
-              </ButtonBase>
-            ))}
+
+            {posts.length > 0 ? (
+              posts.map((post, index) => (
+                <ButtonBase key={index} onClick={() => navigate("/recipe_post")}>
+                  <Box sx={recipe}>
+                    <img src={shrimp} alt={post.title} style={recipeImage} />
+                    <Typography sx={recipeTitle}>{post.title}</Typography>
+                  </Box>
+                </ButtonBase>
+              ))
+            ) : (
+              <Typography>No recipes yet. Add one!</Typography>
+            )}
+
+
+
   
           </Box>
         </Box>

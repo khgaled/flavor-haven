@@ -187,7 +187,7 @@ export const User_Blog4 = () => {
 
           <BackButton 
               aria-label="back"
-              onClick={() => window.history.back()}
+              onClick={() => navigate("/profile")}
           >
               <ArrowBackIcon fontSize="medium" />
           </BackButton>
@@ -197,7 +197,7 @@ export const User_Blog4 = () => {
         <Box sx={blogCards}>
 
           
-          <Button onClick={() => navigate("/new_post4")} variant="contained" sx={button}>
+          <Button onClick={() => navigate("/new_post")} variant="contained" sx={button}>
             + New Post
           </Button>
          

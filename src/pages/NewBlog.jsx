@@ -4,9 +4,12 @@ import {
   Container,
   Typography,
   Box,
+  IconButton
 } from "@mui/material";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import { styled } from '@mui/material/styles';
 
 export const New_Blog = () => {
   const navigate = useNavigate();
@@ -32,6 +35,22 @@ export const New_Blog = () => {
     const newBlog = { title, bio, image: selectedFile }; // Send Base64 string
     navigate("/profile", { state: { newBlog } });
   };
+
+  const BackButton = styled(IconButton)({
+    backgroundColor: 'white',
+    width: '48px',
+    height: '48px',
+    position: 'fixed',
+    bottom: '24px',
+    left: '32px',
+    boxShadow: '0 4px 8px rgba(0,0,0,0.2)',
+    zIndex: 999, 
+    '&:hover': {
+        backgroundColor: '#f5f5f5',
+        transform: 'scale(1.05)',
+    },
+    transition: 'transform 0.2s ease',
+});
   
 
   return (
@@ -46,19 +65,12 @@ export const New_Blog = () => {
         py: 4,
       }}
     >
-      <Button
-        onClick={() => navigate("/profile")}
-        variant="contained"
-        sx={{
-          alignSelf: "flex-start",
-          backgroundColor: "black",
-          color: "white",
-          mb: 2,
-          ml: -3,
-        }}
-      >
-        BACK
-      </Button>
+      <BackButton 
+              aria-label="back"
+              onClick={() => window.history.back()}
+          >
+              <ArrowBackIcon fontSize="medium" />
+          </BackButton>
 
       <Box
         sx={{

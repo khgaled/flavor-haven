@@ -13,6 +13,7 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { styled } from '@mui/material/styles';
 import chicky_ticky from "../../assets/chicken.png";
 import shrimp from "../../assets/__opt__aboutcom__coeus__resources__content_migration__serious_eats__seriouseats.com__2021__02__20210204-shrimp-scampi-pasta-sauce-daniel-gritzer-16-f01e8b8cc5dc4591b968bb1acc1b6f.jpg";
+
 export const User_Blog = () => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -32,15 +33,25 @@ export const User_Blog = () => {
   };
 
   useEffect(() => {
+    console.log("Location state:", location.state); // Debugging log
+  
     if (location.state?.newPost) {
       setPosts((prevPosts) => {
         const isDuplicate = prevPosts.some(
           (post) => post.title === location.state.newPost.title
         );
-        return isDuplicate ? prevPosts : [...prevPosts, location.state.newPost];
+        if (!isDuplicate) {
+          console.log("Adding new post:", location.state.newPost); // Debugging log
+          return [...prevPosts, location.state.newPost];
+        }
+        return prevPosts;
       });
+  
+      // Reset location.state to prevent duplicate insertions on re-renders
+      navigate(".", { replace: true, state: {} });
     }
-  }, [location.state]);
+  }, [location.state, navigate]);
+  
 
 
 
@@ -187,7 +198,7 @@ export const User_Blog = () => {
 
           <BackButton 
               aria-label="back"
-              onClick={() => window.history.back()}
+              onClick={() => navigate("/profile")}
           >
               <ArrowBackIcon fontSize="medium" />
           </BackButton>
@@ -195,8 +206,6 @@ export const User_Blog = () => {
 
   
         <Box sx={blogCards}>
-
-         
           <Button onClick={() => navigate("/new_post")} variant="contained" sx={button}>
             + New Post
           </Button>
