@@ -1,88 +1,183 @@
 import {
-    TextField,
-    Button,
-    Container,
-    Typography,
-    Box,
-  } from "@mui/material";
-  import { useState } from "react";
-  import { useNavigate } from "react-router-dom";
-  
-  export const New_Blog = () => {
-    const navigate = useNavigate();
-    const [title, setTitle] = useState("");
-    const [bio, setBio] = useState("");
-  
-    const handleSubmit = () => {
-      const newBlog = { title, bio };
-      navigate("/profile", { state: { newBlog } });
-    };
-  
-    return (
-      <Container maxWidth="md" sx={{ minHeight: "50vh", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", py: 4 }}>
-  
-  
-        <Button
-          onClick={() => navigate("/profile")}
-          variant="contained"
-          sx={{ alignSelf: "flex-start", backgroundColor: "black", color: "white", mb: 2, ml: -3}}
-        >
-          BACK
-        </Button>
-        
-        <Box sx={{ backgroundColor: "#82A5D9", width: "100%", p: 4, borderRadius: 4, boxShadow: 3 }}>
-          
-          <Typography variant="h3" sx={{ fontWeight: "bold", textAlign: "center", color: "white", mb: 3 }}>
-            Create a New Blog
-          </Typography>
-      
-          <Typography variant="h5" sx={{ fontWeight: "bold", color: "white", mb: 1 , textAlign: "left"}}>
-          Upload Photo
-        </Typography>
-        <Button
-          variant="contained"
-          sx={{ backgroundColor: "white", color: "black", width: "100%", mb: 3 }}
-        >
-          Choose file
-        </Button>
-  
+  TextField,
+  Button,
+  Container,
+  Typography,
+  Box,
+} from "@mui/material";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-          <Typography variant="h5" sx={{ fontWeight: "bold", color: "white", mb: 1 , textAlign: "left"}}>
-            Title
-          </Typography>
-          <TextField
-            label="Enter title of your blog"
-            variant="outlined"
-            fullWidth
-            sx={{ backgroundColor: "white", mb: 3 }}
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-          />
+export const New_Blog = () => {
+  const navigate = useNavigate();
+  const [title, setTitle] = useState("");
+  const [bio, setBio] = useState("");
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [preview, setPreview] = useState(null);
+
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
   
-          <Typography variant="h5" sx={{ fontWeight: "bold", color: "white", mb: 1, textAlign: "left" }}>
-            Bio
-          </Typography>
-          <TextField
-            label="Tell us about the blog!"
-            multiline
-            fullWidth
-            rows={6}
-            sx={{ backgroundColor: "white", mb: 3 }}
-            value={bio}
-            onChange={(e) => setBio(e.target.value)}
-          />
-  
-  
-          <Button
-            onClick={handleSubmit}
-            variant="contained"
-            sx={{ backgroundColor: "white", color: "black", width: "100%" }}
-          >
-            Submit
-          </Button>
-        </Box>
-      </Container>
-    );
+    if (file) {
+      const reader = new FileReader();
+      reader.readAsDataURL(file); // Convert to Base64
+      reader.onloadend = () => {
+        setSelectedFile(reader.result); // Store Base64 string
+        setPreview(reader.result); // Show preview
+      };
+    }
   };
   
-  export default New_Blog;
+  const handleSubmit = () => {
+    const newBlog = { title, bio, image: selectedFile }; // Send Base64 string
+    navigate("/profile", { state: { newBlog } });
+  };
+  
+
+  return (
+    <Container
+      maxWidth="md"
+      sx={{
+        minHeight: "50vh",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+        py: 4,
+      }}
+    >
+      <Button
+        onClick={() => navigate("/profile")}
+        variant="contained"
+        sx={{
+          alignSelf: "flex-start",
+          backgroundColor: "black",
+          color: "white",
+          mb: 2,
+          ml: -3,
+        }}
+      >
+        BACK
+      </Button>
+
+      <Box
+        sx={{
+          backgroundColor: "#82A5D9",
+          width: "100%",
+          p: 4,
+          borderRadius: 4,
+          boxShadow: 3,
+        }}
+      >
+        <Typography
+          variant="h3"
+          sx={{ fontWeight: "bold", textAlign: "center", color: "white", mb: 3 }}
+        >
+          Create a New Blog
+        </Typography>
+
+        {/* Upload Photo Section */}
+        <Typography
+          variant="h5"
+          sx={{ fontWeight: "bold", color: "white", mb: 1, textAlign: "left" }}
+        >
+          Upload Photo
+        </Typography>
+
+        {/* Hidden File Input */}
+        <input
+          type="file"
+          accept="image/*"
+          onChange={handleFileChange}
+          style={{
+            display: "none",
+          }}
+          id="file-upload"
+        />
+        <label htmlFor="file-upload">
+          <Button
+            variant="contained"
+            component="span"
+            sx={{ backgroundColor: "white", color: "black", width: "100%", mb: 1 }}
+          >
+            Choose File
+          </Button>
+        </label>
+
+        {/* Display Selected File Name */}
+        {selectedFile && (
+          <Typography sx={{ color: "white", fontStyle: "italic", mb: 2 }}>
+            Selected: {selectedFile.name}
+          </Typography>
+        )}
+
+        {/* Image Preview */}
+        {preview && (
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              mt: 2,
+            }}
+          >
+            <img
+              src={preview}
+              alt="Selected Preview"
+              style={{
+                maxWidth: "100%",
+                maxHeight: "200px",
+                borderRadius: "8px",
+                border: "2px solid white",
+              }}
+            />
+          </Box>
+        )}
+
+        {/* Blog Title */}
+        <Typography
+          variant="h5"
+          sx={{ fontWeight: "bold", color: "white", mb: 1, textAlign: "left" }}
+        >
+          Title
+        </Typography>
+        <TextField
+          label="Enter title of your blog"
+          variant="outlined"
+          fullWidth
+          sx={{ backgroundColor: "white", mb: 3 }}
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+        />
+
+        {/* Blog Bio */}
+        <Typography
+          variant="h5"
+          sx={{ fontWeight: "bold", color: "white", mb: 1, textAlign: "left" }}
+        >
+          Bio
+        </Typography>
+        <TextField
+          label="Tell us about the blog!"
+          multiline
+          fullWidth
+          rows={6}
+          sx={{ backgroundColor: "white", mb: 3 }}
+          value={bio}
+          onChange={(e) => setBio(e.target.value)}
+        />
+
+        {/* Submit Button */}
+        <Button
+          onClick={handleSubmit}
+          variant="contained"
+          sx={{ backgroundColor: "white", color: "black", width: "100%" }}
+        >
+          Submit
+        </Button>
+      </Box>
+    </Container>
+  );
+};
+
+export default New_Blog;
