@@ -12,7 +12,7 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { styled } from '@mui/material/styles';
 
 
-export const New_Post = () => {
+export const New_Post2 = () => {
   const navigate = useNavigate();
   const [title, setTitle] = useState("");
   const [steps, setSteps] = useState("");
@@ -165,4 +165,4 @@ export const New_Post = () => {
   );
 };
 
-export default New_Post;
+export default New_Post2;
