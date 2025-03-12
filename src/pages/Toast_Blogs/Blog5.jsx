@@ -187,7 +187,7 @@ import {
   
             <BackButton 
                 aria-label="back"
-                onClick={() => window.history.back()}
+                onClick={() => navigate("/profile")}
             >
                 <ArrowBackIcon fontSize="medium" />
             </BackButton>
