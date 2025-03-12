@@ -4,14 +4,9 @@ import {
   Container,
   Typography,
   Box,
-  Grid,
-  MenuItem,
-  Select,
-  InputLabel,
-  FormControl,
 } from "@mui/material";
 import { useState } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export const New_Post3 = () => {
   const navigate = useNavigate();
@@ -24,132 +19,67 @@ export const New_Post3 = () => {
   };
 
   return (
-    <div>
-      <Container>
+    <Container maxWidth="md" sx={{ minHeight: "50vh", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", py: 4 }}>
+
+      <Button
+        onClick={() => navigate("/user_blog3")}
+        variant="contained"
+        sx={{ alignSelf: "flex-start", backgroundColor: "black", color: "white", mb: 2, ml: -3}}
+      >
+        BACK
+      </Button>
+      
+      <Box sx={{ backgroundColor: "#82A5D9", width: "100%", p: 4, borderRadius: 4, boxShadow: 3 }}>
+        <Typography variant="h3" sx={{ fontWeight: "bold", textAlign: "center", color: "white", mb: 3 }}>
+          Create a New Post
+        </Typography>
+        
+        <Typography variant="h5" sx={{ fontWeight: "bold", color: "white", mb: 1 , textAlign: "left"}}>
+          Upload Photo
+        </Typography>
         <Button
-          onClick={() => navigate("/user_blog2")}
           variant="contained"
-          sx={{
-            color: "",
-            backgroundColor: "black",
-            top: 0,
-            left: 0,
-            //postion: "relative",
-          }}
+          sx={{ backgroundColor: "white", color: "black", width: "100%", mb: 3 }}
         >
-          BACK
+          Choose file
         </Button>
-        <Box
-          sx={{
-            mt: 4,
-            backgroundColor: "#7787b5",
-            width: "100%",
-            position: "absolute",
-            minHeight: "70vh",
-            borderRadius: 8,
-            position: "relative",
-          }}
+
+
+        <Typography variant="h5" sx={{ fontWeight: "bold", color: "white", mb: 1 , textAlign: "left"}}>
+          Title
+        </Typography>
+        <TextField
+          label="Enter title of your post"
+          variant="outlined"
+          fullWidth
+          sx={{ backgroundColor: "white", mb: 3 }}
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+        />
+
+        <Typography variant="h5" sx={{ fontWeight: "bold", color: "white", mb: 1, textAlign: "left" }}>
+          Steps
+        </Typography>
+        <TextField
+          label="Enter the steps of your recipe"
+          multiline
+          fullWidth
+          rows={6}
+          sx={{ backgroundColor: "white", mb: 3 }}
+          value={steps}
+          onChange={(e) => setSteps(e.target.value)}
+        />
+
+
+        <Button
+          onClick={handleSubmit}
+          variant="contained"
+          sx={{ backgroundColor: "white", color: "black", width: "100%" }}
         >
-          <Button
-            variant="contained"
-            sx={{
-              color: "",
-              backgroundColor: "black",
-              right: 50,
-              top: 10,
-              position: "absolute",
-            }}
-          >
-            Save Draft
-          </Button>
-          <Typography
-            variant="h4"
-            sx={{ fontWeight: "bold", ml: 8, mt: 4, textAlign: "left" }}
-          >
-            New Post
-          </Typography>
-
-          <Box sx={{ padding: 4 }}>
-            <Button
-              variant="contained"
-              //onClick={handleOpen}
-              sx={{
-                backgroundColor: "white",
-                width: "95%",
-                color: "black",
-              }}
-            >
-              {" "}
-              Upload Photo
-            </Button>
-
-            <Typography
-              variant="h4"
-              sx={{
-                fontWeight: "bold",
-                ml: 4,
-                mt: 4,
-                textAlign: "left",
-                color: "black",
-              }}
-            >
-              Title
-            </Typography>
-
-            <Box sx={{ padding: 4 }}>
-              <TextField
-                label="Enter title of your post!"
-                variant="outlined"
-                fullWidth
-                sx={{ backgroundColor: "white", color: "black" }}
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
-              />
-            </Box>
-
-            <Typography
-              variant="h4"
-              sx={{
-                fontWeight: "bold",
-                ml: 4,
-                mt: 0.5,
-                textAlign: "left",
-                color: "black",
-              }}
-            >
-              Steps
-            </Typography>
-            <Box sx={{ padding: 4 }}>
-              <TextField
-                label="Enter the steps of your recipe!"
-                multiline
-                fullWidth
-                rows={5}
-                sx={{
-                  backgroundColor: "white",
-                  color: "black",
-                  //minHeight: "30vh",
-                }}
-                value={steps}
-                onChange={(e) => setSteps(e.target.value)}
-              />
-            </Box>
-          </Box>
-          <Button
-            onClick={handleSubmit}
-            variant="contained"
-            sx={{
-              backgroundColor: "white",
-              width: "25%",
-              color: "black",
-              bottom: 12,
-            }}
-          >
-            Submit
-          </Button>
-        </Box>
-      </Container>
-    </div>
+          Submit
+        </Button>
+      </Box>
+    </Container>
   );
 };
 

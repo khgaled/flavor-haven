@@ -115,7 +115,7 @@ export const User_Blog = () => {
     bottom: '24px',
     left: '32px',
     boxShadow: '0 4px 8px rgba(0,0,0,0.2)',
-    zIndex: 999, // Much higher z-index to ensure it's above everything
+    zIndex: 999, 
     '&:hover': {
         backgroundColor: '#f5f5f5',
         transform: 'scale(1.05)',
@@ -126,7 +126,7 @@ export const User_Blog = () => {
   return (
     <Container sx={{ display: "flex", minHeight: "100vh", marginLeft: 5, marginRight: 5, background: "#f0f2f5" }}>
       <Box sx={{ display: "flex", mt: 4, width: "100%" }}>
-        {/* Left Section */}
+   
         <Box sx={blogCards}>
           <Typography variant="h1" color="white"
             sx={{ 
@@ -151,7 +151,7 @@ export const User_Blog = () => {
               borderRadius: 5,
               p: 3,
               boxShadow: 1,
-              position: "relative", // Allows positioning of the Save button
+              position: "relative", 
               minHeight: "20vh", 
             }}
           >
@@ -193,14 +193,14 @@ export const User_Blog = () => {
           </BackButton>
         </Box>
 
-        {/* Right Section */}
+  
         <Box sx={blogCards}>
 
-          {/* New post button */}
+         
           <Button onClick={() => navigate("/new_post")} variant="contained" sx={button}>
             + New Post
           </Button>
-          {/* Chicken Tikka Masala Post */}
+         
           <ButtonBase onClick={() => navigate("/recipe_post1")}>  
             <Box sx={recipe}>
               <img src={chicky_ticky} alt="Chicken Tikka Masala" style={recipeImage} />
@@ -210,7 +210,7 @@ export const User_Blog = () => {
             </Box>
           </ButtonBase>
 
-          {/* User-added Posts */}
+   
           {posts.map((post, index) => (
             <ButtonBase key={index} onClick={() => navigate("/recipe_post")}>  
               <Box sx={recipe}>

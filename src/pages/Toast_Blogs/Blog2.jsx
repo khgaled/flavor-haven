@@ -197,7 +197,7 @@ export const User_Blog2 = () => {
         <Box sx={blogCards}>
 
           {/* New post button */}
-          <Button onClick={() => navigate("/new_post")} variant="contained" sx={button}>
+          <Button onClick={() => navigate("/new_post2")} variant="contained" sx={button}>
             + New Post
           </Button>
           {/* Chicken Tikka Masala Post */}
@@ -212,7 +212,7 @@ export const User_Blog2 = () => {
 
           {/* User-added Posts */}
           {posts.map((post, index) => (
-            <ButtonBase key={index} onClick={() => navigate("/recipe_post")}>  
+            <ButtonBase key={index} onClick={() => navigate("/recipe_post2")}>  
               <Box sx={recipe}>
                 <img src={shrimp} alt={post.title} style={recipeImage} />
                 <Typography sx={recipeTitle}>
