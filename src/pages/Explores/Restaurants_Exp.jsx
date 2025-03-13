@@ -79,7 +79,7 @@ const SaveButton = styled(IconButton)(({ theme, isactive }) => ({
 }));
 
 export const Restaurants_Explore = () => {
-  const { sharePost, ShareSnackbar } = useShare(); 
+  const { sharePost, ShareSnackbar, SharePopup } = useShare(); 
   const navigate = useNavigate();
   
   // State to track liked and saved posts
@@ -216,6 +216,7 @@ export const Restaurants_Explore = () => {
   return (
     <MainContainer>
       {postRows.map(renderPostRow)}
+      <SharePopup />
       <ShareSnackbar />
     </MainContainer>
   );

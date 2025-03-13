@@ -116,7 +116,7 @@ const ActionIcons = styled(Box)({
 });
 
 // Styled like button with color change when active
-const LikeButton = styled(IconButton)(({ theme, isactive }) => ({
+const LikeButton = styled(IconButton)(({ isactive }) => ({
   color: isactive === 'true' ? '#f44336' : 'inherit',
   transition: 'color 0.3s ease',
   '&:hover': {
@@ -125,7 +125,7 @@ const LikeButton = styled(IconButton)(({ theme, isactive }) => ({
 }));
 
 // Styled save button with yellow color when active
-const SaveButton = styled(IconButton)(({ theme, isactive }) => ({
+const SaveButton = styled(IconButton)(({ isactive }) => ({
   color: isactive === 'true' ? '#FFD700' : 'inherit', // Gold/yellow color
   transition: 'color 0.3s ease',
   '&:hover': {
@@ -134,8 +134,10 @@ const SaveButton = styled(IconButton)(({ theme, isactive }) => ({
 }));
 
 export const Main_Explore = () => {
-  const { sharePost, ShareSnackbar } = useShare(); 
+  const [isSharing, setIsSharing] = useState(false);
+  const { sharePost, ShareSnackbar, SharePopup } = useShare(); 
   const navigate = useNavigate();
+  const [popupOpen, setPopupOpen] = useState(false); // Lifted state
   const [currentFeaturedIndex, setCurrentFeaturedIndex] = useState(0);
   
   // State to track liked and saved posts
@@ -227,10 +229,24 @@ export const Main_Explore = () => {
     );
   };
 
+  const handleShare = (id, isRestaurant) => {
+    setIsSharing(true);  // Pause carousel
+    setPopupOpen(true);  // Open the share popup
+    sharePost(id, isRestaurant);
+  };
+
+  const handleClosePopup = () => {
+    setPopupOpen(false);
+    setIsSharing(false); // Resume the carousel when popup closes
+  };
+  
+
+
   useEffect(() => {
+    if (isSharing) return; // Pause if sharing is active
     const interval = setInterval(handleNextFeatured, 5000);
     return () => clearInterval(interval);
-  }, []);
+  }, [isSharing]); // Depend on isSharing state
 
   // Handle like button click
   const handleLikeClick = (id, e) => {
@@ -258,8 +274,10 @@ export const Main_Explore = () => {
     }
   };
 
+
   const renderFeaturedRecipeRestaurant = () => {
     return (
+      
       <FeaturedSection>
         <CarouselWrapper 
           sx={{ 
@@ -365,7 +383,7 @@ export const Main_Explore = () => {
                 size="small" 
                 onClick={(e) => {
                   e.stopPropagation();
-                  sharePost(post.id, post.isRestaurant);
+                  handleShare(post.id, post.isRestaurant);
                 }}
               >
                 <ShareIcon />
@@ -379,6 +397,7 @@ export const Main_Explore = () => {
 
   return (
     <MainContainer>
+      <SharePopup open={popupOpen} onClose={handleClosePopup} />
       {renderFeaturedRecipeRestaurant()}
       {postRows.map(renderPostRow)}
       <ShareSnackbar />
