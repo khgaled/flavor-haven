@@ -33,6 +33,11 @@ export const New_Post3 = () => {
   };
   
   const handleSubmit = () => {
+    if (!title.trim() || !steps.trim() || !selectedFile) {
+      alert("Please make sure you selected a picture and added a title and steps!");
+      return;
+    }
+    
     const newPost = { title, steps, image: selectedFile }; // Send Base64 string
     navigate("/user_blog3", { state: { newPost } });
   };

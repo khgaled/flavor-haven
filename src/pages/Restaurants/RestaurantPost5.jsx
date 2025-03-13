@@ -142,6 +142,18 @@ export const RestaurantPost5 = () => {
         <Box display="flex" width="100%">
             {/* Left Side Panel - Now with scrolling */}
             <LeftPanel sx={{borderRadius: 5}}>
+            <BackButton 
+                aria-label="back"
+                onClick={() => window.history.back()}
+                sx={{ 
+                position: "absolute", 
+                top: 16, 
+                left: 16 
+            }}
+            >
+            <ArrowBackIcon fontSize="small" />
+        </BackButton>
+        
                 <RestaurantTitle variant="h3" component="h1">
                     SEOUL KITCHEN
                 </RestaurantTitle>
@@ -167,14 +179,14 @@ export const RestaurantPost5 = () => {
                     </InfoCard>
 
                     <InfoCard>
-                        <SectionTitle variant="h6" sx={{ color: '#7787b5', textAlign: 'left' }}>
+                        <SectionTitle variant="h6" sx={{ color: '#7787b5', textAlign: 'center'}}>
                             Menu Highlights
                         </SectionTitle>
                         <Box component="ul" sx={{ pl: 2, mt: 1, mb: 0 }}>
-                            <Typography component="li" sx={{ mb: 1, textAlign: 'left' }}>Bulgogi Korean BBQ</Typography>
-                            <Typography component="li" sx={{ mb: 1, textAlign: 'left' }}>Dolsot Bibimbap</Typography>
-                            <Typography component="li" sx={{ mb: 1, textAlign: 'left' }}>Kimchi Jjigae</Typography>
-                            <Typography component="li" sx={{ textAlign: 'left' }}>Korean Fried Chicken</Typography>
+                            <Typography  sx={{ mb: 1, textAlign: 'center' }}>Bulgogi Korean BBQ</Typography>
+                            <Typography  sx={{ mb: 1, textAlign: 'center'}}>Dolsot Bibimbap</Typography>
+                            <Typography  sx={{ mb: 1, textAlign: 'center' }}>Kimchi Jjigae</Typography>
+                            <Typography  sx={{ textAlign: 'center' }}>Korean Fried Chicken</Typography>
                         </Box>
                     </InfoCard>
 
@@ -241,13 +253,7 @@ export const RestaurantPost5 = () => {
                 </Box>
                 
                 <Box sx={{ height: 80 }} /> {/* Spacer for back button */}
-                
-                <BackButton 
-                    aria-label="back"
-                    onClick={() => window.history.back()}
-                >
-                    <ArrowBackIcon fontSize="medium" />
-                </BackButton>
+              
             </LeftPanel>
 
            

@@ -32,6 +32,11 @@ export const New_Blog = () => {
   };
   
   const handleSubmit = () => {
+    if (!title.trim() || !bio.trim() || !selectedFile) {
+      alert("Please make sure you selected a picture and added a title and bio!");
+      return;
+    }
+
     const newBlog = { title, bio, image: selectedFile }; // Send Base64 string
     navigate("/profile", { state: { newBlog } });
   };

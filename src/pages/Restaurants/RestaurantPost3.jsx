@@ -142,6 +142,18 @@ export const RestaurantPost3 = () => {
         <Box display="flex" width="100%">
             {/* Left Side Panel - Now with scrolling */}
             <LeftPanel sx={{borderRadius: 5}}>
+            <BackButton 
+                aria-label="back"
+                onClick={() => window.history.back()}
+                sx={{ 
+                position: "absolute", 
+                top: 16, 
+                left: 16 
+            }}
+            >
+            <ArrowBackIcon fontSize="small" />
+        </BackButton>
+
                 <RestaurantTitle variant="h3" component="h1">
                     LITTLE ITALY
                 </RestaurantTitle>
@@ -167,14 +179,14 @@ export const RestaurantPost3 = () => {
                     </InfoCard>
 
                     <InfoCard>
-                        <SectionTitle variant="h6" sx={{ color: '#7787b5', textAlign: 'left' }}>
+                        <SectionTitle variant="h6" sx={{ color: '#7787b5', textAlign: 'center' }}>
                             Menu Highlights
                         </SectionTitle>
-                        <Box component="ul" sx={{ pl: 2, mt: 1, mb: 0 }}>
-                            <Typography component="li" sx={{ mb: 1, textAlign: 'left' }}>Handmade Pappardelle with Truffle</Typography>
-                            <Typography component="li" sx={{ mb: 1, textAlign: 'left' }}>Margherita Pizza</Typography>
-                            <Typography component="li" sx={{ mb: 1, textAlign: 'left' }}>Osso Buco</Typography>
-                            <Typography component="li" sx={{ textAlign: 'left' }}>Tiramisu</Typography>
+                        <Box  sx={{ pl: 2, mt: 1, mb: 0 }}>
+                            <Typography  sx={{ mb: 1, textAlign: 'center' }}>Handmade Pappardelle with Truffle</Typography>
+                            <Typography sx={{ mb: 1, textAlign: 'center' }}>Margherita Pizza</Typography>
+                            <Typography sx={{ mb: 1, textAlign: 'center' }}>Osso Buco</Typography>
+                            <Typography sx={{ textAlign: 'center' }}>Tiramisu</Typography>
                         </Box>
                     </InfoCard>
 
@@ -242,12 +254,7 @@ export const RestaurantPost3 = () => {
                 
                 <Box sx={{ height: 80 }} /> {/* Spacer for back button */}
                 
-                <BackButton 
-                    aria-label="back"
-                    onClick={() => window.history.back()}
-                >
-                    <ArrowBackIcon fontSize="medium" />
-                </BackButton>
+               
             </LeftPanel>
 
            

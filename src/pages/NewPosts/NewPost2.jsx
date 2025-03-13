@@ -33,6 +33,11 @@ export const New_Post2 = () => {
   };
   
   const handleSubmit = () => {
+    if (!title.trim() || !steps.trim() || !selectedFile)  {
+      alert("Please make sure you selected a picture and added a title and steps!");
+      return;
+    }
+    
     const newPost = { title, steps, image: selectedFile }; // Send Base64 string
     navigate("/user_blog2", { state: { newPost } });
   };
@@ -157,6 +162,7 @@ export const New_Post2 = () => {
           onClick={handleSubmit}
           variant="contained"
           sx={{ backgroundColor: "white", color: "black", width: "100%" }}
+          
         >
           Submit
         </Button>
