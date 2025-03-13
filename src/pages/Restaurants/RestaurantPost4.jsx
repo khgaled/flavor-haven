@@ -147,6 +147,18 @@ export const RestaurantPost4 = () => {
         <Box display="flex" width="100%">
             {/* Left Side Panel - Now with scrolling */}
             <LeftPanel sx={{borderRadius: 5}}>
+            <BackButton 
+                aria-label="back"
+                onClick={() => window.history.back()}
+                sx={{ 
+                position: "absolute", 
+                top: 16, 
+                left: 16 
+            }}
+            >
+            <ArrowBackIcon fontSize="small" />
+        </BackButton>
+        
                 <RestaurantTitle variant="h3" component="h1">
                     SAN MIGUEL
                 </RestaurantTitle>
@@ -256,12 +268,7 @@ export const RestaurantPost4 = () => {
                 
                 <Box sx={{ height: 80 }} /> {/* Spacer for back button */}
                 
-                <BackButton 
-                    aria-label="back"
-                    onClick={() => window.history.back()}
-                >
-                    <ArrowBackIcon fontSize="medium" />
-                </BackButton>
+              
             </LeftPanel>
 
            

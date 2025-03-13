@@ -142,7 +142,20 @@ export const RestaurantPost = () => {
         <Box display="flex" width="100%">
             {/* Left Side Panel - Now with scrolling */}
             <LeftPanel sx={{borderRadius: 5}}>
-                <RestaurantTitle variant="h3" component="h1">
+
+            <BackButton 
+                aria-label="back"
+                onClick={() => window.history.back()}
+                sx={{ 
+                position: "absolute", 
+                top: 16, 
+                left: 16 
+            }}
+            >
+            <ArrowBackIcon fontSize="small" />
+        </BackButton>
+                
+                <RestaurantTitle variant="h3" component="h1" sx={{mt:6}}> 
                     SICHUAN GARDEN
                 </RestaurantTitle>
                 
@@ -242,12 +255,7 @@ export const RestaurantPost = () => {
                 
                 <Box sx={{ height: 80 }} /> {/* Spacer for back button */}
                 
-                <BackButton 
-                    aria-label="back"
-                    onClick={() => window.history.back()}
-                >
-                    <ArrowBackIcon fontSize="medium" />
-                </BackButton>
+             
             </LeftPanel>
 
            
