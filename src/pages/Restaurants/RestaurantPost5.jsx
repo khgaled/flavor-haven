@@ -167,14 +167,14 @@ export const RestaurantPost5 = () => {
                     </InfoCard>
 
                     <InfoCard>
-                        <SectionTitle variant="h6" sx={{ color: '#7787b5', textAlign: 'left' }}>
+                        <SectionTitle variant="h6" sx={{ color: '#7787b5', textAlign: 'center'}}>
                             Menu Highlights
                         </SectionTitle>
                         <Box component="ul" sx={{ pl: 2, mt: 1, mb: 0 }}>
-                            <Typography component="li" sx={{ mb: 1, textAlign: 'left' }}>Bulgogi Korean BBQ</Typography>
-                            <Typography component="li" sx={{ mb: 1, textAlign: 'left' }}>Dolsot Bibimbap</Typography>
-                            <Typography component="li" sx={{ mb: 1, textAlign: 'left' }}>Kimchi Jjigae</Typography>
-                            <Typography component="li" sx={{ textAlign: 'left' }}>Korean Fried Chicken</Typography>
+                            <Typography  sx={{ mb: 1, textAlign: 'center' }}>Bulgogi Korean BBQ</Typography>
+                            <Typography  sx={{ mb: 1, textAlign: 'center'}}>Dolsot Bibimbap</Typography>
+                            <Typography  sx={{ mb: 1, textAlign: 'center' }}>Kimchi Jjigae</Typography>
+                            <Typography  sx={{ textAlign: 'center' }}>Korean Fried Chicken</Typography>
                         </Box>
                     </InfoCard>
 

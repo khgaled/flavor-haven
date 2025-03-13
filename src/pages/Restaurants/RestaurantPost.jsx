@@ -167,14 +167,14 @@ export const RestaurantPost = () => {
                     </InfoCard>
 
                     <InfoCard>
-                        <SectionTitle variant="h6" sx={{ color: '#7787b5', textAlign: 'left' }}>
+                        <SectionTitle variant="h6" sx={{ color: '#7787b5', textAlign: 'center' }}>
                             Menu Highlights
                         </SectionTitle>
-                        <Box component="ul" sx={{ pl: 2, mt: 1, mb: 0 }}>
-                            <Typography component="li" sx={{ mb: 1, textAlign: 'left' }}>Classic Beef Noodle Soup</Typography>
-                            <Typography component="li" sx={{ mb: 1, textAlign: 'left' }}>Taiwanese Fried Chicken</Typography>
-                            <Typography component="li" sx={{ mb: 1, textAlign: 'left' }}>Signature Milk Tea</Typography>
-                            <Typography component="li" sx={{ textAlign: 'left' }}>Bubble Waffles</Typography>
+                        <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', pl: 2, mt: 1, mb: 0 }}>
+                            <Typography  sx={{ mb: 1 }}>Classic Beef Noodle Soup</Typography>
+                            <Typography sx={{ mb: 1}}>Taiwanese Fried Chicken</Typography>
+                            <Typography sx={{ mb: 1}}>Signature Milk Tea</Typography>
+                            <Typography sx={{  }}>Bubble Waffles</Typography>
                         </Box>
                     </InfoCard>
 
