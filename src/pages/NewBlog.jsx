@@ -32,6 +32,11 @@ export const New_Blog = () => {
   };
   
   const handleSubmit = () => {
+    if (!title.trim() || !bio.trim()) {
+      alert("Title and bio cannot be empty!");
+      return;
+    }
+
     const newBlog = { title, bio, image: selectedFile }; // Send Base64 string
     navigate("/profile", { state: { newBlog } });
   };

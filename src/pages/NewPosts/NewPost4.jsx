@@ -33,6 +33,11 @@ export const New_Post4 = () => {
   };
   
   const handleSubmit = () => {
+    if (!title.trim() || !steps.trim()) {
+      alert("Title and steps cannot be empty!");
+      return;
+    }
+    
     const newPost = { title, steps, image: selectedFile }; // Send Base64 string
     navigate("/user_blog4", { state: { newPost } });
   };
