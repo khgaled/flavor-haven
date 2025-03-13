@@ -32,8 +32,8 @@ export const New_Blog = () => {
   };
   
   const handleSubmit = () => {
-    if (!title.trim() || !bio.trim()) {
-      alert("Title and bio cannot be empty!");
+    if (!title.trim() || !bio.trim() || !selectedFile) {
+      alert("Please make sure you selected a picture and added a title and bio!");
       return;
     }
 

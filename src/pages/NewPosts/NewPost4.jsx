@@ -33,8 +33,8 @@ export const New_Post4 = () => {
   };
   
   const handleSubmit = () => {
-    if (!title.trim() || !steps.trim()) {
-      alert("Title and steps cannot be empty!");
+    if (!title.trim() || !steps.trim() || !selectedFile) {
+      alert("Please make sure you selected a picture and added a title and steps!");
       return;
     }
     
