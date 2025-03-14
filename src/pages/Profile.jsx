@@ -21,10 +21,13 @@ export const Profile = ({ setIsLoggedIn }) => {
   }, [location.state]);
 
   const handleLogout = () => {
+    console.log("Logging out...");
     localStorage.removeItem("isLoggedIn");
     setIsLoggedIn(false);
     navigate("/login");
+    console.log("Redirecting to login...");
   };
+  
 
   const profileCardStyles = {
     width: { xs: "80%", sm: "60%", md: "40%", lg: "30%", xl: "25%" },

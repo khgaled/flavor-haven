@@ -8,6 +8,7 @@ import temp_photo from "../assets/temp_photo.png";
 export const Login = ({ setIsLoggedIn }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  
   const navigate = useNavigate();
 
   const handleLogin = () => {

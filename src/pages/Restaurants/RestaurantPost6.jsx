@@ -50,7 +50,7 @@ const BackButton = styled(IconButton)({
     width: '48px',
     height: '48px',
     position: 'absolute',
-    bottom: '24px',
+    top: '24px',
     left: '32px',
     boxShadow: '0 4px 8px rgba(0,0,0,0.2)',
     zIndex: 999, // Much higher z-index to ensure it's above everything

@@ -58,7 +58,6 @@ function App() {
             <Route path="/new_post2" element={<New_Post2 />} />
             <Route path="/new_post3" element={<New_Post3 />} />
             <Route path="/new_post4" element={<New_Post4 />} />
-            <Route path="/profile" element={<Profile />} /> 
             <Route path="/profile" element={<Profile setIsLoggedIn={setIsLoggedIn} />} />
             <Route path="/recipe_post" element={<RecipePost />} /> 
             <Route path="/recipe_post1" element={<RecipePost1 />} /> 
