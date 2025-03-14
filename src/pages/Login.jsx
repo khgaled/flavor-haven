@@ -150,26 +150,6 @@ export const Login = ({ setIsLoggedIn }) => {
               >
                 Login
               </Button>
-
-              <Stack direction="row" alignItems="center" spacing={22} sx={{ width: "100%" }}>
-                <Typography variant="body2">
-                  <Button
-                    variant="text"
-                    sx={{ textTransform: "none", fontWeight: "bold", color: "#9F413E" }}
-                    onClick={() => alert("Sign-up feature coming soon!")}
-                  >
-                    Sign Up
-                  </Button>
-                </Typography>
-                
-                <Button
-                  variant="text"
-                  sx={{ textTransform: "none", color: "#9F413E", fontWeight: "bold" }}
-                  onClick={() => alert("Forgot password feature coming soon!")}
-                >
-                  Forgot Password?
-                </Button>
-              </Stack>
             </Box>
           </Box>
         </Grid>
