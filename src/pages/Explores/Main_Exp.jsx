@@ -230,18 +230,17 @@ export const Main_Explore = () => {
   };
 
   const handleShare = (id, isRestaurant) => {
-    setIsSharing(true);  // Pause carousel
-    setPopupOpen(true);  // Open the share popup
-    sharePost(id, isRestaurant);
+    setIsSharing(true);  
+    setPopupOpen(true);  
+    sharePost(id, isRestaurant, () => {
+      setIsSharing(false); 
+    });
   };
 
   const handleClosePopup = () => {
     setPopupOpen(false);
-    setIsSharing(false); // Resume the carousel when popup closes
   };
   
-
-
   useEffect(() => {
     if (isSharing) return; // Pause if sharing is active
     const interval = setInterval(handleNextFeatured, 5000);

@@ -17,13 +17,18 @@ export const useShare = () => {
   const [shareOpen, setShareOpen] = useState(false);
   const [popupOpen, setPopupOpen] = useState(false);
   const [postLink, setPostLink] = useState("");
+  const [onCompleteCallback, setOnCompleteCallback] = useState();
 
-  const sharePost = (postId, isRestaurant = false) => {
+
+  const sharePost = (postId, isRestaurant = false, onCompleteSharing = null) => {
     const postType = isRestaurant ? "restaurant_post" : "recipe_post";
     const link = `${window.location.origin}/${postType}${postId}`;
     
     setPostLink(link);
     setPopupOpen(true); // Show popup first
+    if (onCompleteSharing) {
+      setOnCompleteCallback(() => onCompleteSharing);
+    }
   };
 
   const copyLink = () => {
@@ -36,6 +41,26 @@ export const useShare = () => {
     setPopupOpen(false);
     // Notify the carousel or other components that the popup has closed
   };
+
+  const handleSnackbarClose = () => {
+    setShareOpen(false);
+    // Call the completion callback when the snackbar closes
+    if (onCompleteCallback) {
+      onCompleteCallback();
+      setOnCompleteCallback(null); // Clear the callback
+    }
+  };
+
+  const shareOnTwitter = () => {
+    const url = `https://twitter.com/intent/tweet?url=${encodeURIComponent(postLink)}`;
+    window.open(url, "_blank", "noopener,noreferrer");
+  };
+  
+  const shareOnFacebook = () => {
+    const url = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(postLink)}`;
+    window.open(url, "_blank", "noopener,noreferrer");
+  };
+  
 
   const ShareSnackbar = () => (
     <Snackbar
@@ -61,7 +86,7 @@ export const useShare = () => {
   );
 
   const SharePopup = () => (
-    <Dialog open={popupOpen} onClose={handleClose}
+    <Dialog open={popupOpen} onClose={handleSnackbarClose}
     sx={{
       '& .MuiBackdrop-root': { backgroundColor: 'transparent' }
     }}>
@@ -95,10 +120,10 @@ export const useShare = () => {
           <IconButton onClick={copyLink} sx={{ color: "#60709c" }}>
             <ContentCopyIcon fontSize="large" />
           </IconButton>
-          <IconButton onClick={copyLink} sx={{ color: "#60709c" }}>
+          <IconButton onClick={shareOnTwitter} sx={{ color: "#60709c" }}>
             <TwitterIcon fontSize="large" />
           </IconButton>
-          <IconButton onClick={copyLink} sx={{ color: "#60709c" }}>
+          <IconButton onClick={shareOnFacebook} sx={{ color: "#60709c" }}>
             <FacebookIcon fontSize="large" />
           </IconButton>
         </div>
